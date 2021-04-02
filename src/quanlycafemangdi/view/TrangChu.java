@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import quanlycafemangdi.Connector;
+import quanlycafemangdi.Util;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
 /**
@@ -22,6 +23,8 @@ import quanlycafemangdi.model.ThongTinDangNhap;
  * @author admin
  */
 public class TrangChu extends javax.swing.JFrame {
+    
+    private NhanVienPanel nhanVienPanel;
 
     Timer timer = new Timer(0, new ActionListener() {
         @Override
@@ -45,7 +48,7 @@ public class TrangChu extends javax.swing.JFrame {
         // Hien thi o phan "Thong tin tai khoan" trong Tuy Chon
         hienThiThongTinTaiKhoan(ThongTinDangNhap.getTenDangNhap());
         
-        
+        nhanVienPanel = new NhanVienPanel(trangChu_LPn,trangChu_Pn);
     }
 
     /**
@@ -502,21 +505,21 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_dangKiLichLam_BtnActionPerformed
 
     private void tuyChon_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuyChon_BtnActionPerformed
-        doiPanel(trangChu_LPn,tuyChon_Pn);
+        Util.doiPanel(trangChu_LPn,tuyChon_Pn);
 
     }//GEN-LAST:event_tuyChon_BtnActionPerformed
 
     private void thongTinTaiKhoan_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thongTinTaiKhoan_BtnActionPerformed
-       doiPanel(tinhNangCuaTuyChon_LPn,thongTinTaiKhoan_Pn);
+       Util.doiPanel(tinhNangCuaTuyChon_LPn,thongTinTaiKhoan_Pn);
        
     }//GEN-LAST:event_thongTinTaiKhoan_BtnActionPerformed
 
     private void doiMatKhau_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiMatKhau_BtnActionPerformed
-        doiPanel(tinhNangCuaTuyChon_LPn,doiMatKhau_Pn);
+        Util.doiPanel(tinhNangCuaTuyChon_LPn,doiMatKhau_Pn);
     }//GEN-LAST:event_doiMatKhau_BtnActionPerformed
 
     private void quayLai_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLai_BtnActionPerformed
-        doiPanel(trangChu_LPn,trangChu_Pn); // 
+        Util.doiPanel(trangChu_LPn,trangChu_Pn); // 
     }//GEN-LAST:event_quayLai_BtnActionPerformed
 
     private void CMND_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMND_TFActionPerformed
@@ -575,7 +578,7 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void nhan_vien_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhan_vien_btnActionPerformed
         // TODO add your handling code here:
-        
+        Util.doiPanel(trangChu_LPn, nhanVienPanel);
     }//GEN-LAST:event_nhan_vien_btnActionPerformed
 
     /**
@@ -664,12 +667,7 @@ public class TrangChu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
      
-    public void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
-        jLayeredPane.removeAll();
-        jLayeredPane.add(panel);
-        jLayeredPane.repaint();
-        jLayeredPane.revalidate();
-    }
+    
     
     public void hienThiThongTinTaiKhoan(String tenDangNhap)
     {

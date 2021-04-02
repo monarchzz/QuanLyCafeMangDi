@@ -5,6 +5,14 @@
  */
 package quanlycafemangdi.view;
 
+import java.util.List;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import quanlycafemangdi.Util;
+import quanlycafemangdi.data.Data;
+import quanlycafemangdi.model.NhanVien;
+
 /**
  *
  * @author monar
@@ -14,8 +22,43 @@ public class NhanVienPanel extends javax.swing.JPanel {
     /**
      * Creates new form NhanVienPanel
      */
-    public NhanVienPanel() {
+    private final JLayeredPane jLayeredPane;
+    private final JPanel homePanel;
+    public NhanVienPanel(JLayeredPane jLayeredPane, JPanel homePanel) {
         initComponents();
+        initTable();
+        this.jLayeredPane = jLayeredPane;
+        this.homePanel = homePanel;
+    }
+    
+    private void initTable(){
+        List<NhanVien> list = Data.getInstance().layDSNhanVien();
+        DefaultTableModel defaultTableModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+            
+        };
+        
+        
+        bangNhanVien.setModel(defaultTableModel);
+        defaultTableModel.addColumn("Tên tài khoản");
+        defaultTableModel.addColumn("Tên nhân viên");
+        defaultTableModel.addColumn("Giới tính");
+        defaultTableModel.addColumn("Chức vụ");
+        defaultTableModel.addColumn("Số chứng minh");
+        defaultTableModel.addColumn("Số điện thoại");
+            
+        for(NhanVien item: list) {
+            defaultTableModel.addRow(new Object[]{item.getTenTk(), 
+                item.getTenNhanVien(), 
+                item.getGioiTinh(), 
+                item.getChucVu(), 
+                item.getSoCM(), 
+                item.getSdt()});
+        }
+        
     }
 
     /**
@@ -27,32 +70,85 @@ public class NhanVienPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        quay_lai_btn = new javax.swing.JButton();
+        timKiem = new javax.swing.JTextField();
+        timKiemButton = new javax.swing.JButton();
+        themNhanVienButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        bangNhanVien = new javax.swing.JTable();
 
         setPreferredSize(new java.awt.Dimension(605, 334));
 
-        jLabel1.setText("jLabel1");
+        quay_lai_btn.setText("Quay Lại");
+        quay_lai_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quay_lai_btnActionPerformed(evt);
+            }
+        });
+
+        timKiemButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/search.png"))); // NOI18N
+
+        themNhanVienButton.setText("Thêm nhân viên");
+
+        bangNhanVien.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        bangNhanVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(bangNhanVien);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
-                .addComponent(jLabel1)
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(quay_lai_btn)
+                        .addGap(50, 50, 50)
+                        .addComponent(timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timKiemButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(themNhanVienButton)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(141, 141, 141)
-                .addComponent(jLabel1)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(timKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(timKiemButton))
+                    .addComponent(quay_lai_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(themNhanVienButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void quay_lai_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quay_lai_btnActionPerformed
+        // TODO add your handling code here:
+        Util.doiPanel(jLayeredPane, homePanel);
+    }//GEN-LAST:event_quay_lai_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable bangNhanVien;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton quay_lai_btn;
+    private javax.swing.JButton themNhanVienButton;
+    private javax.swing.JTextField timKiem;
+    private javax.swing.JButton timKiemButton;
     // End of variables declaration//GEN-END:variables
 }

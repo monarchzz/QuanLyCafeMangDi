@@ -10,12 +10,16 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import quanlycafemangdi.Connector;
+import quanlycafemangdi.data.Data;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
 public class DangNhap extends javax.swing.JFrame {
     
+    private Data data;
+    
     public DangNhap() {
         initComponents();
+        data = Data.getInstance();
         this.setLocationRelativeTo(null);
     }
 
@@ -166,10 +170,10 @@ public class DangNhap extends javax.swing.JFrame {
         }
         else
         {
-            if (kiemTraDangNhap(tenDangNhap, matKhau) == true)
+            if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
             {
                 this.dispose();
-                String chucVu = layChucVu(tenDangNhap, matKhau);
+                String chucVu = data.layChucVu(tenDangNhap, matKhau);
                 ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                 ThongTinDangNhap.setChucVu(chucVu);
                 TrangChu trangChu = new TrangChu();
@@ -215,10 +219,10 @@ public class DangNhap extends javax.swing.JFrame {
             }
             else
             {
-                if (kiemTraDangNhap(tenDangNhap, matKhau) == true)
+                if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
                 {
                     this.dispose();
-                    String chucVu = layChucVu(tenDangNhap, matKhau);
+                    String chucVu = data.layChucVu(tenDangNhap, matKhau);
                     ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                     ThongTinDangNhap.setChucVu(chucVu);                
                     TrangChu trangChu = new TrangChu();
@@ -257,10 +261,10 @@ public class DangNhap extends javax.swing.JFrame {
             }
             else
             {
-                if (kiemTraDangNhap(tenDangNhap, matKhau) == true)
+                if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
                 {
                     this.dispose();
-                    String chucVu = layChucVu(tenDangNhap, matKhau);
+                    String chucVu = data.layChucVu(tenDangNhap, matKhau);
                     ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                     ThongTinDangNhap.setChucVu(chucVu);          
                     ThongTinDangNhap.setMatKhau(matKhau);
@@ -334,41 +338,6 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JTextField tenDangNhap_TF;
     // End of variables declaration//GEN-END:variables
 
-    public boolean kiemTraDangNhap(String tenDangNhap, String matKhau)
-    {
-        Connection connect = Connector.getConnection();
-        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
-        try
-        {
-            PreparedStatement ps = connect.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                return true;
-            }
-        }catch (SQLException ex)
-        {
-            System.out.println("Truy van that bai");
-        }
-        return false;
-    }
     
-    public String layChucVu(String tenDangNhap, String matKhau)
-    {
-        Connection connect = Connector.getConnection();
-        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
-        try
-        {
-            PreparedStatement ps = connect.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                return rs.getString("chucVu");
-            }
-        }catch (SQLException ex)
-        {
-            System.out.println("Truy van that bai");
-        }
-        return null;
-    }
+    
 }

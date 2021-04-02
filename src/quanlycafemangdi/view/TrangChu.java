@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -69,6 +70,7 @@ public class TrangChu extends javax.swing.JFrame {
         sanPham_Btn = new javax.swing.JButton();
         diaDiemPhanCong_Btn = new javax.swing.JButton();
         tuyChon_Btn = new javax.swing.JButton();
+        nhan_vien_btn = new javax.swing.JButton();
         tuyChon_Pn = new javax.swing.JPanel();
         thongTinTaiKhoan_Btn = new javax.swing.JButton();
         doiMatKhau_Btn = new javax.swing.JButton();
@@ -132,7 +134,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         diaDiemPhanCong_Btn.setText("Dia diem/Phan cong");
 
-        tuyChon_Btn.setIcon(new javax.swing.ImageIcon("D:\\Program Files\\Hoc\\School\\Nhap Mon Cong Nghe Phan Mem\\Project\\QuanLyCafeMangDi-main\\src\\HinhAnh\\ThietLap.png")); // NOI18N
+        tuyChon_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/ThietLap.png"))); // NOI18N
         tuyChon_Btn.setText("Tuy chon");
         tuyChon_Btn.setBorderPainted(false);
         tuyChon_Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -141,25 +143,36 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
+        nhan_vien_btn.setText("Quản lý nhân viên");
+        nhan_vien_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhan_vien_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout trangChu_PnLayout = new javax.swing.GroupLayout(trangChu_Pn);
         trangChu_Pn.setLayout(trangChu_PnLayout);
         trangChu_PnLayout.setHorizontalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(trangChu_PnLayout.createSequentialGroup()
-                .addComponent(tuyChon_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(490, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(cafe_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
-                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(nguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(sanPham_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(trangChu_PnLayout.createSequentialGroup()
+                .addGroup(trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tuyChon_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(trangChu_PnLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(nhan_vien_btn)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         trangChu_PnLayout.setVerticalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,7 +185,9 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(nguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sanPham_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(nhan_vien_btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(tuyChon_Btn)
                 .addContainerGap())
         );
@@ -487,20 +502,21 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_dangKiLichLam_BtnActionPerformed
 
     private void tuyChon_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tuyChon_BtnActionPerformed
-        chuyenTuPanelTrangChuSangPanelKhacVaNguocLai(tuyChon_Pn);
+        doiPanel(trangChu_LPn,tuyChon_Pn);
+
     }//GEN-LAST:event_tuyChon_BtnActionPerformed
 
     private void thongTinTaiKhoan_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thongTinTaiKhoan_BtnActionPerformed
-       chuyenTuPanelTuyChonSangPanelCuaTungOption(thongTinTaiKhoan_Pn);
+       doiPanel(tinhNangCuaTuyChon_LPn,thongTinTaiKhoan_Pn);
        
     }//GEN-LAST:event_thongTinTaiKhoan_BtnActionPerformed
 
     private void doiMatKhau_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiMatKhau_BtnActionPerformed
-        chuyenTuPanelTuyChonSangPanelCuaTungOption(doiMatKhau_Pn);
+        doiPanel(tinhNangCuaTuyChon_LPn,doiMatKhau_Pn);
     }//GEN-LAST:event_doiMatKhau_BtnActionPerformed
 
     private void quayLai_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLai_BtnActionPerformed
-        chuyenTuPanelTrangChuSangPanelKhacVaNguocLai(trangChu_Pn); // 
+        doiPanel(trangChu_LPn,trangChu_Pn); // 
     }//GEN-LAST:event_quayLai_BtnActionPerformed
 
     private void CMND_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CMND_TFActionPerformed
@@ -556,6 +572,11 @@ public class TrangChu extends javax.swing.JFrame {
 //            }
         }
     }//GEN-LAST:event_xacNhan_BtnActionPerformed
+
+    private void nhan_vien_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhan_vien_btnActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_nhan_vien_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -618,6 +639,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JPasswordField matKhauMoi_PwF;
     private javax.swing.JLabel nguoiDung_Lbl;
     private javax.swing.JButton nguyenLieu_Btn;
+    private javax.swing.JButton nhan_vien_btn;
     private javax.swing.JLabel nhapLaiMatKhauMoi_Lbl;
     private javax.swing.JPasswordField nhapLaiMatKhauMoi_PwF;
     private javax.swing.JButton quayLai_Btn;
@@ -641,21 +663,13 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JButton xacNhan_Btn;
     // End of variables declaration//GEN-END:variables
 
-    public void chuyenTuPanelTrangChuSangPanelKhacVaNguocLai(JPanel panel) 
-    {
-        trangChu_LPn.removeAll();
-        trangChu_LPn.add(panel);
-        trangChu_LPn.repaint();
-        trangChu_LPn.revalidate();
+     
+    public void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
+        jLayeredPane.removeAll();
+        jLayeredPane.add(panel);
+        jLayeredPane.repaint();
+        jLayeredPane.revalidate();
     }
-    
-    public void chuyenTuPanelTuyChonSangPanelCuaTungOption(JPanel panel)
-    {
-        tinhNangCuaTuyChon_LPn.removeAll();
-        tinhNangCuaTuyChon_LPn.add(panel);
-        tinhNangCuaTuyChon_LPn.repaint();
-        tinhNangCuaTuyChon_LPn.revalidate();
-    }    
     
     public void hienThiThongTinTaiKhoan(String tenDangNhap)
     {

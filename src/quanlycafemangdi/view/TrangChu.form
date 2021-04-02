@@ -95,23 +95,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="tuyChon_Btn" min="-2" pref="115" max="-2" attributes="0"/>
-                      <EmptySpace pref="490" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="cafe_Lbl" min="-2" pref="214" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="dangKiLichLam_Btn" max="32767" attributes="0"/>
+                      <Component id="dangKiLichLam_Btn" pref="154" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="nguyenLieu_Btn" min="-2" pref="124" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="sanPham_Btn" min="-2" pref="134" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="diaDiemPhanCong_Btn" min="-2" pref="147" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tuyChon_Btn" alignment="0" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="nhan_vien_btn" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -127,7 +133,9 @@
                           <Component id="sanPham_Btn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                           <Component id="diaDiemPhanCong_Btn" alignment="3" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="133" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <Component id="nhan_vien_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="58" max="32767" attributes="0"/>
                       <Component id="tuyChon_Btn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -169,13 +177,21 @@
             <Component class="javax.swing.JButton" name="tuyChon_Btn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Program Files\Hoc\School\Nhap Mon Cong Nghe Phan Mem\Project\QuanLyCafeMangDi-main\src\HinhAnh\ThietLap.png"/>
+                  <Image iconType="3" name="/HinhAnh/ThietLap.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tuy chon"/>
                 <Property name="borderPainted" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tuyChon_BtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="nhan_vien_btn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; nh&#xe2;n vi&#xea;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nhan_vien_btnActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

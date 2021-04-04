@@ -14,7 +14,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import quanlycafemangdi.Connector;
 import quanlycafemangdi.Util;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
@@ -25,7 +24,6 @@ import quanlycafemangdi.model.ThongTinDangNhap;
 public class TrangChu extends javax.swing.JFrame {
     
     private NhanVienPanel nhanVienPanel;
-
     Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -49,6 +47,7 @@ public class TrangChu extends javax.swing.JFrame {
         hienThiThongTinTaiKhoan(ThongTinDangNhap.getTenDangNhap());
         
         nhanVienPanel = new NhanVienPanel(trangChu_LPn,trangChu_Pn);
+        
     }
 
     /**
@@ -671,10 +670,10 @@ public class TrangChu extends javax.swing.JFrame {
     
     public void hienThiThongTinTaiKhoan(String tenDangNhap)
     {
-        Connection connect = Connector.getConnection();
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "'";
         try
         {
+            Connection connect = Util.getConnection();
             PreparedStatement ps = connect.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
@@ -698,10 +697,10 @@ public class TrangChu extends javax.swing.JFrame {
     
     public void doiMatKhau(String tenDangNhap, String matKhau)
     {
-        Connection connect = Connector.getConnection();
         String query = "update NhanVien set matKhau = '" + matKhau + "' where tenTK = '" + tenDangNhap + "'";
         try
         {
+            Connection connect = Util.getConnection();
             PreparedStatement ps = connect.prepareStatement(query);
             ps.setString(2, matKhau);
             ps.executeUpdate();
@@ -712,4 +711,5 @@ public class TrangChu extends javax.swing.JFrame {
             System.out.println("Truy van that bai");
         }
     }
+    
 }

@@ -9,7 +9,6 @@ package quanlycafemangdi.view;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import java.sql.*;
-import quanlycafemangdi.Connector;
 import quanlycafemangdi.data.Data;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
@@ -81,6 +80,11 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
+        matKhau_PwF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matKhau_PwFActionPerformed(evt);
+            }
+        });
         matKhau_PwF.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 matKhau_PwFKeyPressed(evt);
@@ -225,7 +229,7 @@ public class DangNhap extends javax.swing.JFrame {
                     String chucVu = data.layChucVu(tenDangNhap, matKhau);
                     ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                     ThongTinDangNhap.setChucVu(chucVu);                
-                    TrangChu trangChu = new TrangChu();
+                     TrangChu trangChu = new TrangChu();
                     trangChu.setLocationRelativeTo(null);
                     trangChu.setVisible(true);
                 }
@@ -288,9 +292,13 @@ public class DangNhap extends javax.swing.JFrame {
         }
         else
         {
-            matKhau_PwF.setEchoChar('*');
+            matKhau_PwF.setEchoChar('●');
         }
     }//GEN-LAST:event_hienThiMatKhau_CBActionPerformed
+
+    private void matKhau_PwFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhau_PwFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matKhau_PwFActionPerformed
 
     /**
      * @param args the command line arguments

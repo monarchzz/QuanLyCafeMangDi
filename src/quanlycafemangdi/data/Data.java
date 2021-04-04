@@ -11,7 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import quanlycafemangdi.Connector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import quanlycafemangdi.Util;
 import quanlycafemangdi.model.NhanVien;
 
 /**
@@ -24,7 +26,7 @@ public class Data {
     private Connection connection;
     
     private Data(){
-        connection = Connector.getConnection();
+        connection = Util.getConnection();
     }
     
     public static Data getInstance(){
@@ -87,13 +89,111 @@ public class Data {
                     String sdt = rs.getString("sdt");
                     String gioiTinh = rs.getString("gioiTinh");
                     String tenNV = rs.getString("tenNV");
-                    list.add(new NhanVien(tenTk,chucVu,cmnd,sdt,gioiTinh,tenNV));
+                    String matKhau = rs.getString("matKhau");
+                    list.add(new NhanVien(tenTk,chucVu,cmnd,sdt,gioiTinh,tenNV,matKhau));
                 }
                 
             }
         } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
         }
         
         return list;
     }
+
+    // kiem tra so chung minh
+    public boolean kiemTraSCM(String cmnd) {
+        
+        
+        String query = "select cmnd from NhanVien";
+        
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (cmnd.equals(rs.getString("cmnd"))){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return true;
+    }
+
+    
+    // kiem tra ten dang nhap
+    public boolean kiemTraTDN(String tdn) {
+        
+        
+        String query = "select tenTK from NhanVien";
+        
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (tdn.equals(rs.getString("tenTK"))){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return true;
+    }
+    
+    public void taoNhanVien(NhanVien nhanVien){
+        String query = "insert into NhanVien values(?,?,?,?,?,?,?,?)";
+        
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, nhanVien.getTenTk());
+            ps.setString(2, nhanVien.getMatKhau());
+            ps.setString(3, nhanVien.getChucVu());
+            ps.setString(4, nhanVien.getSoCM());
+            ps.setString(5, nhanVien.getSdt());
+            ps.setString(6, nhanVien.getGioiTinh());
+            ps.setString(7, nhanVien.getTenNhanVien());
+            ps.setString(8, "1");
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    // xet gia tri trang thai = 0
+    public void xoaNhanVien(NhanVien nhanVien){
+        try {
+            String query = "update NhanVien set trangThai = '0' where tenTK = '"
+                    + nhanVien.getTenTk() + "'";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // sua thong tin nhan vien
+    public void suaThongTinNhanVien(NhanVien thongTinNVCu, NhanVien thongTinNVMoi){
+        try {
+            // xoa nhan vien
+            String query = "delete from NhanVien where tenTK = '"
+                    + thongTinNVCu.getTenTk() + "'";
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.execute();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // tao nhan vien
+        taoNhanVien(thongTinNVMoi);
+    }
+    
 }

@@ -16,9 +16,29 @@ public class NhanVien {
     private String sdt;
     private String gioiTinh;
     private String tenNhanVien;
+    private String matKhau;
+
 
     public NhanVien() {
         
+    }
+    
+    public NhanVien(String tenTk, String chucVu, String soCM, String sdt, String gioiTinh, String tenNhanVien, String matKhau) {
+        this.tenTk = tenTk;
+        this.chucVu = chucVu;
+        this.soCM = soCM;
+        this.sdt = sdt;
+        this.gioiTinh = gioiTinh;
+        this.tenNhanVien = tenNhanVien;
+        this.matKhau = matKhau;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
     public NhanVien(String tenTk, String chucVu, String soCM, String sdt, String gioiTinh, String tenNhanVien) {

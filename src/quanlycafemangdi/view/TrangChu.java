@@ -24,6 +24,7 @@ import quanlycafemangdi.model.ThongTinDangNhap;
 public class TrangChu extends javax.swing.JFrame {
     
     private NhanVienPanel nhanVienPanel;
+    private BanHangPanel banHangPanel;
     Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -47,7 +48,7 @@ public class TrangChu extends javax.swing.JFrame {
         hienThiThongTinTaiKhoan(ThongTinDangNhap.getTenDangNhap());
         
         nhanVienPanel = new NhanVienPanel(trangChu_LPn,trangChu_Pn);
-        
+        banHangPanel = new BanHangPanel(trangChu_LPn,trangChu_Pn);
     }
 
     /**
@@ -120,6 +121,8 @@ public class TrangChu extends javax.swing.JFrame {
 
         trangChu_LPn.setLayout(new java.awt.CardLayout());
 
+        trangChu_Pn.setPreferredSize(new java.awt.Dimension(1000, 700));
+
         cafe_Lbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cafe_Lbl.setText("Cafe 123");
 
@@ -161,7 +164,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(cafe_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(140, 140, 140))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
-                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(nguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -174,7 +177,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addGroup(trangChu_PnLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(nhan_vien_btn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(1050, Short.MAX_VALUE))
         );
         trangChu_PnLayout.setVerticalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +192,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(nhan_vien_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
                 .addComponent(tuyChon_Btn)
                 .addContainerGap())
         );
@@ -389,7 +392,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(xacNhan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(700, Short.MAX_VALUE))
         );
         doiMatKhau_PnLayout.setVerticalGroup(
             doiMatKhau_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,7 +454,7 @@ public class TrangChu extends javax.swing.JFrame {
                         .addGap(107, 107, 107))
                     .addComponent(tinhNangCuaTuyChon_LPn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(tuyChon_PnLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 435, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -473,7 +476,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(thoiGian_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(trangChu_LPn)
+            .addComponent(trangChu_LPn, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +491,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(hienThiChucVu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chucVu_Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trangChu_LPn))
+                .addComponent(trangChu_LPn, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE))
         );
 
         pack();
@@ -577,7 +580,8 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void nhan_vien_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhan_vien_btnActionPerformed
         // TODO add your handling code here:
-        Util.doiPanel(trangChu_LPn, nhanVienPanel);
+//        Util.doiPanel(trangChu_LPn, nhanVienPanel);
+        Util.doiPanel(trangChu_LPn, banHangPanel);
     }//GEN-LAST:event_nhan_vien_btnActionPerformed
 
     /**

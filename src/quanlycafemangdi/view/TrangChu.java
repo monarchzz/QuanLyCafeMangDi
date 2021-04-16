@@ -74,6 +74,7 @@ public class TrangChu extends javax.swing.JFrame {
         diaDiemPhanCong_Btn = new javax.swing.JButton();
         tuyChon_Btn = new javax.swing.JButton();
         nhan_vien_btn = new javax.swing.JButton();
+        banHangBtn = new javax.swing.JButton();
         tuyChon_Pn = new javax.swing.JPanel();
         thongTinTaiKhoan_Btn = new javax.swing.JButton();
         doiMatKhau_Btn = new javax.swing.JButton();
@@ -155,6 +156,14 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
+        banHangBtn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        banHangBtn.setText("Bán hàng");
+        banHangBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                banHangBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout trangChu_PnLayout = new javax.swing.GroupLayout(trangChu_Pn);
         trangChu_Pn.setLayout(trangChu_PnLayout);
         trangChu_PnLayout.setHorizontalGroup(
@@ -176,8 +185,10 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(tuyChon_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(trangChu_PnLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(nhan_vien_btn)))
-                .addContainerGap(1050, Short.MAX_VALUE))
+                        .addComponent(nhan_vien_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(banHangBtn)))
+                .addContainerGap(946, Short.MAX_VALUE))
         );
         trangChu_PnLayout.setVerticalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,8 +202,10 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(sanPham_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(nhan_vien_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 473, Short.MAX_VALUE)
+                .addGroup(trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nhan_vien_btn)
+                    .addComponent(banHangBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 470, Short.MAX_VALUE)
                 .addComponent(tuyChon_Btn)
                 .addContainerGap())
         );
@@ -491,7 +504,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(hienThiChucVu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chucVu_Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trangChu_LPn, javax.swing.GroupLayout.DEFAULT_SIZE, 749, Short.MAX_VALUE))
+                .addComponent(trangChu_LPn))
         );
 
         pack();
@@ -580,9 +593,14 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void nhan_vien_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhan_vien_btnActionPerformed
         // TODO add your handling code here:
-//        Util.doiPanel(trangChu_LPn, nhanVienPanel);
-        Util.doiPanel(trangChu_LPn, banHangPanel);
+        Util.doiPanel(trangChu_LPn, nhanVienPanel);
+//        Util.doiPanel(trangChu_LPn, banHangPanel);
     }//GEN-LAST:event_nhan_vien_btnActionPerformed
+
+    private void banHangBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_banHangBtnActionPerformed
+        // TODO add your handling code here:
+        Util.doiPanel(trangChu_LPn, banHangPanel);
+    }//GEN-LAST:event_banHangBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -624,6 +642,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JTextField CMND_TF;
     private javax.swing.JLabel SDT_Lbl;
     private javax.swing.JTextField SDT_TF;
+    private javax.swing.JButton banHangBtn;
     private javax.swing.JLabel cafe_Lbl;
     private javax.swing.JLabel chucVu2_Lbl;
     private javax.swing.JTextField chucVu2_TF;

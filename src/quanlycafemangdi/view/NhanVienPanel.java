@@ -227,6 +227,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
         sapXepComboBox = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         timKiemComboBox = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(605, 334));
 
@@ -270,7 +271,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
 
             }
         ));
-        bangNhanVien.setToolTipText("Nhấn vào để chỉnh sửa");
+        bangNhanVien.setToolTipText("Nhấn 2 lần để chỉnh sửa");
         bangNhanVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         bangNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -298,6 +299,8 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
             }
         });
 
+        jLabel3.setText("* Nhấn 2 lần để chỉnh sửa");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,7 +326,10 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(timKiemButton)
                                 .addGap(18, 18, 18)
-                                .addComponent(themNhanVienButton)))))
+                                .addComponent(themNhanVienButton))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -346,7 +352,9 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
                         .addComponent(jLabel2)
                         .addComponent(timKiemComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -379,15 +387,20 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
 
     private void timKiemComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemComboBoxActionPerformed
         // TODO add your handling code here:
+        
         timKiemNhanVien();
     }//GEN-LAST:event_timKiemComboBoxActionPerformed
 
     private void bangNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangNhanVienMouseClicked
         // TODO add your handling code here:
-        int index = bangNhanVien.getSelectedRow();
-        thongTinNhanVienFrame.xetChucNang(ThongTinNhanVienFrame.SUA_TAI_KHOAN,this);
-        thongTinNhanVienFrame.xetDuLieu(dsHienThi.get(index));
-        thongTinNhanVienFrame.setVisible(true);
+        
+        if (evt.getClickCount() == 2){
+            int index = bangNhanVien.getSelectedRow();
+            thongTinNhanVienFrame.xetChucNang(ThongTinNhanVienFrame.SUA_TAI_KHOAN,this);
+            thongTinNhanVienFrame.xetDuLieu(dsHienThi.get(index));
+            thongTinNhanVienFrame.setVisible(true);
+        }
+        
     }//GEN-LAST:event_bangNhanVienMouseClicked
 
     private void bangNhanVienMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bangNhanVienMouseReleased
@@ -399,6 +412,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
     private javax.swing.JTable bangNhanVien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton quay_lai_btn;
     private javax.swing.JComboBox<String> sapXepComboBox;

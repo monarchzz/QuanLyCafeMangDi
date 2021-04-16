@@ -180,6 +180,7 @@ public class DangNhap extends javax.swing.JFrame {
                 String chucVu = data.layChucVu(tenDangNhap, matKhau);
                 ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                 ThongTinDangNhap.setChucVu(chucVu);
+                ThongTinDangNhap.setTenNguoidung(data.layTenNguoiDung(tenDangNhap));
                 TrangChu trangChu = new TrangChu();
                 trangChu.setLocationRelativeTo(null);
                 trangChu.setVisible(true);
@@ -228,7 +229,8 @@ public class DangNhap extends javax.swing.JFrame {
                     this.dispose();
                     String chucVu = data.layChucVu(tenDangNhap, matKhau);
                     ThongTinDangNhap.setTenDangNhap(tenDangNhap);
-                    ThongTinDangNhap.setChucVu(chucVu);                
+                    ThongTinDangNhap.setChucVu(chucVu);         
+                    ThongTinDangNhap.setTenNguoidung(data.layTenNguoiDung(tenDangNhap));
                      TrangChu trangChu = new TrangChu();
                     trangChu.setLocationRelativeTo(null);
                     trangChu.setVisible(true);
@@ -272,6 +274,7 @@ public class DangNhap extends javax.swing.JFrame {
                     ThongTinDangNhap.setTenDangNhap(tenDangNhap);
                     ThongTinDangNhap.setChucVu(chucVu);          
                     ThongTinDangNhap.setMatKhau(matKhau);
+                    ThongTinDangNhap.setTenNguoidung(data.layTenNguoiDung(tenDangNhap));
                     TrangChu trangChu = new TrangChu();
                     trangChu.setLocationRelativeTo(null);
                     trangChu.setVisible(true);

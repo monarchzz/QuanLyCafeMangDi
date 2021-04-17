@@ -23,6 +23,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
      */
     public static final int BAN_HANG = 0;
     public static final int CONG_THUC = 1;
+    public static final int DANG_KY = 2;
     
     private final IOnClickSPPanel onClickSPPanel;
     private final SanPham sanPham;
@@ -39,10 +40,10 @@ public class SanPhamPanel extends javax.swing.JPanel {
         this.type = type; 
         this.onClickSPPanel = onClickSPPanel;
        
-        if (type == BAN_HANG){
-            taoSanPham();
-        }else if (type == CONG_THUC){
-            taoCongThuc();
+        switch(type){
+            case BAN_HANG -> taoSanPham();
+            case CONG_THUC -> taoCongThuc();
+            case DANG_KY -> taoCongThuc();
         }
         
         

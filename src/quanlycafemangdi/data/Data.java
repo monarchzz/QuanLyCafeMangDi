@@ -77,7 +77,7 @@ public class Data {
         ArrayList<NhanVien> list = new ArrayList<>();
         
         String query = "select * from NhanVien";
-        try {
+            try {
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){

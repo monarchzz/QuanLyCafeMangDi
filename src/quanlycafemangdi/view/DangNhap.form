@@ -35,7 +35,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="dangNhap_Btn" min="-2" pref="123" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lamMoi_Btn" max="32767" attributes="0"/>
+                      <Component id="thoat_Btn" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="matKhau_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
               <Component id="hienThiMatKhau_CB" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lamMoi_Btn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="thoat_Btn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="dangNhap_Btn" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="56" max="32767" attributes="0"/>
@@ -122,15 +122,15 @@
         <Property name="text" type="java.lang.String" value="M&#x1ead;t kh&#x1ea9;u"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="lamMoi_Btn">
+    <Component class="javax.swing.JButton" name="thoat_Btn">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Lam moi"/>
+        <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lamMoi_BtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="thoat_BtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JPasswordField" name="matKhau_PwF">

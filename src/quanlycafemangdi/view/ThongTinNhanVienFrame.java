@@ -20,9 +20,7 @@ public class ThongTinNhanVienFrame extends javax.swing.JFrame {
      * Creates new form ThongTinNhanVienFrame
      */
     
-    public interface IOnFrameDispose{
-        public void onFrameDispose();
-    }
+    
     
     
     public static final int TAO_TAI_KHOAN = 0;

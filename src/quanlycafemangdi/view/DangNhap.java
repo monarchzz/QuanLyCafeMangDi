@@ -31,7 +31,7 @@ public class DangNhap extends javax.swing.JFrame {
         dangNhap_Btn = new javax.swing.JButton();
         tenDangNhap_Lbl = new javax.swing.JLabel();
         matKhau_Lbl = new javax.swing.JLabel();
-        lamMoi_Btn = new javax.swing.JButton();
+        thoat_Btn = new javax.swing.JButton();
         matKhau_PwF = new javax.swing.JPasswordField();
         hienThiMatKhau_CB = new javax.swing.JCheckBox();
 
@@ -72,11 +72,11 @@ public class DangNhap extends javax.swing.JFrame {
         matKhau_Lbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         matKhau_Lbl.setText("Mật khẩu");
 
-        lamMoi_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lamMoi_Btn.setText("Lam moi");
-        lamMoi_Btn.addActionListener(new java.awt.event.ActionListener() {
+        thoat_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        thoat_Btn.setText("Thoát");
+        thoat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lamMoi_BtnActionPerformed(evt);
+                thoat_BtnActionPerformed(evt);
             }
         });
 
@@ -112,7 +112,7 @@ public class DangNhap extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(dangNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lamMoi_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(thoat_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(matKhau_Lbl)
                         .addComponent(tenDangNhap_Lbl)
@@ -138,7 +138,7 @@ public class DangNhap extends javax.swing.JFrame {
                 .addComponent(hienThiMatKhau_CB)
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lamMoi_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(thoat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dangNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
@@ -146,50 +146,12 @@ public class DangNhap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lamMoi_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lamMoi_BtnActionPerformed
-        tenDangNhap_TF.setText("");
-        matKhau_PwF.setText("");
-        
-        hienThiMatKhau_CB.setSelected(false);
-    }//GEN-LAST:event_lamMoi_BtnActionPerformed
+    private void thoat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_thoat_BtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_thoat_BtnActionPerformed
 
     private void dangNhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangNhap_BtnActionPerformed
-        String tenDangNhap = tenDangNhap_TF.getText();
-        String matKhau = matKhau_PwF.getText();
-        
-        boolean trongTenDangNhap = false, trongMatKhau = false;
-        if (tenDangNhap.equals(""))
-        {
-            trongTenDangNhap = true;
-            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        else if (matKhau.equals(""))
-        {
-            trongMatKhau = true;
-            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        else
-        {
-            if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
-            {
-                this.dispose();
-                String chucVu = data.layChucVu(tenDangNhap, matKhau);
-                ThongTinDangNhap.setTenDangNhap(tenDangNhap);
-                ThongTinDangNhap.setChucVu(chucVu);
-                TrangChu trangChu = new TrangChu();
-                trangChu.setLocationRelativeTo(null);
-                trangChu.setVisible(true);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(rootPane, "Sai ten dang nhap hoac mat khau.", "Loi!", 
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        }
+        dangNhap();
     }//GEN-LAST:event_dangNhap_BtnActionPerformed
 
     private void dangNhap_BtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dangNhap_BtnKeyPressed
@@ -203,85 +165,14 @@ public class DangNhap extends javax.swing.JFrame {
     private void matKhau_PwFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_matKhau_PwFKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            String tenDangNhap = tenDangNhap_TF.getText();
-            String matKhau = matKhau_PwF.getText();
-        
-            boolean trongTenDangNhap = false, trongMatKhau = false;
-            if (tenDangNhap.equals(""))
-            {
-                trongTenDangNhap = true;
-                JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            else if (matKhau.equals(""))
-            {
-                trongMatKhau = true;
-                JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            else
-            {
-                if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
-                {
-                    this.dispose();
-                    String chucVu = data.layChucVu(tenDangNhap, matKhau);
-                    ThongTinDangNhap.setTenDangNhap(tenDangNhap);
-                    ThongTinDangNhap.setChucVu(chucVu);                
-                     TrangChu trangChu = new TrangChu();
-                    trangChu.setLocationRelativeTo(null);
-                    trangChu.setVisible(true);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, "Sai ten dang nhap hoac mat khau.", "Loi!", 
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }            
+            dangNhap();
         }
     }//GEN-LAST:event_matKhau_PwFKeyPressed
 
     private void tenDangNhap_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tenDangNhap_TFKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
-            String tenDangNhap = tenDangNhap_TF.getText();
-            String matKhau = matKhau_PwF.getText();
-        
-            boolean trongTenDangNhap = false, trongMatKhau = false;
-            if (tenDangNhap.equals(""))
-            {
-                trongTenDangNhap = true;
-                JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            else if (matKhau.equals(""))
-            {
-                trongMatKhau = true;
-                JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            else
-            {
-                if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
-                {
-                    this.dispose();
-                    String chucVu = data.layChucVu(tenDangNhap, matKhau);
-                    ThongTinDangNhap.setTenDangNhap(tenDangNhap);
-                    ThongTinDangNhap.setChucVu(chucVu);          
-                    ThongTinDangNhap.setMatKhau(matKhau);
-                    TrangChu trangChu = new TrangChu();
-                    trangChu.setLocationRelativeTo(null);
-                    trangChu.setVisible(true);
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(rootPane, "Sai ten dang nhap hoac mat khau.", "Loi!", 
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }            
+            dangNhap();
         }
     }//GEN-LAST:event_tenDangNhap_TFKeyPressed
 
@@ -339,13 +230,53 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JButton dangNhap_Btn;
     private javax.swing.JLabel dangNhap_Lbl;
     private javax.swing.JCheckBox hienThiMatKhau_CB;
-    private javax.swing.JButton lamMoi_Btn;
     private javax.swing.JLabel matKhau_Lbl;
     private javax.swing.JPasswordField matKhau_PwF;
     private javax.swing.JLabel tenDangNhap_Lbl;
     private javax.swing.JTextField tenDangNhap_TF;
+    private javax.swing.JButton thoat_Btn;
     // End of variables declaration//GEN-END:variables
 
     
+    public void dangNhap()
+    {
+        String tenDangNhap = tenDangNhap_TF.getText();
+        String matKhau = matKhau_PwF.getText();
+        
+        boolean trongTenDangNhap = false, trongMatKhau = false;
+        if (tenDangNhap.equals(""))
+        {
+            trongTenDangNhap = true;
+            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else if (matKhau.equals(""))
+        {
+            trongMatKhau = true;
+            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        else
+        {
+            if (data.kiemTraDangNhap(tenDangNhap, matKhau) == true)
+            {
+                this.dispose();
+                String chucVu = data.layChucVu(tenDangNhap, matKhau);
+                ThongTinDangNhap.setTenDangNhap(tenDangNhap);
+                ThongTinDangNhap.setChucVu(chucVu);
+                ThongTinDangNhap.setMatKhau(matKhau);
+                TrangChu trangChu = new TrangChu();
+                trangChu.setLocationRelativeTo(null);
+                trangChu.setVisible(true);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(rootPane, "Sai ten dang nhap hoac mat khau.", "Loi!", 
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }        
+    }
     
 }

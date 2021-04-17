@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Vector;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +23,7 @@ import quanlycafemangdi.model.NhanVien;
  *
  * @author monar
  */
-public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVienFrame.IOnFrameDispose{
+public class NhanVienPanel extends javax.swing.JPanel implements IOnFrameDispose{
 
     /**
      * Creates new form NhanVienPanel
@@ -71,7 +70,7 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
     
     private void khoiTaoBang(){
         dsNhanVien = Data.getInstance().layDSNhanVien();
-        
+       
         
         defaultTableModel.setColumnCount(0);
         defaultTableModel.addColumn("Tên tài khoản");
@@ -410,9 +409,6 @@ public class NhanVienPanel extends javax.swing.JPanel implements ThongTinNhanVie
 
     @Override
     public void onFrameDispose() {
-        updateDataTable();
-        
-    }
-
-    
+        updateDataTable();       
+    }    
 }

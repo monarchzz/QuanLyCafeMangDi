@@ -22,6 +22,19 @@ public class Util {
         jLayeredPane.repaint();
         jLayeredPane.revalidate();
     }
+    
+    public static String formatCurrency(long currencyAmount){
+        String tmp = String.valueOf(currencyAmount);
+        int count = 0;
+        for (int i = tmp.length() - 1; i >= 0; i--){
+            count++;
+            if (count == 3 && i!= 0) {
+                count = 0;
+                tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+            }
+        }
+        return tmp;
+    }    
     public static Connection getConnection()
     {
         Connection connect = null;

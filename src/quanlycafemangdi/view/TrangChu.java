@@ -8,11 +8,10 @@ package quanlycafemangdi.view;
 import java.sql.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.Timer;
 import quanlycafemangdi.Util;
 import quanlycafemangdi.model.ThongTinDangNhap;
@@ -24,7 +23,8 @@ import quanlycafemangdi.model.ThongTinDangNhap;
 public class TrangChu extends javax.swing.JFrame {
     
     private NhanVienPanel nhanVienPanel;
-    Timer timer = new Timer(0, new ActionListener() {
+    private NguyenLieu_Panel nguyenLieuPanel;
+    private Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             Date current = new Date();
@@ -47,7 +47,8 @@ public class TrangChu extends javax.swing.JFrame {
         hienThiThongTinTaiKhoan(ThongTinDangNhap.getTenDangNhap());
         
         nhanVienPanel = new NhanVienPanel(trangChu_LPn,trangChu_Pn);
-        
+        nguyenLieuPanel = new NguyenLieu_Panel(trangChu_LPn, trangChu_Pn);
+                
     }
 
     /**
@@ -73,6 +74,7 @@ public class TrangChu extends javax.swing.JFrame {
         diaDiemPhanCong_Btn = new javax.swing.JButton();
         tuyChon_Btn = new javax.swing.JButton();
         nhan_vien_btn = new javax.swing.JButton();
+        dangXuat_Btn = new javax.swing.JButton();
         tuyChon_Pn = new javax.swing.JPanel();
         thongTinTaiKhoan_Btn = new javax.swing.JButton();
         doiMatKhau_Btn = new javax.swing.JButton();
@@ -120,6 +122,8 @@ public class TrangChu extends javax.swing.JFrame {
 
         trangChu_LPn.setLayout(new java.awt.CardLayout());
 
+        trangChu_Pn.setPreferredSize(new java.awt.Dimension(1000, 600));
+
         cafe_Lbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cafe_Lbl.setText("Cafe 123");
 
@@ -131,6 +135,11 @@ public class TrangChu extends javax.swing.JFrame {
         });
 
         nguyenLieu_Btn.setText("Nguyen lieu");
+        nguyenLieu_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nguyenLieu_BtnActionPerformed(evt);
+            }
+        });
 
         sanPham_Btn.setText("San pham");
 
@@ -152,36 +161,48 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
 
+        dangXuat_Btn.setText("Đăng xuất");
+        dangXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dangXuat_BtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout trangChu_PnLayout = new javax.swing.GroupLayout(trangChu_Pn);
         trangChu_Pn.setLayout(trangChu_PnLayout);
         trangChu_PnLayout.setHorizontalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(cafe_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(140, 140, 140))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
-                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(nguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(sanPham_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(sanPham_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 547, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(trangChu_PnLayout.createSequentialGroup()
                 .addGroup(trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tuyChon_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(trangChu_PnLayout.createSequentialGroup()
+                        .addComponent(tuyChon_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dangXuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(trangChu_PnLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(nhan_vien_btn)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(nhan_vien_btn)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, trangChu_PnLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(cafe_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(313, 313, 313))
         );
         trangChu_PnLayout.setVerticalGroup(
             trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(trangChu_PnLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(49, 49, 49)
                 .addComponent(cafe_Lbl)
-                .addGap(36, 36, 36)
+                .addGap(28, 28, 28)
                 .addGroup(trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dangKiLichLam_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,8 +210,10 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(diaDiemPhanCong_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(nhan_vien_btn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(tuyChon_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 166, Short.MAX_VALUE)
+                .addGroup(trangChu_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tuyChon_Btn)
+                    .addComponent(dangXuat_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -346,9 +369,32 @@ public class TrangChu extends javax.swing.JFrame {
 
         matKhauCu_Lbl.setText("Mat khau cu:");
 
+        matKhauCu_PwF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                matKhauCu_PwFActionPerformed(evt);
+            }
+        });
+        matKhauCu_PwF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                matKhauCu_PwFKeyPressed(evt);
+            }
+        });
+
         matKhauMoi_Lbl.setText("Mat khau moi:");
 
+        matKhauMoi_PwF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                matKhauMoi_PwFKeyPressed(evt);
+            }
+        });
+
         nhapLaiMatKhauMoi_Lbl.setText("Nhap lai mat khau moi:");
+
+        nhapLaiMatKhauMoi_PwF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nhapLaiMatKhauMoi_PwFKeyPressed(evt);
+            }
+        });
 
         xacNhan_Btn.setText("Xac nhan");
         xacNhan_Btn.addActionListener(new java.awt.event.ActionListener() {
@@ -389,7 +435,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(xacNhan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(537, Short.MAX_VALUE))
         );
         doiMatKhau_PnLayout.setVerticalGroup(
             doiMatKhau_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,7 +497,7 @@ public class TrangChu extends javax.swing.JFrame {
                         .addGap(107, 107, 107))
                     .addComponent(tinhNangCuaTuyChon_LPn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(tuyChon_PnLayout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 128, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -473,7 +519,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(thoiGian_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(trangChu_LPn)
+            .addComponent(trangChu_LPn, javax.swing.GroupLayout.DEFAULT_SIZE, 1037, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +534,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addComponent(hienThiChucVu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chucVu_Lbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(trangChu_LPn))
+                .addComponent(trangChu_LPn, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
         );
 
         pack();
@@ -532,53 +578,56 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_huy_BtnActionPerformed
 
     private void xacNhan_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xacNhan_BtnActionPerformed
-        String matKhauCu = matKhauCu_PwF.getText();
-        String matKhauMoi = matKhauMoi_PwF.getText();
-        String nhapLaiMatKhauMoi = nhapLaiMatKhauMoi_PwF.getText();
-        
-        boolean trongMatKhauCu = false, trongMatKhauMoi = false, trongNhapLaiMatKhauMoi = false;
-        if (matKhauCu.equals(""))
-        {
-            trongMatKhauCu = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        else if (matKhauMoi.equals(""))
-        {
-            trongMatKhauMoi = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
-                    JOptionPane.ERROR_MESSAGE);
-        }        
-        else if (nhapLaiMatKhauMoi.equals(""))
-        {
-            trongNhapLaiMatKhauMoi = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
-                    JOptionPane.ERROR_MESSAGE);
-        }        
-        else
-        {
-//            if (matKhauCu.equals(ThongTinDangNhap.getMatKhau()) == false )
-//            {
-//                JOptionPane.showMessageDialog(rootPane, "Mat khau cu khong chinh xac.", "Loi", 
-//                        JOptionPane.ERROR_MESSAGE);     
-//            }
-//            else if (matKhauMoi.equals(nhapLaiMatKhauMoi) == false)
-//            {
-//                JOptionPane.showMessageDialog(rootPane, "Mat khau moi va mat khau nhap lai khong trung khop.", "Loi", 
-//                        JOptionPane.ERROR_MESSAGE);
-//            }
-//            else
-//            {
-                doiMatKhau(ThongTinDangNhap.getTenDangNhap(), ThongTinDangNhap.getMatKhau());
-                JOptionPane.showMessageDialog(rootPane, "Doi mat khau thanh cong");
-//            }
-        }
+        xacNhanDoiMatKhau();
     }//GEN-LAST:event_xacNhan_BtnActionPerformed
 
     private void nhan_vien_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhan_vien_btnActionPerformed
         // TODO add your handling code here:
         Util.doiPanel(trangChu_LPn, nhanVienPanel);
     }//GEN-LAST:event_nhan_vien_btnActionPerformed
+
+    private void matKhauCu_PwFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_matKhauCu_PwFKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            xacNhanDoiMatKhau();
+        }
+    }//GEN-LAST:event_matKhauCu_PwFKeyPressed
+
+    private void matKhauMoi_PwFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_matKhauMoi_PwFKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            xacNhanDoiMatKhau();
+        }
+    }//GEN-LAST:event_matKhauMoi_PwFKeyPressed
+
+    private void nhapLaiMatKhauMoi_PwFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nhapLaiMatKhauMoi_PwFKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            xacNhanDoiMatKhau();
+        }
+    }//GEN-LAST:event_nhapLaiMatKhauMoi_PwFKeyPressed
+
+    private void nguyenLieu_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nguyenLieu_BtnActionPerformed
+        Util.doiPanel(trangChu_LPn, nguyenLieuPanel);
+    }//GEN-LAST:event_nguyenLieu_BtnActionPerformed
+
+    private void dangXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dangXuat_BtnActionPerformed
+        int luaChon = JOptionPane.showConfirmDialog(rootPane, "Dang xuat?", "Thoat", JOptionPane.YES_NO_OPTION);
+        if (luaChon == JOptionPane.YES_OPTION)
+        {
+            this.dispose();
+            DangNhap dangNhap = new DangNhap();
+            dangNhap.setVisible(true);            
+        }
+        else
+        {
+            
+        }
+    }//GEN-LAST:event_dangXuat_BtnActionPerformed
+
+    private void matKhauCu_PwFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matKhauCu_PwFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_matKhauCu_PwFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -625,6 +674,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JTextField chucVu2_TF;
     private javax.swing.JLabel chucVu_Lbl;
     private javax.swing.JButton dangKiLichLam_Btn;
+    private javax.swing.JButton dangXuat_Btn;
     private javax.swing.JButton diaDiemPhanCong_Btn;
     private javax.swing.JButton doiMatKhau_Btn;
     private javax.swing.JLabel doiMatKhau_Lbl;
@@ -691,25 +741,70 @@ public class TrangChu extends javax.swing.JFrame {
             }
         }catch (SQLException ex)
         {
-            System.out.println("Truy van that bai");
+            System.out.println("Hien thi thong tin tai khoan that bai");
         }
     }
     
     public void doiMatKhau(String tenDangNhap, String matKhau)
     {
-        String query = "update NhanVien set matKhau = '" + matKhau + "' where tenTK = '" + tenDangNhap + "'";
+        String query = "update NhanVien set matKhau = ? where tenTK = '" + tenDangNhap + "'";
         try
         {
             Connection connect = Util.getConnection();
             PreparedStatement ps = connect.prepareStatement(query);
-            ps.setString(2, matKhau);
+            ps.setString(1, matKhau);
             ps.executeUpdate();
             ps.close();
             connect.close();
         }catch (SQLException ex)
         {
-            System.out.println("Truy van that bai");
+            System.out.println("Doi mat khau that bai");
         }
     }
     
+    public void xacNhanDoiMatKhau()
+    {
+        String matKhauCu = matKhauCu_PwF.getText();
+        String matKhauMoi = matKhauMoi_PwF.getText();
+        String nhapLaiMatKhauMoi = nhapLaiMatKhauMoi_PwF.getText();
+        
+        boolean trongMatKhauCu = false, trongMatKhauMoi = false, trongNhapLaiMatKhauMoi = false;
+        if (matKhauCu.equals(""))
+        {
+            trongMatKhauCu = true;
+            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else if (matKhauMoi.equals(""))
+        {
+            trongMatKhauMoi = true;
+            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+                    JOptionPane.ERROR_MESSAGE);
+        }        
+        else if (nhapLaiMatKhauMoi.equals(""))
+        {
+            trongNhapLaiMatKhauMoi = true;
+            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+                    JOptionPane.ERROR_MESSAGE);
+        }        
+        else
+        {
+            if (matKhauCu.equals(ThongTinDangNhap.getMatKhau()) == false)
+            {
+                JOptionPane.showMessageDialog(rootPane, "Mat khau cu khong chinh xac.", "Loi",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+            else if (matKhauMoi.equals(nhapLaiMatKhauMoi) == false)
+            {
+                JOptionPane.showMessageDialog(rootPane, "Mat khau moi khong khong trung khop.", "Loi",
+                        JOptionPane.ERROR_MESSAGE);                
+            }
+            else
+            {
+                doiMatKhau(ThongTinDangNhap.getTenDangNhap(), matKhauMoi);
+                JOptionPane.showMessageDialog(rootPane, "Doi mat khau thanh cong");                
+            }
+        }        
+    }
+        
 }

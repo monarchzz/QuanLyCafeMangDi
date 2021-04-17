@@ -8,14 +8,21 @@ package quanlycafemangdi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import quanlycafemangdi.data.Data;
+import quanlycafemangdi.model.BanHang;
 
 /**
  *
  * @author monar
  */
 public class Util {
+    
+    public static final int SP_TABLE = 0;
+    public static final int BH_TABLE = 1;
+    
     public static void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
         jLayeredPane.removeAll();
         jLayeredPane.add(panel);
@@ -51,5 +58,34 @@ public class Util {
             System.out.println("That bai");
         }
         return connect;
+    }
+    
+    public static String autoGenId(int mode){
+
+        switch(mode){
+            case Util.BH_TABLE:
+                return taoMaBH();
+            case Util.SP_TABLE:
+                break;
+        }
+        
+        return null;
+    }
+    private static String taoMaBH(){
+        String name = "BH";
+        List<BanHang> dsBanHang = Data.getInstance().layDSBanHang();
+        int maxNumber = 0;
+        if (!dsBanHang.isEmpty()){
+            for (BanHang item: dsBanHang){
+                int number = Integer.valueOf(item.getMaBH().substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return String.format(name + "%04d", maxNumber);
     }
 }

@@ -29,10 +29,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel7" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -59,7 +56,7 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="trangChu_LPn" pref="922" max="32767" attributes="0"/>
+                  <Component id="trangChu_LPn" pref="916" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -171,7 +168,7 @@
                           <Component id="nhan_vien_btn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="banHangBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="664" max="32767" attributes="0"/>
+                          <EmptySpace pref="662" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="tuyChon_Btn" min="-2" pref="115" max="-2" attributes="0"/>
@@ -609,7 +606,7 @@
                                   <Component id="xacNhan_Btn" min="-2" pref="114" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="huy_Btn" min="-2" pref="112" max="-2" attributes="0"/>
-                                  <EmptySpace pref="422" max="32767" attributes="0"/>
+                                  <EmptySpace pref="416" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

@@ -243,8 +243,8 @@ public class DangNhap extends javax.swing.JFrame {
     
     public void dangNhap()
     {
-        String tenDangNhap = tenDangNhap_TF.getText();
-        String matKhau = matKhau_PwF.getText();
+        String tenDangNhap = tenDangNhap_TF.getText().trim();
+        String matKhau = matKhau_PwF.getText().trim();
         
         boolean trongTenDangNhap = false, trongMatKhau = false;
         if (tenDangNhap.equals(""))

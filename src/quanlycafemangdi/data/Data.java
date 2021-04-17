@@ -30,7 +30,7 @@ import quanlycafemangdi.model.SanPham;
 public class Data {
     
     private static Data INSTANCE ;
-    private Connection connection;
+    private final Connection connection;
     
     private Data(){
         connection = Util.getConnection();

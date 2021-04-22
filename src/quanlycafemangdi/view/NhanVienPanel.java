@@ -32,8 +32,6 @@ public class NhanVienPanel extends javax.swing.JPanel{
     /**
      * Creates new form NhanVienPanel
      */
-    private final JLayeredPane jLayeredPane;
-    private final JPanel homePanel;
     private final DefaultTableModel defaultTableModel;
     private List<NhanVien> dsNhanVien;
     private List<NhanVien> dsHienThi;
@@ -45,12 +43,9 @@ public class NhanVienPanel extends javax.swing.JPanel{
     private final Data data;
     
     
-    public NhanVienPanel(JLayeredPane jLayeredPane, JPanel homePanel) {
+    public NhanVienPanel() {
         initComponents();
         
-        
-        this.jLayeredPane = jLayeredPane;
-        this.homePanel = homePanel;
         this.data = Data.getInstance();
         
         defaultTableModel = new DefaultTableModel(){

@@ -7,8 +7,8 @@ package quanlycafemangdi.view;
 
 /**
  *
- * @author admin
+ * @author monar
  */
-public interface IOnFrameDispose {
+interface IOnFrameDispose {
     public void onFrameDispose();
 }

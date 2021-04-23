@@ -15,16 +15,18 @@ public class BanHang {
     private String maBH;
     private String tenTK;
     private String tg;
+    private String maCLV;
     private long tongTien;
     private HashMap<String,Integer> dsSanPham;
 
     public BanHang() {
     }
 
-    public BanHang(String maBH, String tenTK, String tg, long tongTien, HashMap<String, Integer> dsSanPham) {
+    public BanHang(String maBH, String tenTK, String maCLV, String tg, long tongTien, HashMap<String, Integer> dsSanPham) {
         this.maBH = maBH;
         this.tenTK = tenTK;
         this.tg = tg;
+        this.maCLV = maCLV;
         this.tongTien = tongTien;
         this.dsSanPham = dsSanPham;
     }
@@ -53,6 +55,14 @@ public class BanHang {
         this.tg = tg;
     }
 
+    public String getMaCLV() {
+        return maCLV;
+    }
+
+    public void setMaCLV(String maCLV) {
+        this.maCLV = maCLV;
+    }
+
     public long getTongTien() {
         return tongTien;
     }
@@ -68,6 +78,6 @@ public class BanHang {
     public void setDsSanPham(HashMap<String, Integer> dsSanPham) {
         this.dsSanPham = dsSanPham;
     }
-    
+
     
 }

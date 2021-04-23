@@ -14,13 +14,18 @@ import quanlycafemangdi.model.SanPham;
  */
 public class ThanhPhanHoaDonPanel extends javax.swing.JPanel {
     
+    public static final int BAN_HANG = 0;
+    public static final int DANG_KI = 1;
+    
+    
     private final SanPham sanPham;
     private int soLuong;
+    private final int type;
     private IOnSpinnerStateChange onSpinnerStateChange;
     
     public interface IOnSpinnerStateChange{
-        public void onStateChanged(SanPham sp, int sl);
-        public void onCancelButtonClicked(SanPham sp);
+        public void onStateChanged(SanPham sp, int sl, int type);
+        public void onCancelButtonClicked(SanPham sp, int type);
         
     }
 
@@ -28,13 +33,16 @@ public class ThanhPhanHoaDonPanel extends javax.swing.JPanel {
      * Creates new form ThanhPhanHoaDonPanel
      * @param sanPham
      * @param soLuong
+     * @param onSpinnerStateChange
      */
-    public ThanhPhanHoaDonPanel(SanPham sanPham, int soLuong, IOnSpinnerStateChange onSpinnerStateChange) {
+    public ThanhPhanHoaDonPanel(SanPham sanPham, int soLuong,int type, IOnSpinnerStateChange onSpinnerStateChange) {
         initComponents();
         
         this.sanPham = sanPham;
         this.soLuong = soLuong;
+        this.type = type;
         this.onSpinnerStateChange = onSpinnerStateChange;
+        
         
         initData();
     }
@@ -45,8 +53,20 @@ public class ThanhPhanHoaDonPanel extends javax.swing.JPanel {
     }
     private void capNhat(int sl, long gia){
         soLuongSn.setValue(sl);
-        String giaTien = Util.formatCurrency(gia * sl);
-        giaTienLb.setText(giaTien);
+        
+        switch(type){
+            case BAN_HANG -> {
+                String giaTien = Util.formatCurrency(gia * sl);
+                giaTienLb.setText(giaTien);
+            }
+            case DANG_KI -> {
+                giaTienLb.setText("");
+            }
+            default -> {
+                giaTienLb.setText("");
+            }
+        }
+        
         
 //        onSpinnerStateChange.onStateChanged(sanPham, sl);
 //        onSpinnerStateChange.onAmountChange();
@@ -91,7 +111,8 @@ public class ThanhPhanHoaDonPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Số lượng");
 
-        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/clear_icon.png"))); // NOI18N
+        cancelBtn.setBackground(new java.awt.Color(32, 136, 203));
+        cancelBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/clear_white.png"))); // NOI18N
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -138,12 +159,12 @@ public class ThanhPhanHoaDonPanel extends javax.swing.JPanel {
         }
         soLuong = (int)value;
         capNhat(value, sanPham.getGia());
-        onSpinnerStateChange.onStateChanged(sanPham, value);
+        onSpinnerStateChange.onStateChanged(sanPham, value, type);
     }//GEN-LAST:event_soLuongSnStateChanged
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         // TODO add your handling code here:
-        onSpinnerStateChange.onCancelButtonClicked(sanPham);
+        onSpinnerStateChange.onCancelButtonClicked(sanPham,type);
         
     }//GEN-LAST:event_cancelBtnActionPerformed
 

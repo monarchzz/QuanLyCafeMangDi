@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import quanlycafemangdi.Util;
-import quanlycafemangdi.model.CongThuc;
 import quanlycafemangdi.model.SanPham;
 
 /**
@@ -69,7 +68,8 @@ public class SanPhamPanel extends javax.swing.JPanel {
         tenSPLb = new javax.swing.JLabel();
         giaLb = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setBackground(new java.awt.Color(241, 248, 233));
+        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         setFocusCycleRoot(true);
         setFocusTraversalPolicyProvider(true);
         setInheritsPopupMenu(true);
@@ -79,7 +79,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
             }
         });
 
-        tenSPLb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tenSPLb.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tenSPLb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tenSPLb.setPreferredSize(new java.awt.Dimension(40, 15));
 
@@ -95,7 +95,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
             .addComponent(tenSPLb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(giaLb, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                .addComponent(giaLb, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,9 +111,9 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        this.setBackground(new Color(204,204,204));
+        this.setBackground(new Color(251, 233, 231));
         Timer timer = new Timer(70, (ActionEvent e) -> {
-            setBackground(new Color(240,240,240));
+            setBackground(new Color(241,248,233));
         });
         timer.setRepeats(false);
         timer.start();

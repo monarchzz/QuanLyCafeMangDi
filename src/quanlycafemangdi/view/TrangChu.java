@@ -21,6 +21,7 @@ public class TrangChu extends javax.swing.JFrame {
     private NhanVienPanel nhanVienPanel;
     private BanHangPanel banHangPanel;
     private NguyenLieu_Panel nguyenLieuPanel;
+    private ThongKePanel thongKePanel;
     Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -46,6 +47,7 @@ public class TrangChu extends javax.swing.JFrame {
         nhanVienPanel = new NhanVienPanel();
         banHangPanel = new BanHangPanel();
         nguyenLieuPanel = new NguyenLieu_Panel(trangChu_LPn, trangChu_Pn);
+        thongKePanel = new ThongKePanel();
     }
 
     /**
@@ -694,6 +696,11 @@ public class TrangChu extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/thongKe.png"))); // NOI18N
         jLabel9.setText("Thống kê");
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -893,6 +900,11 @@ public class TrangChu extends javax.swing.JFrame {
         // TODO add your handling code here:
         Util.doiPanel(trangChu_LPn, banHangPanel);
     }//GEN-LAST:event_jPanel9MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        // TODO add your handling code here:
+        Util.doiPanel(trangChu_LPn, thongKePanel);
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     /**
      * @param args the command line arguments

@@ -958,7 +958,6 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         chonLichLamDialog.setBackground(new java.awt.Color(255, 255, 255));
         chonLichLamDialog.setMinimumSize(new java.awt.Dimension(450, 450));
         chonLichLamDialog.setModal(true);
-        chonLichLamDialog.setPreferredSize(new java.awt.Dimension(450, 442));
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setPreferredSize(new java.awt.Dimension(450, 442));
@@ -1212,10 +1211,10 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         jPanel16.setBackground(new java.awt.Color(114, 102, 186));
 
-        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Thông tin hóa đơn");
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -1272,11 +1271,11 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         jPanel13.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("Sản phẩm");
         jLabel24.setBackground(new java.awt.Color(32, 136, 203));
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("Sản phẩm");
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -1450,11 +1449,11 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         jPanel15.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Sản phẩm");
         jLabel25.setBackground(new java.awt.Color(114, 102, 186));
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Sản phẩm");
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1518,6 +1517,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         lichLamTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lichLamTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        lichLamTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         lichLamTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lichLamTable.setToolTipText("Nhấn 2 lần để xem");
         lichLamTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1850,6 +1851,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         soLuongNguyenLieuTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        soLuongNguyenLieuTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         jScrollPane4.setViewportView(soLuongNguyenLieuTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -1970,11 +1973,11 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         jPanel9.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setText("Nguyên liệu còn lại");
         jLabel22.setBackground(new java.awt.Color(114, 102, 186));
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Nguyên liệu còn lại");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1998,6 +2001,9 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        bangNLConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangNLConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        bangNLConLaiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(bangNLConLaiTable);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -2027,11 +2033,11 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         jPanel11.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("Sản phẩm có thể bán");
         jLabel23.setBackground(new java.awt.Color(114, 102, 186));
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Sản phẩm có thể bán");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -2055,14 +2061,16 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        bangSPConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangSPConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         jScrollPane8.setViewportView(bangSPConLaiTable);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
+        duaNLVeKhoBtn.setText("Đưa nguyên liệu về kho");
         duaNLVeKhoBtn.setBackground(new java.awt.Color(32, 136, 203));
         duaNLVeKhoBtn.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         duaNLVeKhoBtn.setForeground(new java.awt.Color(255, 255, 255));
-        duaNLVeKhoBtn.setText("Đưa nguyên liệu về kho");
         duaNLVeKhoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 duaNLVeKhoBtnActionPerformed(evt);

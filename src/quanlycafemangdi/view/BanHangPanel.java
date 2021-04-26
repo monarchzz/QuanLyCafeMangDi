@@ -136,11 +136,15 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             
             Set<String> kSet = dKMap.keySet();
             for (String key : kSet){
-                
-                int sl = dKMap.get(key) - nguyenLieuBanHang.get(key);
-                if (sl >= 0){
-                    khoHienTai.put(key, sl);
+                if (nguyenLieuBanHang.get(key) == null){
+                    khoHienTai.put(key, dKMap.get(key));
+                }else {
+                    int sl = dKMap.get(key) - nguyenLieuBanHang.get(key);
+                    if (sl >= 0){
+                        khoHienTai.put(key, sl);
+                    }
                 }
+                
             }
         }
         
@@ -1526,7 +1530,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         lichLamTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lichLamTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        lichLamTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         lichLamTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         lichLamTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lichLamTable.setToolTipText("Nhấn 2 lần để xem");
@@ -1860,7 +1864,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         soLuongNguyenLieuTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         soLuongNguyenLieuTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         jScrollPane4.setViewportView(soLuongNguyenLieuTable);
 
@@ -2010,7 +2014,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        bangNLConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangNLConLaiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangNLConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         bangNLConLaiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(bangNLConLaiTable);
@@ -2070,7 +2074,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        bangSPConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangSPConLaiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangSPConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         jScrollPane8.setViewportView(bangSPConLaiTable);
 

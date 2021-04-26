@@ -589,7 +589,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         bangNhanVien.setFocusable(false);
         bangNhanVien.setRowHeight(25);
         bangNhanVien.setRowMargin(5);
-        bangNhanVien.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangNhanVien.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangNhanVien.setSelectionForeground(new java.awt.Color(254, 254, 254));
         bangNhanVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         bangNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -658,7 +658,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
         cmndLb.setBackground(new java.awt.Color(255, 255, 255));
         cmndLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmndLb.setText("Chứng CMND");
+        cmndLb.setText("CMND");
 
         sdtLb.setBackground(new java.awt.Color(255, 255, 255));
         sdtLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

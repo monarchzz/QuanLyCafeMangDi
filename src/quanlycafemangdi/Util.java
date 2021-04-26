@@ -32,16 +32,31 @@ public class Util {
     }
     
     public static String formatCurrency(long currencyAmount){
-        String tmp = String.valueOf(currencyAmount);
-        int count = 0;
-        for (int i = tmp.length() - 1; i >= 0; i--){
-            count++;
-            if (count == 3 && i!= 0) {
-                count = 0;
-                tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+        if (currencyAmount >= 0){
+            String tmp = String.valueOf(currencyAmount);
+            int count = 0;
+            for (int i = tmp.length() - 1; i >= 0; i--){
+                count++;
+                if (count == 3 && i!= 0) {
+                    count = 0;
+                    tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+                }
             }
+            return tmp;
+        }else {
+            currencyAmount = Math.abs(currencyAmount);
+            String tmp = String.valueOf(currencyAmount);
+            int count = 0;
+            for (int i = tmp.length() - 1; i >= 0; i--){
+                count++;
+                if (count == 3 && i!= 0) {
+                    count = 0;
+                    tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+                }
+            }
+            return "-" + tmp;
         }
-        return tmp;
+       
     }    
     public static Connection getConnection()
     {
@@ -109,5 +124,25 @@ public class Util {
         maxNumber++;
         
         return String.format(name + "%04d", maxNumber);
+    }
+    public static int soNGayTrongThang(int thang, int nam){
+        switch(thang){
+            case 1,3,5,7,8,10,12 ->{
+                return 31;
+            }
+            case 4,6,9,11 -> {
+                return 30;
+            }
+            case 2 -> {
+                if ((nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            }
+            
+        }
+        
+        return -1;
     }
 }

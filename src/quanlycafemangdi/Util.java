@@ -22,6 +22,7 @@ public class Util {
     
     public static final int SP_TABLE = 0;
     public static final int BH_TABLE = 1;
+    public static final int DK_TABLE = 2;
     
     public static void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
         jLayeredPane.removeAll();
@@ -63,10 +64,14 @@ public class Util {
     public static String autoGenId(int mode){
 
         switch(mode){
-            case Util.BH_TABLE:
+            case Util.BH_TABLE -> {
                 return taoMaBH();
-            case Util.SP_TABLE:
-                break;
+            }
+            case Util.SP_TABLE -> {
+            }
+            case Util.DK_TABLE -> {
+                return taoMaDK();
+            }
         }
         
         return null;
@@ -78,6 +83,23 @@ public class Util {
         if (!dsBanHang.isEmpty()){
             for (BanHang item: dsBanHang){
                 int number = Integer.valueOf(item.getMaBH().substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return String.format(name + "%04d", maxNumber);
+    }
+    private static String taoMaDK(){
+        String name = "DK";
+        List<String> dsDangKi = Data.getInstance().layDSMaDK();
+        int maxNumber = 0;
+        if (!dsDangKi.isEmpty()){
+            for (String item: dsDangKi){
+                int number = Integer.valueOf(item.substring(2));
                 if (number > maxNumber){
                     maxNumber = number;
                 }

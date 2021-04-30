@@ -23,6 +23,7 @@ public class TrangChu extends javax.swing.JFrame {
     private BanHangPanel banHangPanel;
     private NguyenLieu_Panel nguyenLieu_Panel;
     private SanPham_Panel sanPham_Panel;
+    private ThongKePanel thongKePanel;
     Timer timer = new Timer(0, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -46,10 +47,11 @@ public class TrangChu extends javax.swing.JFrame {
         hienThiThongTinTaiKhoan(ThongTinDangNhap.getTenDangNhap());
         
         
-        nhanVienPanel = new NhanVienPanel(trangChu_LPn,trangChu_Pn);
-        banHangPanel = new BanHangPanel(trangChu_LPn,trangChu_Pn);
+        nhanVienPanel = new NhanVienPanel();
+        banHangPanel = new BanHangPanel();
         nguyenLieu_Panel = new NguyenLieu_Panel(trangChu_LPn, trangChu_Pn);
         sanPham_Panel = new SanPham_Panel(trangChu_LPn, trangChu_Pn);
+        thongKePanel = new ThongKePanel();
     }
 
     /**
@@ -931,11 +933,11 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_banHangClick_PnMouseClicked
 
     private void thongKeClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeClick_LblMouseClicked
-        //doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
+        doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
     }//GEN-LAST:event_thongKeClick_LblMouseClicked
 
     private void thongKeClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeClick_PnMouseClicked
-        //doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
+        doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
     }//GEN-LAST:event_thongKeClick_PnMouseClicked
 
     private void tuyChonClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tuyChonClick_LblMouseClicked

@@ -243,21 +243,21 @@ public class DangNhap extends javax.swing.JFrame {
     
     public void dangNhap()
     {
-        String tenDangNhap = tenDangNhap_TF.getText();
-        String matKhau = matKhau_PwF.getText();
+        String tenDangNhap = tenDangNhap_TF.getText().trim();
+        String matKhau = matKhau_PwF.getText().trim();
         
         boolean trongTenDangNhap = false, trongMatKhau = false;
         if (tenDangNhap.equals(""))
         {
             trongTenDangNhap = true;
-            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
+            JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không hợp lệ.", "Lỗi!", 
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
         else if (matKhau.equals(""))
         {
             trongMatKhau = true;
-            JOptionPane.showMessageDialog(rootPane, "Ten dang nhap hoac mat khau khong hop le.", "Loi!", 
+            JOptionPane.showMessageDialog(rootPane, "Tên đăng nhập hoặc mật khẩu không hợp lệ.", "Lỗi!", 
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -278,7 +278,7 @@ public class DangNhap extends javax.swing.JFrame {
             }
             else
             {
-                JOptionPane.showMessageDialog(rootPane, "Sai ten dang nhap hoac mat khau.", "Loi!", 
+                JOptionPane.showMessageDialog(rootPane, "Sai tên đăng nhập hoặc mật khẩu.", "Lỗi!", 
                         JOptionPane.ERROR_MESSAGE);
             }
         }        

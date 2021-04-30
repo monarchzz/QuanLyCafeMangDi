@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JDialog" name="nhapXuat_Dialog">
+      <Properties>
+        <Property name="defaultCloseOperation" type="int" value="2"/>
+        <Property name="title" type="java.lang.String" value="Nh&#x1ead;p/xu&#x1ea5;t nguy&#xea;n li&#x1ec7;u"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <Component id="nhap_Btn" min="-2" pref="109" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="xuat_Btn" min="-2" pref="109" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="xuat_Btn" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="nhap_Btn" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="30" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="xuat_Btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xuat_BtnActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="nhap_Btn">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nh&#x1ead;p"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nhap_BtnActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1000, 600]"/>
@@ -21,12 +73,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="1" pref="1000" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" alignment="1" pref="600" max="32767" attributes="0"/>
+          <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -48,94 +100,109 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="refresh_Btn" min="-2" pref="34" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="tangDan_Btn" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="giamDan_Btn" min="-2" pref="94" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                      <Component id="quayLai_Btn" min="-2" pref="95" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="timKiem_TF" min="-2" pref="217" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="timKiem_Btn" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                                      <Component id="timKiem_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="timKiem_CBx" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                                      <Component id="sapXep_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="sapXep_CBx" min="-2" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="goiYChinhSuaDuLieu_Lbl" alignment="0" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Component id="nhapXuat_Btn" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                                      <Component id="themNguyenLieu_Btn" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="jScrollPane1" min="-2" pref="552" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="refresh_Btn" min="-2" pref="34" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="tangDan_Btn" min="-2" pref="94" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="timKiem_TF" min="-2" pref="217" max="-2" attributes="0"/>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Component id="timKiem_Btn" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="timKiem_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
+                                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                          <Component id="timKiem_CBx" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="sapXep_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="giamDan_Btn" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <Component id="sapXep_CBx" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="183" max="-2" attributes="0"/>
+                              <Component id="danhSachNguyenLieu_Lbl" min="-2" pref="161" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="345" max="-2" attributes="0"/>
-                      <Component id="nhap_Btn" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="themNguyenLieu_Btn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="427" max="32767" attributes="0"/>
+                      <EmptySpace pref="457" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <Component id="danhSachNguyenLieu_Lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="quayLai_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="timKiem_TF" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="timKiem_Btn" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="timKiem_TF" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="timKiem_Btn" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="timKiem_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="timKiem_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
+                              <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="sapXep_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sapXep_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="sapXep_Lbl" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="giamDan_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="tangDan_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              <Component id="refresh_Btn" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="refresh_Btn" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="tangDan_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                  <Component id="giamDan_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="153" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="goiYChinhSuaDuLieu_Lbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="343" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="goiYChinhSuaDuLieu_Lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nhap_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="themNguyenLieu_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="nhapXuat_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -157,12 +224,15 @@
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timKiem_TFKeyPressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="nhap_Btn">
+            <Component class="javax.swing.JButton" name="nhapXuat_Btn">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/HinhAnh/nhapXuat.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p/Xu&#x1ea5;t"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nhap_BtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nhapXuat_BtnActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="goiYChinhSuaDuLieu_Lbl">
@@ -201,17 +271,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiem_BtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="quayLai_Btn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Default Cursor"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quayLai_BtnActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JComboBox" name="sapXep_CBx">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -235,10 +294,42 @@
                 <Component class="javax.swing.JTable" name="nguyenLieu_Table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="0"/>
+                      <Table columnCount="5" rowCount="0">
+                        <Column editable="false" title="M&#xe3; nguy&#xea;n li&#x1ec7;u" type="java.lang.Object"/>
+                        <Column editable="false" title="T&#xea;n nguy&#xea;n li&#x1ec7;u" type="java.lang.Object"/>
+                        <Column editable="false" title="&#x110;&#x1a1;n v&#x1ecb; t&#xed;nh" type="java.lang.Object"/>
+                        <Column editable="true" title="Gi&#xe1;" type="java.lang.Object"/>
+                        <Column editable="false" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng t&#x1ed3;n" type="java.lang.Object"/>
+                      </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -252,6 +343,9 @@
             </Container>
             <Component class="javax.swing.JButton" name="themNguyenLieu_Btn">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/HinhAnh/themNguyenLieuMoi.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Th&#xea;m nguy&#xea;n li&#x1ec7;u m&#x1edb;i"/>
               </Properties>
               <Events>
@@ -279,6 +373,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giamDan_BtnActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="danhSachNguyenLieu_Lbl">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Danh s&#xe1;ch nguy&#xea;n li&#x1ec7;u"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -298,71 +397,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="chiTietNhapXuat_LPn" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="chiTietNhapXuat_Lbl" min="-2" pref="189" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="407" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" pref="517" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="522" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="refreshCTNX_Btn" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="quayLaiCTNX_Btn" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timKiemCTNX_TF" min="-2" pref="217" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="timKiemCTNX_Btn" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="timKiemCTNX_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="timKiemCTNX_CBx" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                                      <Component id="sapXepCTNX_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="sapXepCTNX_CBx" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tangDanCTNX_Btn" min="-2" pref="94" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="giamDanCTNX_Btn" min="-2" pref="94" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
+                              <Component id="doiPanelChiTietNhap_Btn" min="-2" pref="128" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="doiPanelChiTietXuat_Btn" min="-2" pref="132" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
-                              <Component id="chiTietNhap_Lbl" min="-2" pref="58" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="chiTietXuat_Lbl" min="-2" pref="58" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="goiY_Lbl" min="-2" pref="555" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tongSoTienNhap_Lbl" min="-2" pref="387" max="-2" attributes="0"/>
-                          <Component id="tongSoLuongNhap_Lbl" min="-2" pref="387" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tongSoTienXuat_Lbl" alignment="0" min="-2" pref="387" max="-2" attributes="0"/>
-                          <Component id="tongSoLuongXuat_Lbl" alignment="0" min="-2" pref="387" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -372,58 +426,15 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="chiTietNhapXuat_Lbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                      <Component id="timKiemCTNX_TF" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                      <Component id="quayLaiCTNX_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="timKiemCTNX_Btn" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="timKiemCTNX_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="timKiemCTNX_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="sapXepCTNX_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="sapXepCTNX_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="giamDanCTNX_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="tangDanCTNX_Btn" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="chiTietXuat_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="chiTietNhap_Lbl" alignment="0" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="refreshCTNX_Btn" min="-2" pref="22" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="chiTietNhapXuat_LPn" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" min="-2" pref="211" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="211" max="-2" attributes="0"/>
+                      <Component id="goiY_Lbl" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="doiPanelChiTietNhap_Btn" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="doiPanelChiTietXuat_Btn" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="tongSoLuongNhap_Lbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tongSoTienNhap_Lbl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="tongSoLuongXuat_Lbl" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="tongSoTienXuat_Lbl" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="156" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -437,178 +448,479 @@
                 <Property name="text" type="java.lang.String" value="Chi ti&#x1ebf;t nh&#x1ead;p xu&#x1ea5;t"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="chiTietNhap_Lbl">
+            <Container class="javax.swing.JLayeredPane" name="chiTietNhapXuat_LPn">
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="chiTietNhap_Pn">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="card2"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="refreshChiTietNhap_Btn" min="-2" pref="34" max="-2" attributes="0"/>
+                              <EmptySpace pref="315" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="chiTietNhap_Lbl" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="293" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="timKiemChiTietNhap_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="timKiemChiTietNhap_CBx" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="306" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
+                                      <Component id="sapXepChiTietNhap_Lbl" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="sapXepChiTietNhap_CBx" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="tangDanChiTietNhap_Btn" min="-2" pref="94" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="giamDanChiTietNhap_Btn" min="-2" pref="94" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="tongSoTienNhap_Lbl" min="-2" pref="387" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Component id="chiTietNhap_Lbl" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="refreshChiTietNhap_Btn" min="-2" pref="22" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="timKiemChiTietNhap_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                                  <Component id="timKiemChiTietNhap_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="sapXepChiTietNhap_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="sapXepChiTietNhap_Lbl" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="giamDanChiTietNhap_Btn" min="-2" pref="33" max="-2" attributes="0"/>
+                                          <Component id="tangDanChiTietNhap_Btn" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="211" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="tongSoTienNhap_Lbl" min="-2" pref="21" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="sapXepChiTietNhap_Lbl">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p theo: "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="chiTietNhap_Lbl">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Nh&#x1ead;p"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="giamDanChiTietNhap_Btn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m d&#x1ea7;n"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giamDanChiTietNhap_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="tongSoTienNhap_Lbl">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="gwagaw"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="refreshChiTietNhap_Btn">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/HinhAnh/Refresh.png"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshChiTietNhap_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="tangDanChiTietNhap_Btn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="T&#x103;ng d&#x1ea7;n"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tangDanChiTietNhap_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="timKiemChiTietNhap_CBx">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiemChiTietNhap_CBxActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="chiTietNhap_Table">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="6" rowCount="0">
+                                <Column editable="false" title="M&#xe3; nh&#x1ead;p xu&#x1ea5;t" type="java.lang.Object"/>
+                                <Column editable="false" title="T&#xe0;i kho&#x1ea3;n" type="java.lang.Object"/>
+                                <Column editable="false" title="Th&#x1edd;i gian" type="java.lang.Object"/>
+                                <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
+                                <Column editable="false" title="Th&#xe0;nh ti&#x1ec1;n" type="java.lang.Object"/>
+                                <Column editable="false" title="Ghi ch&#xfa;" type="java.lang.Object"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="chiTietNhap_TableMouseClicked"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JComboBox" name="sapXepChiTietNhap_CBx">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sapXepChiTietNhap_CBxActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="timKiemChiTietNhap_Lbl">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m theo:"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="chiTietXuat_Pn">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
+                      <CardConstraints cardName="card3"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane3" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="refreshChiTietXuat_Btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="331" max="32767" attributes="0"/>
+                              <Component id="timKiemChiTietXuat_Lbl" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="chiTietXuat_Lbl" min="-2" pref="58" max="-2" attributes="0"/>
+                                  <Component id="timKiemChiTietXuat_CBx" min="-2" pref="107" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="sapXepChiTietXuat_Lbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="sapXepChiTietXuat_CBx" min="-2" pref="107" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                                      <Component id="tangDanChiTietXuat_Btn" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="giamDanChiTietXuat_Btn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="chiTietXuat_Lbl" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="sapXepChiTietXuat_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="sapXepChiTietXuat_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="timKiemChiTietXuat_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="timKiemChiTietXuat_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="giamDanChiTietXuat_Btn" alignment="0" pref="28" max="32767" attributes="0"/>
+                                          <Component id="tangDanChiTietXuat_Btn" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Component id="refreshChiTietXuat_Btn" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="259" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="chiTietXuat_Lbl">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="14" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t"/>
+                      </Properties>
+                    </Component>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="chiTietXuat_Table">
+                          <Properties>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="5" rowCount="0">
+                                <Column editable="false" title="M&#xe3; nh&#x1ead;p xu&#x1ea5;t" type="java.lang.Object"/>
+                                <Column editable="false" title="T&#xe0;i kho&#x1ea3;n" type="java.lang.Object"/>
+                                <Column editable="false" title="Th&#x1edd;i gian" type="java.lang.Object"/>
+                                <Column editable="false" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
+                                <Column editable="false" title="Ghi ch&#xfa;" type="java.lang.Object"/>
+                              </Table>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="chiTietXuat_TableMouseClicked"/>
+                          </Events>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                    <Component class="javax.swing.JLabel" name="timKiemChiTietXuat_Lbl">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m theo:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="timKiemChiTietXuat_CBx">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiemChiTietXuat_CBxActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="sapXepChiTietXuat_Lbl">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p theo:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="giamDanChiTietXuat_Btn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m d&#x1ea7;n"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giamDanChiTietXuat_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="tangDanChiTietXuat_Btn">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="T&#x103;ng d&#x1ea7;n"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tangDanChiTietXuat_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="sapXepChiTietXuat_CBx">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="0"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="refreshChiTietXuat_Btn">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/HinhAnh/Refresh.png"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshChiTietXuat_BtnActionPerformed"/>
+                      </Events>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JButton" name="doiPanelChiTietNhap_Btn">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/HinhAnh/quayLai.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nh&#x1ead;p"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doiPanelChiTietNhap_BtnActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="chiTietXuat_Lbl">
+            <Component class="javax.swing.JButton" name="doiPanelChiTietXuat_Btn">
               <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/HinhAnh/next.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t"/>
               </Properties>
-            </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="chiTietNhap_Table">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="4"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-              <AuxValues>
-                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-              </AuxValues>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-              <SubComponents>
-                <Component class="javax.swing.JTable" name="chiTietXuat_Table">
-                  <Properties>
-                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="0" rowCount="4"/>
-                    </Property>
-                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                      <TableColumnModel selectionModel="0"/>
-                    </Property>
-                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                    </Property>
-                  </Properties>
-                </Component>
-              </SubComponents>
-            </Container>
-            <Component class="javax.swing.JButton" name="quayLaiCTNX_Btn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
-              </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="quayLaiCTNX_BtnActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doiPanelChiTietXuat_BtnActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="timKiemCTNX_Lbl">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m theo"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="timKiemCTNX_CBx">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiemCTNX_CBxActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JTextField" name="timKiemCTNX_TF">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiemCTNX_TFActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="timKiemCTNX_TFKeyPressed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="sapXepCTNX_Lbl">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="S&#x1eaf;p x&#x1ebf;p theo: "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="sapXepCTNX_CBx">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sapXepCTNX_CBxActionPerformed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JButton" name="timKiemCTNX_Btn">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HinhAnh/search.png"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="timKiemCTNX_BtnActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="tangDanCTNX_Btn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="T&#x103;ng d&#x1ea7;n"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tangDanCTNX_BtnActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="giamDanCTNX_Btn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Gi&#x1ea3;m d&#x1ea7;n"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="giamDanCTNX_BtnActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JButton" name="refreshCTNX_Btn">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/HinhAnh/Refresh.png"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshCTNX_BtnActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="tongSoLuongNhap_Lbl">
+            <Component class="javax.swing.JLabel" name="goiY_Lbl">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
+                  <Font name="Tahoma" size="16" style="2"/>
                 </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="tongSoTienNhap_Lbl">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="tongSoLuongXuat_Lbl">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="tongSoTienXuat_Lbl">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="14" style="1"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="*Double click &#x111;&#x1ec3; xem chi ti&#x1ebf;t c&#xe1;c nguy&#xea;n li&#x1ec7;u &#x111;&#x1b0;&#x1ee3;c nh&#x1ead;p/xu&#x1ea5;t"/>
               </Properties>
             </Component>
           </SubComponents>

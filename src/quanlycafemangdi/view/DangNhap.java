@@ -272,6 +272,7 @@ public class DangNhap extends javax.swing.JFrame {
                 ThongTinDangNhap.setChucVu(chucVu);
                 ThongTinDangNhap.setMatKhau(matKhau);
                 TrangChu trangChu = new TrangChu();
+                trangChu.xetChucVu(chucVu);
                 trangChu.setLocationRelativeTo(null);
                 trangChu.setVisible(true);
             }

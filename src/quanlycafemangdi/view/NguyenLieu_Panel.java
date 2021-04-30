@@ -16,38 +16,43 @@ import javax.swing.table.DefaultTableModel;
 import quanlycafemangdi.Util;
 import java.sql.*;
 import java.util.Comparator;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import quanlycafemangdi.model.ChiTietNhapXuat;
 
 /**
  *
  * @author admin
  */
-// Phuong thuc chung: dong 980 
-// Phuong thuc cua Panel Nguyen Lieu: dong 1045
-// Phuong thuc cua Panel Chi Tiet Nhap Xuat: dong 1235 
+// Phuong thuc chung: dong 1200
+// Phuong thuc cua Panel Nguyen Lieu: dong 1210
+// Phuong thuc cua Panel Chi Tiet Nhap Xuat: dong 1400
 import quanlycafemangdi.model.NguyenLieu;
+import quanlycafemangdi.model.NhapXuat;
 public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDispose{
 
     private JLayeredPane jLayeredPane;
     private JPanel homePanel;
     
-    private DefaultTableModel dtm;
+    private DefaultTableModel dtmNguyenLieu;
     private DefaultTableModel dtmChiTietNhap;
     private DefaultTableModel dtmChiTietXuat;
     
-    private ArrayList<NguyenLieu> danhSachNguyenLieu = new ArrayList<>();
-    private ArrayList<ChiTietNhapXuat> danhSachNhap = new ArrayList<>();
-    private ArrayList<ChiTietNhapXuat> danhSachXuat = new ArrayList<>();    
+    private ArrayList<NguyenLieu> danhSachNguyenLieu = new ArrayList<>(); 
+    private ArrayList<NhapXuat> danhSachNhap = new ArrayList<>();
+    private ArrayList<NhapXuat> danhSachXuat = new ArrayList<>();
     
     // Du lieu cua combo box
     private ArrayList<String> danhSachSapXep_CBx = new ArrayList<>();
     private ArrayList<String> danhSachTimKiem_CBx = new ArrayList<>();
-    private ArrayList<String> danhSachSapXepCTNX_CBx = new ArrayList<>();
-    private ArrayList<String> danhSachTimKiemCTNX_CBx = new ArrayList<>();
-
     
+    private ArrayList<String> danhSachSapXepChiTietNhap_CBx = new ArrayList<>();
+    private ArrayList<String> danhSachTimKiemChiTietNhap_CBx = new ArrayList<>();
+    
+    private ArrayList<String> danhSachSapXepChiTietXuat_CBx = new ArrayList<>();
+    private ArrayList<String> danhSachTimKiemChiTietXuat_CBx = new ArrayList<>();    
+
+
     public NguyenLieu_Panel() {
         initComponents();
     }
@@ -58,15 +63,19 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         this.jLayeredPane = jLayeredPane;
         this.homePanel = homePanel;
         
-        khoiTaoBang();
+        dtmNguyenLieu = (DefaultTableModel)nguyenLieu_Table.getModel();
+        dtmChiTietXuat = (DefaultTableModel)chiTietXuat_Table.getModel();
+        dtmChiTietNhap = (DefaultTableModel)chiTietNhap_Table.getModel();
+        
         khoiTaoDuLieuComboBox();
-        khoiTaoDuLieuComboBoxCTNX();        
+        khoiTaoDuLieuComboBoxChiTietNhap();        
+        khoiTaoDuLieuComboBoxChiTietXuat();  
+        
         
         hienThiDanhSachNguyenLieu(danhSachNguyenLieu, "CSDL");
         hienThiDanhSachNhap(danhSachNhap, "CSDL");
         hienThiDanhSachXuat(danhSachXuat, "CSDL");
-        hienThiTongSoLuongVaSoTienNhap(danhSachNhap);
-        hienThiTongSoLuongVaSoTienXuat(danhSachXuat);
+        hienThiTongSoTienNhap(danhSachNhap);       
     }
 
     /**
@@ -78,16 +87,18 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nhapXuat_Dialog = new javax.swing.JDialog();
+        xuat_Btn = new javax.swing.JButton();
+        nhap_Btn = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         refresh_Btn = new javax.swing.JButton();
         timKiem_TF = new javax.swing.JTextField();
-        nhap_Btn = new javax.swing.JButton();
+        nhapXuat_Btn = new javax.swing.JButton();
         goiYChinhSuaDuLieu_Lbl = new javax.swing.JLabel();
         timKiem_CBx = new javax.swing.JComboBox<>();
         sapXep_Lbl = new javax.swing.JLabel();
         timKiem_Btn = new javax.swing.JButton();
-        quayLai_Btn = new javax.swing.JButton();
         sapXep_CBx = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         nguyenLieu_Table = new javax.swing.JTable();
@@ -95,28 +106,74 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         timKiem_Lbl = new javax.swing.JLabel();
         tangDan_Btn = new javax.swing.JButton();
         giamDan_Btn = new javax.swing.JButton();
+        danhSachNguyenLieu_Lbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         chiTietNhapXuat_Lbl = new javax.swing.JLabel();
+        chiTietNhapXuat_LPn = new javax.swing.JLayeredPane();
+        chiTietNhap_Pn = new javax.swing.JPanel();
+        sapXepChiTietNhap_Lbl = new javax.swing.JLabel();
         chiTietNhap_Lbl = new javax.swing.JLabel();
-        chiTietXuat_Lbl = new javax.swing.JLabel();
+        giamDanChiTietNhap_Btn = new javax.swing.JButton();
+        tongSoTienNhap_Lbl = new javax.swing.JLabel();
+        refreshChiTietNhap_Btn = new javax.swing.JButton();
+        tangDanChiTietNhap_Btn = new javax.swing.JButton();
+        timKiemChiTietNhap_CBx = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         chiTietNhap_Table = new javax.swing.JTable();
+        sapXepChiTietNhap_CBx = new javax.swing.JComboBox<>();
+        timKiemChiTietNhap_Lbl = new javax.swing.JLabel();
+        chiTietXuat_Pn = new javax.swing.JPanel();
+        chiTietXuat_Lbl = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         chiTietXuat_Table = new javax.swing.JTable();
-        quayLaiCTNX_Btn = new javax.swing.JButton();
-        timKiemCTNX_Lbl = new javax.swing.JLabel();
-        timKiemCTNX_CBx = new javax.swing.JComboBox<>();
-        timKiemCTNX_TF = new javax.swing.JTextField();
-        sapXepCTNX_Lbl = new javax.swing.JLabel();
-        sapXepCTNX_CBx = new javax.swing.JComboBox<>();
-        timKiemCTNX_Btn = new javax.swing.JButton();
-        tangDanCTNX_Btn = new javax.swing.JButton();
-        giamDanCTNX_Btn = new javax.swing.JButton();
-        refreshCTNX_Btn = new javax.swing.JButton();
-        tongSoLuongNhap_Lbl = new javax.swing.JLabel();
-        tongSoTienNhap_Lbl = new javax.swing.JLabel();
-        tongSoLuongXuat_Lbl = new javax.swing.JLabel();
-        tongSoTienXuat_Lbl = new javax.swing.JLabel();
+        timKiemChiTietXuat_Lbl = new javax.swing.JLabel();
+        timKiemChiTietXuat_CBx = new javax.swing.JComboBox<>();
+        sapXepChiTietXuat_Lbl = new javax.swing.JLabel();
+        giamDanChiTietXuat_Btn = new javax.swing.JButton();
+        tangDanChiTietXuat_Btn = new javax.swing.JButton();
+        sapXepChiTietXuat_CBx = new javax.swing.JComboBox<>();
+        refreshChiTietXuat_Btn = new javax.swing.JButton();
+        doiPanelChiTietNhap_Btn = new javax.swing.JButton();
+        doiPanelChiTietXuat_Btn = new javax.swing.JButton();
+        goiY_Lbl = new javax.swing.JLabel();
+
+        nhapXuat_Dialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        nhapXuat_Dialog.setTitle("Nhập/xuất nguyên liệu");
+
+        xuat_Btn.setText("Xuất");
+        xuat_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xuat_BtnActionPerformed(evt);
+            }
+        });
+
+        nhap_Btn.setText("Nhập");
+        nhap_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nhap_BtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout nhapXuat_DialogLayout = new javax.swing.GroupLayout(nhapXuat_Dialog.getContentPane());
+        nhapXuat_Dialog.getContentPane().setLayout(nhapXuat_DialogLayout);
+        nhapXuat_DialogLayout.setHorizontalGroup(
+            nhapXuat_DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nhapXuat_DialogLayout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(xuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+        );
+        nhapXuat_DialogLayout.setVerticalGroup(
+            nhapXuat_DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(nhapXuat_DialogLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(nhapXuat_DialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(xuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
 
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
@@ -138,10 +195,11 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
             }
         });
 
-        nhap_Btn.setText("Nhập/Xuất");
-        nhap_Btn.addActionListener(new java.awt.event.ActionListener() {
+        nhapXuat_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/nhapXuat.png"))); // NOI18N
+        nhapXuat_Btn.setText("Nhập/Xuất");
+        nhapXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nhap_BtnActionPerformed(evt);
+                nhapXuat_BtnActionPerformed(evt);
             }
         });
 
@@ -163,14 +221,6 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
             }
         });
 
-        quayLai_Btn.setText("Quay lại");
-        quayLai_Btn.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        quayLai_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quayLai_BtnActionPerformed(evt);
-            }
-        });
-
         sapXep_CBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sapXep_CBxActionPerformed(evt);
@@ -182,9 +232,17 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
 
             },
             new String [] {
-
+                "Mã nguyên liệu", "Tên nguyên liệu", "Đơn vị tính", "Giá", "Số lượng tồn"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         nguyenLieu_Table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nguyenLieu_TableMouseClicked(evt);
@@ -192,6 +250,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         });
         jScrollPane1.setViewportView(nguyenLieu_Table);
 
+        themNguyenLieu_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/themNguyenLieuMoi.png"))); // NOI18N
         themNguyenLieu_Btn.setText("Thêm nguyên liệu mới");
         themNguyenLieu_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,81 +274,90 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
             }
         });
 
+        danhSachNguyenLieu_Lbl.setText("Danh sách nguyên liệu");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(refresh_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(tangDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(giamDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(goiYChinhSuaDuLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addComponent(quayLai_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(timKiem_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(timKiem_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(89, 89, 89)
-                                .addComponent(timKiem_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(timKiem_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addComponent(sapXep_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(sapXep_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(goiYChinhSuaDuLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(345, 345, 345)
-                .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(themNguyenLieu_Btn)
-                .addGap(0, 427, Short.MAX_VALUE))
+                                .addGap(25, 25, 25)
+                                .addComponent(nhapXuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(themNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(refresh_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(tangDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGap(89, 89, 89)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(timKiem_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(timKiem_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                                    .addComponent(timKiem_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addComponent(timKiem_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(sapXep_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(giamDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(sapXep_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(183, 183, 183)
+                        .addComponent(danhSachNguyenLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(457, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(17, 17, 17)
+                .addComponent(danhSachNguyenLieu_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(quayLai_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(timKiem_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(timKiem_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(timKiem_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timKiem_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(timKiem_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(timKiem_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(4, 4, 4)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(sapXep_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sapXep_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(giamDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tangDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(refresh_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(goiYChinhSuaDuLieu_Lbl)
+                            .addComponent(sapXep_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(refresh_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(tangDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(giamDan_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(goiYChinhSuaDuLieu_Lbl)
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(themNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(themNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nhapXuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         jTabbedPane1.addTab("Nguyên liệu", jPanel1);
@@ -299,163 +367,294 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         chiTietNhapXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         chiTietNhapXuat_Lbl.setText("Chi tiết nhập xuất");
 
+        chiTietNhapXuat_LPn.setLayout(new java.awt.CardLayout());
+
+        sapXepChiTietNhap_Lbl.setText("Sắp xếp theo: ");
+
         chiTietNhap_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         chiTietNhap_Lbl.setText("Nhập");
+
+        giamDanChiTietNhap_Btn.setText("Giảm dần");
+        giamDanChiTietNhap_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                giamDanChiTietNhap_BtnActionPerformed(evt);
+            }
+        });
+
+        tongSoTienNhap_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        tongSoTienNhap_Lbl.setText("gwagaw");
+
+        refreshChiTietNhap_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/Refresh.png"))); // NOI18N
+        refreshChiTietNhap_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshChiTietNhap_BtnActionPerformed(evt);
+            }
+        });
+
+        tangDanChiTietNhap_Btn.setText("Tăng dần");
+        tangDanChiTietNhap_Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tangDanChiTietNhap_BtnActionPerformed(evt);
+            }
+        });
+
+        timKiemChiTietNhap_CBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timKiemChiTietNhap_CBxActionPerformed(evt);
+            }
+        });
+
+        chiTietNhap_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Mã nhập xuất", "Tài khoản", "Thời gian", "Trạng thái", "Thành tiền", "Ghi chú"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        chiTietNhap_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chiTietNhap_TableMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(chiTietNhap_Table);
+
+        sapXepChiTietNhap_CBx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sapXepChiTietNhap_CBxActionPerformed(evt);
+            }
+        });
+
+        timKiemChiTietNhap_Lbl.setText("Tìm kiếm theo:");
+
+        javax.swing.GroupLayout chiTietNhap_PnLayout = new javax.swing.GroupLayout(chiTietNhap_Pn);
+        chiTietNhap_Pn.setLayout(chiTietNhap_PnLayout);
+        chiTietNhap_PnLayout.setHorizontalGroup(
+            chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(refreshChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 315, Short.MAX_VALUE)
+                .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addComponent(chiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(293, 293, 293))
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addComponent(timKiemChiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(timKiemChiTietNhap_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(306, 306, 306)))
+                .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(sapXepChiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sapXepChiTietNhap_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addComponent(tangDanChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(giamDanChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addComponent(jScrollPane2)
+            .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(tongSoTienNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        chiTietNhap_PnLayout.setVerticalGroup(
+            chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(chiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(refreshChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chiTietNhap_PnLayout.createSequentialGroup()
+                                .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(timKiemChiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(timKiemChiTietNhap_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11))))
+                    .addGroup(chiTietNhap_PnLayout.createSequentialGroup()
+                        .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sapXepChiTietNhap_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(sapXepChiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(chiTietNhap_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(giamDanChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tangDanChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tongSoTienNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        chiTietNhapXuat_LPn.add(chiTietNhap_Pn, "card2");
 
         chiTietXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         chiTietXuat_Lbl.setText("Xuất");
 
-        chiTietNhap_Table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(chiTietNhap_Table);
-
         chiTietXuat_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Mã nhập xuất", "Tài khoản", "Thời gian", "Trạng thái", "Ghi chú"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        chiTietXuat_Table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chiTietXuat_TableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(chiTietXuat_Table);
 
-        quayLaiCTNX_Btn.setText("Quay lại");
-        quayLaiCTNX_Btn.addActionListener(new java.awt.event.ActionListener() {
+        timKiemChiTietXuat_Lbl.setText("Tìm kiếm theo:");
+
+        timKiemChiTietXuat_CBx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quayLaiCTNX_BtnActionPerformed(evt);
+                timKiemChiTietXuat_CBxActionPerformed(evt);
             }
         });
 
-        timKiemCTNX_Lbl.setText("Tìm kiếm theo");
+        sapXepChiTietXuat_Lbl.setText("Sắp xếp theo:");
 
-        timKiemCTNX_CBx.addActionListener(new java.awt.event.ActionListener() {
+        giamDanChiTietXuat_Btn.setText("Giảm dần");
+        giamDanChiTietXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timKiemCTNX_CBxActionPerformed(evt);
+                giamDanChiTietXuat_BtnActionPerformed(evt);
             }
         });
 
-        timKiemCTNX_TF.addActionListener(new java.awt.event.ActionListener() {
+        tangDanChiTietXuat_Btn.setText("Tăng dần");
+        tangDanChiTietXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timKiemCTNX_TFActionPerformed(evt);
-            }
-        });
-        timKiemCTNX_TF.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                timKiemCTNX_TFKeyPressed(evt);
+                tangDanChiTietXuat_BtnActionPerformed(evt);
             }
         });
 
-        sapXepCTNX_Lbl.setText("Sắp xếp theo: ");
-
-        sapXepCTNX_CBx.addActionListener(new java.awt.event.ActionListener() {
+        refreshChiTietXuat_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/Refresh.png"))); // NOI18N
+        refreshChiTietXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sapXepCTNX_CBxActionPerformed(evt);
+                refreshChiTietXuat_BtnActionPerformed(evt);
             }
         });
 
-        timKiemCTNX_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/search.png"))); // NOI18N
-        timKiemCTNX_Btn.addActionListener(new java.awt.event.ActionListener() {
+        javax.swing.GroupLayout chiTietXuat_PnLayout = new javax.swing.GroupLayout(chiTietXuat_Pn);
+        chiTietXuat_Pn.setLayout(chiTietXuat_PnLayout);
+        chiTietXuat_PnLayout.setHorizontalGroup(
+            chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+            .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                .addComponent(refreshChiTietXuat_Btn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 331, Short.MAX_VALUE)
+                .addComponent(timKiemChiTietXuat_Lbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(chiTietXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timKiemChiTietXuat_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(193, 193, 193)
+                .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                        .addComponent(sapXepChiTietXuat_Lbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(sapXepChiTietXuat_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(tangDanChiTietXuat_Btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(giamDanChiTietXuat_Btn)))
+                .addGap(54, 54, 54))
+        );
+        chiTietXuat_PnLayout.setVerticalGroup(
+            chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                        .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chiTietXuat_Lbl)
+                            .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(sapXepChiTietXuat_Lbl)
+                                    .addComponent(sapXepChiTietXuat_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                                .addGroup(chiTietXuat_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(timKiemChiTietXuat_Lbl)
+                                    .addComponent(timKiemChiTietXuat_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(giamDanChiTietXuat_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                            .addComponent(tangDanChiTietXuat_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(chiTietXuat_PnLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(refreshChiTietXuat_Btn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
+        );
+
+        chiTietNhapXuat_LPn.add(chiTietXuat_Pn, "card3");
+
+        doiPanelChiTietNhap_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/quayLai.png"))); // NOI18N
+        doiPanelChiTietNhap_Btn.setText("Nhập");
+        doiPanelChiTietNhap_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timKiemCTNX_BtnActionPerformed(evt);
+                doiPanelChiTietNhap_BtnActionPerformed(evt);
             }
         });
 
-        tangDanCTNX_Btn.setText("Tăng dần");
-        tangDanCTNX_Btn.addActionListener(new java.awt.event.ActionListener() {
+        doiPanelChiTietXuat_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/next.png"))); // NOI18N
+        doiPanelChiTietXuat_Btn.setText("Xuất");
+        doiPanelChiTietXuat_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tangDanCTNX_BtnActionPerformed(evt);
+                doiPanelChiTietXuat_BtnActionPerformed(evt);
             }
         });
 
-        giamDanCTNX_Btn.setText("Giảm dần");
-        giamDanCTNX_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                giamDanCTNX_BtnActionPerformed(evt);
-            }
-        });
-
-        refreshCTNX_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/Refresh.png"))); // NOI18N
-        refreshCTNX_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshCTNX_BtnActionPerformed(evt);
-            }
-        });
-
-        tongSoLuongNhap_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        tongSoTienNhap_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        tongSoLuongXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-
-        tongSoTienXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        goiY_Lbl.setFont(new java.awt.Font("Tahoma", 2, 16)); // NOI18N
+        goiY_Lbl.setText("*Double click để xem chi tiết các nguyên liệu được nhập/xuất");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(chiTietNhapXuat_LPn)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(chiTietNhapXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(407, 407, 407))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(refreshCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(quayLaiCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(timKiemCTNX_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(timKiemCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(timKiemCTNX_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(timKiemCTNX_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(100, 100, 100)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(sapXepCTNX_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(sapXepCTNX_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(tangDanCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(giamDanCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(373, 373, 373)
+                        .addComponent(doiPanelChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(doiPanelChiTietXuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(191, 191, 191)
-                        .addComponent(chiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chiTietXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tongSoTienNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tongSoLuongNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tongSoTienXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tongSoLuongXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(107, 107, 107))
+                        .addContainerGap()
+                        .addComponent(goiY_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,45 +662,14 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                 .addGap(18, 18, 18)
                 .addComponent(chiTietNhapXuat_Lbl)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(timKiemCTNX_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(quayLaiCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(timKiemCTNX_Btn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(timKiemCTNX_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(timKiemCTNX_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sapXepCTNX_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sapXepCTNX_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(giamDanCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tangDanCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chiTietXuat_Lbl)
-                    .addComponent(chiTietNhap_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(refreshCTNX_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(chiTietNhapXuat_LPn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tongSoLuongNhap_Lbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(tongSoTienNhap_Lbl))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(tongSoLuongXuat_Lbl)
-                        .addGap(18, 18, 18)
-                        .addComponent(tongSoTienXuat_Lbl)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(goiY_Lbl)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(doiPanelChiTietNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doiPanelChiTietXuat_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82))
         );
 
         jTabbedPane1.addTab("Chi tiết nhập xuất", jPanel2);
@@ -510,11 +678,11 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -522,12 +690,9 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         NguyenLieu_ThemFrame themNguyenLieuFrm = new NguyenLieu_ThemFrame();
         themNguyenLieuFrm.setOnFrameDispose(this);
         themNguyenLieuFrm.setDanhSachNguyenLieu(danhSachNguyenLieu);
+        themNguyenLieuFrm.setDanhSachNhap(danhSachNhap);
         themNguyenLieuFrm.setVisible(true);
     }//GEN-LAST:event_themNguyenLieu_BtnActionPerformed
-
-    private void quayLai_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLai_BtnActionPerformed
-        Util.doiPanel(jLayeredPane, homePanel);
-    }//GEN-LAST:event_quayLai_BtnActionPerformed
 
     private void timKiem_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiem_CBxActionPerformed
         int luaChonTimKiem = timKiem_CBx.getSelectedIndex();
@@ -638,24 +803,11 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         }      
     }//GEN-LAST:event_tangDan_BtnActionPerformed
 
-    private void nhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhap_BtnActionPerformed
-        int nguyenLieuDuocChon = nguyenLieu_Table.getSelectedRow();
-        
-        if (nguyenLieuDuocChon == -1)
-        {
-            JOptionPane.showMessageDialog(jLayeredPane, "Xin chọn nguyên liệu trước");
-        }
-        else
-        {
-            NguyenLieu_NhapXuatFrame nhapXuatNguyenLieuFrm = new NguyenLieu_NhapXuatFrame();
-            nhapXuatNguyenLieuFrm.setOnFrameDispose(this);
-            nhapXuatNguyenLieuFrm.thietLapDuLieu(danhSachNguyenLieu.get(nguyenLieuDuocChon));
-            nhapXuatNguyenLieuFrm.setDanhSachNhap(danhSachNhap);
-            nhapXuatNguyenLieuFrm.setDanhSachXuat(danhSachXuat);
-            nhapXuatNguyenLieuFrm.setVisible(true);
-            
-        }
-    }//GEN-LAST:event_nhap_BtnActionPerformed
+    private void nhapXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhapXuat_BtnActionPerformed
+        nhapXuat_Dialog.setLocationRelativeTo(null);
+        nhapXuat_Dialog.setSize(280, 100);
+        nhapXuat_Dialog.setVisible(true);
+    }//GEN-LAST:event_nhapXuat_BtnActionPerformed
 
     private void timKiem_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiem_TFActionPerformed
 
@@ -681,105 +833,17 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         }       
     }//GEN-LAST:event_nguyenLieu_TableMouseClicked
 
-    private void quayLaiCTNX_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLaiCTNX_BtnActionPerformed
-        Util.doiPanel(jLayeredPane, homePanel);
-    }//GEN-LAST:event_quayLaiCTNX_BtnActionPerformed
+    private void timKiemChiTietNhap_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemChiTietNhap_CBxActionPerformed
+        int luaChonTimKiemCTNX = timKiemChiTietNhap_CBx.getSelectedIndex();
+        ArrayList<NhapXuat> danhSachNhapTam = new ArrayList<>();
 
-    private void timKiemCTNX_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemCTNX_CBxActionPerformed
-        int luaChonTimKiemCTNX = timKiemCTNX_CBx.getSelectedIndex();
-        ArrayList<ChiTietNhapXuat> danhSachNhapTam = new ArrayList<>();
-        ArrayList<ChiTietNhapXuat> danhSachXuatTam = new ArrayList<>();
-        
-        if (luaChonTimKiemCTNX == 2 || luaChonTimKiemCTNX == 5) // Tim kiem CTNX theo so luong hoac tong tien
-        {
-            JTextField giaTriDau_TF = new JTextField();
-            JTextField giaTriCuoi_TF = new JTextField();
-            Object inputs[] = {
-                "Từ:", giaTriDau_TF,
-                "Đến:", giaTriCuoi_TF
-            };
-            Object options[] = {
-                "Tìm kiếm",
-                "Hủy"
-            };
-            if (luaChonTimKiemCTNX == 2)
-            {
-                int luaChon = JOptionPane.showOptionDialog(null, inputs, "Tìm kiếm theo số lượng", 
-                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                if (luaChon == JOptionPane.OK_OPTION)
-                {
-                    String giaTriDau = giaTriDau_TF.getText();
-                    String giaTriCuoi = giaTriCuoi_TF.getText();
-
-                    for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
-                    {
-                        if (chiTietNhap.getSoLuong() >= Integer.parseInt(giaTriDau) &&
-                                chiTietNhap.getSoLuong() <= Integer.parseInt(giaTriCuoi))
-                        {
-                            danhSachNhapTam.add(chiTietNhap);
-                        }
-                    } 
-                    for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-                    {
-                        if (chiTietXuat.getSoLuong() >= Integer.parseInt(giaTriDau) &&
-                                chiTietXuat.getSoLuong() <= Integer.parseInt(giaTriCuoi))
-                        {
-                            danhSachXuatTam.add(chiTietXuat);
-                        }
-                    }                     
-                    hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-                    hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-                    hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-                    hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                    
-                }
-                else
-                {
-
-                }                  
-            } 
-            else if (luaChonTimKiemCTNX == 5)
-            {
-                int luaChon = JOptionPane.showOptionDialog(null, inputs, "Tìm kiếm theo tổng tiền", 
-                        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
-                if (luaChon == JOptionPane.OK_OPTION)
-                {
-                    String giaTriDau = giaTriDau_TF.getText();
-                    String giaTriCuoi = giaTriCuoi_TF.getText();
-
-                    for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
-                    {
-                        if (chiTietNhap.getThanhTien() >= Long.parseLong(giaTriDau) &&
-                                chiTietNhap.getThanhTien() <= Long.parseLong(giaTriCuoi))
-                        {
-                            danhSachNhapTam.add(chiTietNhap);
-                        }
-                    } 
-                    for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-                    {
-                        if (chiTietXuat.getThanhTien() >= Long.parseLong(giaTriDau) &&
-                                chiTietXuat.getThanhTien() <= Long.parseLong(giaTriCuoi))
-                        {
-                            danhSachXuatTam.add(chiTietXuat);
-                        }
-                    }                     
-                    hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-                    hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-                    hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-                    hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                         
-                }
-                else
-                {
-
-                }                       
-            }
-        }
-        else if (luaChonTimKiemCTNX == 4) // Tim kiem theo thoi gian
+        if (luaChonTimKiemCTNX == 1) // Tim kiem theo thoi gian
         {
             JTextField thoiDiem_TF = new JTextField("dd/MM/yyyy");
             thoiDiem_TF.setForeground(new Color(153,153,153));
             thoiDiem_TF.addFocusListener(new FocusAdapter() {                
                     @Override
-                    public void focusGained(FocusEvent e)
+                    public void focusGained(FocusEvent e) // Khi nhap chuot vao TF phan goi y se mat
                     {
                         if (thoiDiem_TF.getText().equals("dd/MM/yyyy"))
                         {
@@ -788,7 +852,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                         }
                     }
                     @Override
-                    public void focusLost(FocusEvent e)
+                    public void focusLost(FocusEvent e) // Khi nhap chuot cho khac phan goi y se xuat hien
                     {
                         if (thoiDiem_TF.getText().equals(""))
                         {
@@ -809,144 +873,295 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
             if (luaChon == JOptionPane.OK_OPTION)
             {
                 String thoiDiem = thoiDiem_TF.getText();
-                for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
+                for (NhapXuat chiTietNhap: danhSachNhap)
                 {
-                    String ngayThangNam[] = chiTietNhap.getThoiGian().split(" ");
+                    String date = chiTietNhap.getThoiGian().toString();
+                    date = chiTietNhap.dinhDangThoiGianNgayThangNam(date);
+                    String ngayThangNam[] = date.split(" "); // Chi lay phan ngay thang nam
                     if (ngayThangNam[0].equals(thoiDiem))
                     {
                         danhSachNhapTam.add(chiTietNhap);
                     }
                 }
-                for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-                {
-                    String ngayThangNam[] = chiTietXuat.getThoiGian().split(" ");
-                    if (ngayThangNam[0].equals(thoiDiem))
-                    {
-                        danhSachXuatTam.add(chiTietXuat);
-                    }
-                }    
                 hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-                hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-                hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-                hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                     
+                hienThiTongSoTienNhap(danhSachNhapTam);                  
             }
             else
             {
                 
             }
-        }
-    }//GEN-LAST:event_timKiemCTNX_CBxActionPerformed
-
-    private void timKiemCTNX_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemCTNX_TFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timKiemCTNX_TFActionPerformed
-
-    private void timKiemCTNX_TFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timKiemCTNX_TFKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_timKiemCTNX_TFKeyPressed
-
-    private void sapXepCTNX_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sapXepCTNX_CBxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sapXepCTNX_CBxActionPerformed
-
-    private void timKiemCTNX_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemCTNX_BtnActionPerformed
-        timKiemCTNX();
-    }//GEN-LAST:event_timKiemCTNX_BtnActionPerformed
-
-    private void tangDanCTNX_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tangDanCTNX_BtnActionPerformed
-        if (sapXepCTNX_CBx.getSelectedIndex() == 0) // Sap xep theo ma nguyen lieu
-        {
-            sapXepDanhSachNhap(danhSachNhap, "MaNguyenLieu", "Tang");
-            sapXepDanhSachXuat(danhSachXuat, "MaNguyenLieu", "Tang");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 1) // Sap xep theo ten nguyen lieu
-        {
-            sapXepDanhSachNhap(danhSachNhap, "TenNguyenLieu", "Tang");
-            sapXepDanhSachXuat(danhSachXuat, "TenNguyenLieu", "Tang");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 2) // Sap xep theo so luong
-        {
-            sapXepDanhSachNhap(danhSachNhap, "SoLuong", "Tang");
-            sapXepDanhSachXuat(danhSachXuat, "SoLuong", "Tang");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
-        {
-            sapXepDanhSachNhap(danhSachNhap, "ThoiGian", "Tang");
-            sapXepDanhSachXuat(danhSachXuat, "ThoiGian", "Tang");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 4) // Sap xep theo thanh tien
-        {
-            sapXepDanhSachNhap(danhSachNhap, "ThanhTien", "Tang");
-            sapXepDanhSachXuat(danhSachXuat, "ThanhTien", "Tang");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-    }//GEN-LAST:event_tangDanCTNX_BtnActionPerformed
-
-    private void giamDanCTNX_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giamDanCTNX_BtnActionPerformed
-        if (sapXepCTNX_CBx.getSelectedIndex() == 0) // Sap xep theo ma nguyen lieu
-        {
-            sapXepDanhSachNhap(danhSachNhap, "MaNguyenLieu", "Giam");
-            sapXepDanhSachXuat(danhSachXuat, "MaNguyenLieu", "Giam");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 1) // Sap xep theo ten nguyen lieu
-        {
-            sapXepDanhSachNhap(danhSachNhap, "TenNguyenLieu", "Giam");
-            sapXepDanhSachXuat(danhSachXuat, "TenNguyenLieu", "Giam");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 2) // Sap xep theo so luong
-        {
-            sapXepDanhSachNhap(danhSachNhap, "SoLuong", "Giam");
-            sapXepDanhSachXuat(danhSachXuat, "SoLuong", "Giam");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
-        {
-            sapXepDanhSachNhap(danhSachNhap, "ThoiGian", "Giam");
-            sapXepDanhSachXuat(danhSachXuat, "ThoiGian", "Giam");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
-        }
-        else if (sapXepCTNX_CBx.getSelectedIndex() == 4) // Sap xep theo thanh tien
-        {
-            sapXepDanhSachNhap(danhSachNhap, "ThanhTien", "Giam");
-            sapXepDanhSachXuat(danhSachXuat, "ThanhTien", "Giam");
-            hienThiDanhSachNhap(danhSachNhap, "Khac");
-            hienThiDanhSachXuat(danhSachXuat, "Khac");
         }        
-    }//GEN-LAST:event_giamDanCTNX_BtnActionPerformed
+        else if (luaChonTimKiemCTNX == 2) // Tim kiem theo thanh tien
+        {
+            JTextField giaTriDau_TF = new JTextField();
+            JTextField giaTriCuoi_TF = new JTextField();
+            Object inputs[] = {
+                "Từ:", giaTriDau_TF,
+                "Đến:", giaTriCuoi_TF
+            };
+            Object options[] = {
+                "Tìm kiếm",
+                "Hủy"
+            };
+            int luaChon = JOptionPane.showOptionDialog(null, inputs, "Tìm kiếm theo thành tiền", 
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (luaChon == JOptionPane.OK_OPTION)
+            {
+                String giaTriDau = giaTriDau_TF.getText();
+                String giaTriCuoi = giaTriCuoi_TF.getText();
+                for (NhapXuat chiTietNhap: danhSachNhap)
+                {
+                    if (chiTietNhap.getThanhTien() >= Long.parseLong(giaTriDau) &&
+                            chiTietNhap.getThanhTien() <= Long.parseLong(giaTriCuoi))
+                   {
+                        danhSachNhapTam.add(chiTietNhap);
+                    }
+                }                 
+                    hienThiDanhSachNhap(danhSachNhapTam, "Khac");
+                    hienThiTongSoTienNhap(danhSachNhapTam);                    
+            }
+            else
+            {
+                
+            } 
+        }
+    }//GEN-LAST:event_timKiemChiTietNhap_CBxActionPerformed
 
-    private void refreshCTNX_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCTNX_BtnActionPerformed
+    private void sapXepChiTietNhap_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sapXepChiTietNhap_CBxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sapXepChiTietNhap_CBxActionPerformed
+
+    private void tangDanChiTietNhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tangDanChiTietNhap_BtnActionPerformed
+        if (sapXepChiTietNhap_CBx.getSelectedIndex() == 1) // Sap xep theo ma nhap xuat
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "MaNhapXuat", "Tang");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 2) // Sap xep theo tai khoan
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "TaiKhoan", "Tang");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "ThoiGian", "Tang");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 4) // Sap xep theo thanh tien
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "ThanhTien", "Tang");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+    }//GEN-LAST:event_tangDanChiTietNhap_BtnActionPerformed
+
+    private void giamDanChiTietNhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giamDanChiTietNhap_BtnActionPerformed
+        if (sapXepChiTietNhap_CBx.getSelectedIndex() == 1) // Sap xep theo ma nhap xuat
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "MaNhapXuat", "Giam");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 2) // Sap xep theo tai khoan
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "TaiKhoan", "Giam");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "ThoiGian", "Giam");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+        else if (sapXepChiTietNhap_CBx.getSelectedIndex() == 4) // Sap xep theo thanh tien
+        {
+            sapXepDanhSachNhapXuat(danhSachNhap, "ThanhTien", "Giam");
+            hienThiDanhSachNhap(danhSachNhap, "Khac");
+        }
+    }//GEN-LAST:event_giamDanChiTietNhap_BtnActionPerformed
+
+    private void refreshChiTietNhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshChiTietNhap_BtnActionPerformed
        hienThiDanhSachNhap(danhSachNhap, "CSDL");
-       hienThiDanhSachXuat(danhSachXuat, "CSDL");
-       hienThiTongSoLuongVaSoTienNhap(danhSachNhap);
-       hienThiTongSoLuongVaSoTienXuat(danhSachXuat);            
-       timKiemCTNX_TF.setText("");
-    }//GEN-LAST:event_refreshCTNX_BtnActionPerformed
+       hienThiTongSoTienNhap(danhSachNhap);     
+    }//GEN-LAST:event_refreshChiTietNhap_BtnActionPerformed
+
+    private void nhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nhap_BtnActionPerformed
+        nhapXuat_Dialog.dispose();
+        NguyenLieu_NhapFrame nguyenLieuNhapFrm = new NguyenLieu_NhapFrame();
+        nguyenLieuNhapFrm.setDanhSachNguyenLieu(danhSachNguyenLieu);
+        nguyenLieuNhapFrm.setDanhSachNhap(danhSachNhap);
+        nguyenLieuNhapFrm.setOnFrameDispose(this);        
+        nguyenLieuNhapFrm.thietLapDuLieu();
+        nguyenLieuNhapFrm.setVisible(true);
+    }//GEN-LAST:event_nhap_BtnActionPerformed
+
+    private void xuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xuat_BtnActionPerformed
+        nhapXuat_Dialog.dispose();
+        NguyenLieu_XuatFrame nguyenLieuXuatFrm = new NguyenLieu_XuatFrame();
+        nguyenLieuXuatFrm.setDanhSachNguyenLieu(danhSachNguyenLieu);
+        nguyenLieuXuatFrm.setDanhSachXuat(danhSachXuat);
+        nguyenLieuXuatFrm.setOnFrameDispose(this);        
+        nguyenLieuXuatFrm.thietLapDuLieu();
+        nguyenLieuXuatFrm.setVisible(true);
+    }//GEN-LAST:event_xuat_BtnActionPerformed
+
+    private void doiPanelChiTietNhap_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiPanelChiTietNhap_BtnActionPerformed
+        Util.doiPanel(chiTietNhapXuat_LPn, chiTietNhap_Pn);
+    }//GEN-LAST:event_doiPanelChiTietNhap_BtnActionPerformed
+
+    private void doiPanelChiTietXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doiPanelChiTietXuat_BtnActionPerformed
+        Util.doiPanel(chiTietNhapXuat_LPn, chiTietXuat_Pn);
+    }//GEN-LAST:event_doiPanelChiTietXuat_BtnActionPerformed
+
+    private void timKiemChiTietXuat_CBxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timKiemChiTietXuat_CBxActionPerformed
+        int luaChonTimKiemChiTietXuat = timKiemChiTietXuat_CBx.getSelectedIndex();
+        ArrayList<NhapXuat> danhSachXuatTam = new ArrayList<>();
+
+        if (luaChonTimKiemChiTietXuat == 1) // Tim kiem theo thoi gian
+        {
+            JTextField thoiDiem_TF = new JTextField("dd/MM/yyyy");
+            thoiDiem_TF.setForeground(new Color(153,153,153));
+            thoiDiem_TF.addFocusListener(new FocusAdapter() {                
+                    @Override
+                    public void focusGained(FocusEvent e) // Khi nhap chuot vao TF phan goi y se mat
+                    {
+                        if (thoiDiem_TF.getText().equals("dd/MM/yyyy"))
+                        {
+                            thoiDiem_TF.setText("");
+                            thoiDiem_TF.setForeground(new Color(0,0,0));
+                        }
+                    }
+                    @Override
+                    public void focusLost(FocusEvent e) // Khi nhap chuot cho khac phan goi y se xuat hien
+                    {
+                        if (thoiDiem_TF.getText().equals(""))
+                        {
+                            thoiDiem_TF.setText("dd/MM/yyyy");
+                            thoiDiem_TF.setForeground(new Color(153,153,153));
+                        }                        
+                    }
+                });         
+            Object inputs[] = {
+                "Ngày tháng năm:", thoiDiem_TF,
+            };
+            Object options[] = {
+                "Tìm kiếm",
+                "Hủy"
+            }; 
+            int luaChon = JOptionPane.showOptionDialog(null, inputs, "Tìm kiếm theo thời gian", 
+                    JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]); 
+            if (luaChon == JOptionPane.OK_OPTION)
+            {
+                String thoiDiem = thoiDiem_TF.getText();
+                for (NhapXuat chiTietXuat: danhSachXuat)
+                {
+                    String date = chiTietXuat.getThoiGian().toString();
+                    date = chiTietXuat.dinhDangThoiGianNgayThangNam(date);
+                    String ngayThangNam[] = date.split(" "); // Chi lay phan ngay thang nam
+                    if (ngayThangNam[0].equals(thoiDiem))
+                    {
+                        danhSachXuatTam.add(chiTietXuat);
+                    }
+                }
+                hienThiDanhSachNhap(danhSachXuatTam, "Khac");             
+            }
+            else
+            {
+                
+            }
+        }     
+    }//GEN-LAST:event_timKiemChiTietXuat_CBxActionPerformed
+
+    private void refreshChiTietXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshChiTietXuat_BtnActionPerformed
+        hienThiDanhSachXuat(danhSachXuat, "CSDL");
+    }//GEN-LAST:event_refreshChiTietXuat_BtnActionPerformed
+
+    private void tangDanChiTietXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tangDanChiTietXuat_BtnActionPerformed
+        if (sapXepChiTietXuat_CBx.getSelectedIndex() == 1) // Sap xep theo ma nhap xuat
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "MaNhapXuat", "Tang");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+        else if (sapXepChiTietXuat_CBx.getSelectedIndex() == 2) // Sap xep theo tai khoan
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "TaiKhoan", "Tang");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+        else if (sapXepChiTietXuat_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "ThoiGian", "Tang");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+    }//GEN-LAST:event_tangDanChiTietXuat_BtnActionPerformed
+
+    private void giamDanChiTietXuat_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_giamDanChiTietXuat_BtnActionPerformed
+        if (sapXepChiTietXuat_CBx.getSelectedIndex() == 1) // Sap xep theo ma nhap xuat
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "MaNhapXuat", "Giam");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+        else if (sapXepChiTietXuat_CBx.getSelectedIndex() == 2) // Sap xep theo tai khoan
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "TaiKhoan", "Giam");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+        else if (sapXepChiTietXuat_CBx.getSelectedIndex() == 3) // Sap xep theo thoi gian
+        {
+            sapXepDanhSachNhapXuat(danhSachXuat, "ThoiGian", "Giam");
+            hienThiDanhSachXuat(danhSachXuat, "Khac");
+        }
+    }//GEN-LAST:event_giamDanChiTietXuat_BtnActionPerformed
+
+    private void chiTietXuat_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiTietXuat_TableMouseClicked
+        int chiTietXuatDuocChon = chiTietXuat_Table.getSelectedRow();
+        
+        if (evt.getClickCount() == 2)
+        {
+            NguyenLieu_HienThiNguyenLieuNhapXuatFrame hienThiNguyenLieuNhapXuatFrm = new NguyenLieu_HienThiNguyenLieuNhapXuatFrame();
+            hienThiNguyenLieuNhapXuatFrm.setDanhSachNguyenLieu(danhSachNguyenLieu);
+            hienThiNguyenLieuNhapXuatFrm.setNhapXuat(danhSachXuat.get(chiTietXuatDuocChon));
+            hienThiNguyenLieuNhapXuatFrm.khoiTaoBangChiTietXuat();
+            hienThiNguyenLieuNhapXuatFrm.hienThiNguyenLieuXuat();
+            hienThiNguyenLieuNhapXuatFrm.setVisible(true);
+        }
+    }//GEN-LAST:event_chiTietXuat_TableMouseClicked
+
+    private void chiTietNhap_TableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chiTietNhap_TableMouseClicked
+        int chiTietNhapDuocChon = chiTietNhap_Table.getSelectedRow();
+        
+        if (evt.getClickCount() == 2)
+        {
+            NguyenLieu_HienThiNguyenLieuNhapXuatFrame hienThiNguyenLieuNhapXuatFrm = new NguyenLieu_HienThiNguyenLieuNhapXuatFrame();
+            hienThiNguyenLieuNhapXuatFrm.setDanhSachNguyenLieu(danhSachNguyenLieu);
+            hienThiNguyenLieuNhapXuatFrm.setNhapXuat(danhSachNhap.get(chiTietNhapDuocChon));
+            hienThiNguyenLieuNhapXuatFrm.khoiTaoBangChiTietNhap();
+            if (danhSachNhap.get(chiTietNhapDuocChon).getTrangThai().equals("0"))
+            {
+               hienThiNguyenLieuNhapXuatFrm.hienThiNguyenLieuNhap("0"); 
+            }
+            else
+            {
+                hienThiNguyenLieuNhapXuatFrm.hienThiNguyenLieuNhap("2"); // Khong tinh thanh tien khi tra nguyen lieu
+            }          
+            hienThiNguyenLieuNhapXuatFrm.setVisible(true);
+        }
+    }//GEN-LAST:event_chiTietNhap_TableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane chiTietNhapXuat_LPn;
     private javax.swing.JLabel chiTietNhapXuat_Lbl;
     private javax.swing.JLabel chiTietNhap_Lbl;
+    private javax.swing.JPanel chiTietNhap_Pn;
     private javax.swing.JTable chiTietNhap_Table;
     private javax.swing.JLabel chiTietXuat_Lbl;
+    private javax.swing.JPanel chiTietXuat_Pn;
     private javax.swing.JTable chiTietXuat_Table;
-    private javax.swing.JButton giamDanCTNX_Btn;
+    private javax.swing.JLabel danhSachNguyenLieu_Lbl;
+    private javax.swing.JButton doiPanelChiTietNhap_Btn;
+    private javax.swing.JButton doiPanelChiTietXuat_Btn;
+    private javax.swing.JButton giamDanChiTietNhap_Btn;
+    private javax.swing.JButton giamDanChiTietXuat_Btn;
     private javax.swing.JButton giamDan_Btn;
     private javax.swing.JLabel goiYChinhSuaDuLieu_Lbl;
+    private javax.swing.JLabel goiY_Lbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -954,30 +1169,32 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable nguyenLieu_Table;
+    private javax.swing.JButton nhapXuat_Btn;
+    private javax.swing.JDialog nhapXuat_Dialog;
     private javax.swing.JButton nhap_Btn;
-    private javax.swing.JButton quayLaiCTNX_Btn;
-    private javax.swing.JButton quayLai_Btn;
-    private javax.swing.JButton refreshCTNX_Btn;
+    private javax.swing.JButton refreshChiTietNhap_Btn;
+    private javax.swing.JButton refreshChiTietXuat_Btn;
     private javax.swing.JButton refresh_Btn;
-    private javax.swing.JComboBox<String> sapXepCTNX_CBx;
-    private javax.swing.JLabel sapXepCTNX_Lbl;
+    private javax.swing.JComboBox<String> sapXepChiTietNhap_CBx;
+    private javax.swing.JLabel sapXepChiTietNhap_Lbl;
+    private javax.swing.JComboBox<String> sapXepChiTietXuat_CBx;
+    private javax.swing.JLabel sapXepChiTietXuat_Lbl;
     private javax.swing.JComboBox<String> sapXep_CBx;
     private javax.swing.JLabel sapXep_Lbl;
-    private javax.swing.JButton tangDanCTNX_Btn;
+    private javax.swing.JButton tangDanChiTietNhap_Btn;
+    private javax.swing.JButton tangDanChiTietXuat_Btn;
     private javax.swing.JButton tangDan_Btn;
     private javax.swing.JButton themNguyenLieu_Btn;
-    private javax.swing.JButton timKiemCTNX_Btn;
-    private javax.swing.JComboBox<String> timKiemCTNX_CBx;
-    private javax.swing.JLabel timKiemCTNX_Lbl;
-    private javax.swing.JTextField timKiemCTNX_TF;
+    private javax.swing.JComboBox<String> timKiemChiTietNhap_CBx;
+    private javax.swing.JLabel timKiemChiTietNhap_Lbl;
+    private javax.swing.JComboBox<String> timKiemChiTietXuat_CBx;
+    private javax.swing.JLabel timKiemChiTietXuat_Lbl;
     private javax.swing.JButton timKiem_Btn;
     private javax.swing.JComboBox<String> timKiem_CBx;
     private javax.swing.JLabel timKiem_Lbl;
     private javax.swing.JTextField timKiem_TF;
-    private javax.swing.JLabel tongSoLuongNhap_Lbl;
-    private javax.swing.JLabel tongSoLuongXuat_Lbl;
     private javax.swing.JLabel tongSoTienNhap_Lbl;
-    private javax.swing.JLabel tongSoTienXuat_Lbl;
+    private javax.swing.JButton xuat_Btn;
     // End of variables declaration//GEN-END:variables
 
     // ===================================== CHUNG ====================================================
@@ -987,61 +1204,8 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         hienThiDanhSachNguyenLieu(danhSachNguyenLieu, "Khac");
         hienThiDanhSachNhap(danhSachNhap, "Khac");
         hienThiDanhSachXuat(danhSachXuat, "Khac");
-        hienThiTongSoLuongVaSoTienNhap(danhSachNhap);
-        hienThiTongSoLuongVaSoTienXuat(danhSachXuat);             
-    }
-    
-    public void khoiTaoBang()
-    {
-        // Thiet lap bang nguyen lieu
-        dtm = new DefaultTableModel(){
-        @Override
-            public boolean isCellEditable(int row, int column) 
-            {
-                return false;
-            }
-        };
-        dtm.setColumnIdentifiers(new Object[]
-        {
-            "Mã nguyên liệu", "Tên nguyên liệu", "Đơn vị tính", "Giá", "Số lượng tồn"
-        });
-        nguyenLieu_Table.setModel(dtm);
-        
-        // Thiet lap bang chi tiet nhap
-        dtmChiTietNhap = new DefaultTableModel(){
-        @Override
-                public boolean isCellEditable(int row, int column)
-                {
-                    return false;
-                }
-        };
-        dtmChiTietNhap.setColumnIdentifiers(new Object[]
-        {
-            "Mã NL", "Tên NL", "Số lượng", "Tài khoản", "Thời gian", "Thành tiền", "Ghi chú"
-        });
-        chiTietNhap_Table.setModel(dtmChiTietNhap);
-        
-        dtmChiTietXuat = new DefaultTableModel(){
-        @Override
-                public boolean isCellEditable(int row, int column)
-                {
-                    return false;
-                }
-        };
-        dtmChiTietXuat.setColumnIdentifiers(new Object[]
-        {
-            "Mã NL", "Tên NL", "Số lượng", "Tài khoản", "Thời gian", "Thành tiền", "Ghi chú"
-        });
-        chiTietXuat_Table.setModel(dtmChiTietXuat);        
-    }   
-    
-    public void setDanhSachNhap(ArrayList<ChiTietNhapXuat> danhSachNhap) {
-        this.danhSachNhap = danhSachNhap;
-    }
-
-    public void setDanhSachXuat(ArrayList<ChiTietNhapXuat> danhSachXuat) {
-        this.danhSachXuat = danhSachXuat;
-    }
+        hienThiTongSoTienNhap(danhSachNhap);          
+    } 
     
     //====================================== PANEL NGUYEN LIEU ========================================
     public void khoiTaoDuLieuComboBox()
@@ -1096,14 +1260,14 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         
     public void hienThiDanhSachNguyenLieu(ArrayList<NguyenLieu> danhSachNguyenLieu, String truongHop)
     {
-        dtm.setRowCount(0);
+        dtmNguyenLieu.setRowCount(0);
         if (truongHop.equals("CSDL")) // Load len tu CSDL
         {
             danhSachNguyenLieu.clear();
             layDanhSachNguyenLieu();
             for (NguyenLieu nguyenLieu: danhSachNguyenLieu)
             {
-                dtm.addRow(new Object[]
+                dtmNguyenLieu.addRow(new Object[]
                 {
                     nguyenLieu.getMaNguyenLieu(), nguyenLieu.getTenNguyenLieu(), nguyenLieu.getDonViTinh(),
                     Util.formatCurrency(nguyenLieu.getGia()), Util.formatCurrency(nguyenLieu.getSoLuong())
@@ -1114,7 +1278,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         {
             for (NguyenLieu nguyenLieu: danhSachNguyenLieu)
             {
-                dtm.addRow(new Object[]
+                dtmNguyenLieu.addRow(new Object[]
                 {
                     nguyenLieu.getMaNguyenLieu(), nguyenLieu.getTenNguyenLieu(), nguyenLieu.getDonViTinh(),
                     Util.formatCurrency(nguyenLieu.getGia()), Util.formatCurrency(nguyenLieu.getSoLuong())
@@ -1234,56 +1398,111 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     }       
     
     // ================================ PANEL CHI TIET NHAP XUAT ===================================
-    public void khoiTaoDuLieuComboBoxCTNX()
-    {
-        danhSachTimKiemCTNX_CBx.add("Mã nguyên liệu");
-        danhSachTimKiemCTNX_CBx.add("Tên nguyên liệu");
-        danhSachTimKiemCTNX_CBx.add("Số lượng");
-        danhSachTimKiemCTNX_CBx.add("Tài khoản");
-        danhSachTimKiemCTNX_CBx.add("Thời gian");
-        danhSachTimKiemCTNX_CBx.add("Thành tiền");
+    public void khoiTaoDuLieuComboBoxChiTietNhap()
+    {       
+        danhSachTimKiemChiTietNhap_CBx.add("(None)");
+        danhSachTimKiemChiTietNhap_CBx.add("Thời gian");
+        danhSachTimKiemChiTietNhap_CBx.add("Thành tiền");
         
-        danhSachSapXepCTNX_CBx.add("Mã nguyên liệu");
-        danhSachSapXepCTNX_CBx.add("Tên nguyên liệu");
-        danhSachSapXepCTNX_CBx.add("Số lượng");
-        danhSachSapXepCTNX_CBx.add("Thời gian");
-        danhSachSapXepCTNX_CBx.add("Thành tiền");
-        
-        for (String timKiemCTNX: danhSachTimKiemCTNX_CBx)
+        danhSachSapXepChiTietNhap_CBx.add("(None)");
+        danhSachSapXepChiTietNhap_CBx.add("Mã nhập xuất");
+        danhSachSapXepChiTietNhap_CBx.add("Tài khoản");
+        danhSachSapXepChiTietNhap_CBx.add("Thời gian");
+        danhSachSapXepChiTietNhap_CBx.add("Thành tiền");
+
+        for (String timKiemChiTietNhap: danhSachTimKiemChiTietNhap_CBx)
         {
-            timKiemCTNX_CBx.addItem(timKiemCTNX);
+            timKiemChiTietNhap_CBx.addItem(timKiemChiTietNhap);
         }
         
-        for (String sapXepCTNX: danhSachSapXepCTNX_CBx)
+        for (String sapXepChiTietNhap: danhSachSapXepChiTietNhap_CBx)
         {
-            sapXepCTNX_CBx.addItem(sapXepCTNX);
+            sapXepChiTietNhap_CBx.addItem(sapXepChiTietNhap);
         }
     }   
+    
+    public void khoiTaoDuLieuComboBoxChiTietXuat()
+    {       
+        danhSachTimKiemChiTietXuat_CBx.add("(None)");
+        danhSachTimKiemChiTietXuat_CBx.add("Thời gian");
+        
+        danhSachSapXepChiTietXuat_CBx.add("(None)");
+        danhSachSapXepChiTietXuat_CBx.add("Mã nhập xuất");
+        danhSachSapXepChiTietXuat_CBx.add("Tài khoản");
+        danhSachSapXepChiTietXuat_CBx.add("Thời gian");
 
-   public void layDanhSachNhap()
+        for (String timKiemChiTietXuat: danhSachTimKiemChiTietXuat_CBx)
+        {
+            timKiemChiTietXuat_CBx.addItem(timKiemChiTietXuat);
+        }
+        
+        for (String sapXepChiTietXuat: danhSachSapXepChiTietXuat_CBx)
+        {
+            sapXepChiTietXuat_CBx.addItem(sapXepChiTietXuat);
+        }
+    }     
+    
+    public void layDanhSachNhap()
     {
         Connection connect = Util.getConnection();
-        String query = "select CTNX.maNL, NL.tenNL, CTNX.soLuong, NX.tenTK, NX.tg, NL.gia, NX.ghiChu"
-                    +  " from NhapXuat as NX, ChiTietNhapXuat as CTNX, NguyenLieu as NL"
-                    +  " where NL.maNL = CTNX.maNL"
-                    +  "    and NX.maNX = CTNX.maNX"
-                    +  "    and LEFT(CTNX.maNX, 1) = 'N'";
+        String query = "select *"
+                    +  " from NhapXuat"
+                    +  " where LEFT(NhapXuat.maNX, 1) = 'N'";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
-                ChiTietNhapXuat chiTietNhap = new ChiTietNhapXuat();
-                chiTietNhap.setMaNguyenLieu(rs.getString("maNL"));
-                chiTietNhap.setTenNguyenLieu(rs.getString("tenNL"));
-                chiTietNhap.setSoLuong(rs.getInt("soLuong"));
-                chiTietNhap.setTaiKhoan(rs.getString("tenTK"));
-                String thoiGian = chiTietNhap.dinhDangThoiGianNgayThangNam(rs.getString("tg"));
-                chiTietNhap.setThoiGian(thoiGian);
-                chiTietNhap.setThanhTien(rs.getLong("gia")*chiTietNhap.getSoLuong());
-                chiTietNhap.setGhiChu(rs.getString("ghiChu"));
-                danhSachNhap.add(chiTietNhap);
+                if (rs.getString("trangThai").equals("0")) // Nhap nguyen lieu ve kho
+                {
+                    NhapXuat nhapXuat = new NhapXuat();
+                    nhapXuat.setMaNhapXuat(rs.getString("maNX"));
+                    nhapXuat.setTaiKhoan(rs.getString("tenTK"));
+                    nhapXuat.setThoiGian(rs.getTimestamp("tg"));              
+                    nhapXuat.setTrangThai(rs.getString("trangThai"));
+                    nhapXuat.setGhiChu(rs.getString("ghiChu"));
+
+                    HashMap<String, Integer> chiTietNhap = new HashMap<>();
+                    String query2 = "select CTNX.*, NL.gia"
+                                +   " from ChiTietNhapXuat as CTNX, NguyenLieu as NL"
+                                +   " where CTNX.maNL = NL.maNL"
+                                +   "   and CTNX.maNX = '" + nhapXuat.getMaNhapXuat() + "'";
+                    PreparedStatement ps2 = connect.prepareStatement(query2);
+                    ResultSet rs2 = ps2.executeQuery();
+                    long thanhTien = 0;
+                    while (rs2.next())
+                    {
+                        chiTietNhap.put(rs2.getString("maNL"), rs2.getInt("soLuong"));
+                        thanhTien = thanhTien + rs2.getLong("gia")*rs2.getInt("soLuong");
+                    }
+                    nhapXuat.setThanhTien(thanhTien);
+                    nhapXuat.setChiTietNhapXuat(chiTietNhap);
+                    danhSachNhap.add(nhapXuat);                    
+                }
+                else if (rs.getString("trangThai").equals("2")) // Nhap nguyen lieu con thua tu ca ban hang ve kho
+                {
+                    NhapXuat nhapXuat = new NhapXuat();
+                    nhapXuat.setMaNhapXuat(rs.getString("maNX"));
+                    nhapXuat.setTaiKhoan(rs.getString("tenTK"));
+                    nhapXuat.setThoiGian(rs.getTimestamp("tg"));              
+                    nhapXuat.setTrangThai(rs.getString("trangThai"));
+                    nhapXuat.setGhiChu(rs.getString("ghiChu"));
+
+                    HashMap<String, Integer> chiTietNhap = new HashMap<>();
+                    String query2 = "select CTNX.*"
+                                +   " from ChiTietNhapXuat as CTNX, NguyenLieu as NL"
+                                +   " where CTNX.maNL = NL.maNL"
+                                +   "   and CTNX.maNX = '" + nhapXuat.getMaNhapXuat() + "'";
+                    PreparedStatement ps2 = connect.prepareStatement(query2);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while (rs2.next())
+                    {
+                        chiTietNhap.put(rs2.getString("maNL"), rs2.getInt("soLuong"));
+                    }
+                    nhapXuat.setChiTietNhapXuat(chiTietNhap);
+                    danhSachNhap.add(nhapXuat);                         
+                }
             }
             rs.close();
             ps.close();
@@ -1292,32 +1511,39 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         {
             System.out.println("Lay danh sach nhap that bai");
         }
-    }
+    }          
     
     public void layDanhSachXuat()
     {
         Connection connect = Util.getConnection();
-        String query = "select CTNX.maNL, NL.tenNL, CTNX.soLuong, NX.tenTK, NX.tg, NL.gia, NX.ghiChu"
-                    +  " from NhapXuat as NX, ChiTietNhapXuat as CTNX, NguyenLieu as NL"
-                    +  " where NL.maNL = CTNX.maNL"
-                    +  "    and NX.maNX = CTNX.maNX"
-                    +  "    and LEFT(CTNX.maNX, 1) = 'X'";
+        String query = "select *"
+                    +  " from NhapXuat"
+                    +  " where LEFT(NhapXuat.maNX, 1) = 'X'";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
-                ChiTietNhapXuat chiTietXuat = new ChiTietNhapXuat();
-                chiTietXuat.setMaNguyenLieu(rs.getString("maNL"));
-                chiTietXuat.setTenNguyenLieu(rs.getString("tenNL"));
-                chiTietXuat.setSoLuong(rs.getInt("soLuong"));
-                chiTietXuat.setTaiKhoan(rs.getString("tenTK"));
-                String thoiGian = chiTietXuat.dinhDangThoiGianNgayThangNam(rs.getString("tg"));
-                chiTietXuat.setThoiGian(thoiGian);
-                chiTietXuat.setThanhTien(rs.getLong("gia")*chiTietXuat.getSoLuong());
-                chiTietXuat.setGhiChu(rs.getString("ghiChu"));
-                danhSachXuat.add(chiTietXuat);
+                NhapXuat nhapXuat = new NhapXuat();
+                nhapXuat.setMaNhapXuat(rs.getString("maNX"));
+                nhapXuat.setTaiKhoan(rs.getString("tenTK"));
+                nhapXuat.setThoiGian(rs.getTimestamp("tg"));              
+                nhapXuat.setTrangThai(rs.getString("trangThai"));
+                nhapXuat.setGhiChu(rs.getString("ghiChu"));
+                
+                HashMap<String, Integer> chiTietXuat = new HashMap<>();
+                String query2 = "select *"
+                            +   " from ChiTietNhapXuat as CTNX"
+                            +   " where CTNX.maNX = '" + nhapXuat.getMaNhapXuat() + "'";
+                PreparedStatement ps2 = connect.prepareStatement(query2);
+                ResultSet rs2 = ps2.executeQuery();
+                while (rs2.next())
+                {
+                    chiTietXuat.put(rs2.getString("maNL"), rs2.getInt("soLuong"));
+                }
+                nhapXuat.setChiTietNhapXuat(chiTietXuat);
+                danhSachXuat.add(nhapXuat);
             }
             rs.close();
             ps.close();
@@ -1326,237 +1552,129 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         {
             System.out.println("Lay danh sach xuat that bai");
         }
-    }      
+    }         
    
-   public void hienThiDanhSachNhap(ArrayList<ChiTietNhapXuat> danhSachNhap, String truongHop)
+    public void hienThiDanhSachNhap(ArrayList<NhapXuat> danhSachNhap, String truongHop)
     {
-        dtmChiTietNhap.setRowCount(0);
+        dtmChiTietNhap.setRowCount(0);        
         if (truongHop.equals("CSDL")) // Load len tu CSDL
         {
             danhSachNhap.clear();
             layDanhSachNhap();
-            for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
+            for (NhapXuat nhapXuat: danhSachNhap)
             {
+                String thoiGian = nhapXuat.getThoiGian().toString();
                 dtmChiTietNhap.addRow(new Object[]
                 {
-                    chiTietNhap.getMaNguyenLieu(), chiTietNhap.getTenNguyenLieu(), Util.formatCurrency(chiTietNhap.getSoLuong()),
-                    chiTietNhap.getTaiKhoan(), chiTietNhap.getThoiGian(), Util.formatCurrency(chiTietNhap.getThanhTien()), 
-                    chiTietNhap.getGhiChu()
+                    nhapXuat.getMaNhapXuat(), nhapXuat.getTaiKhoan(), nhapXuat.dinhDangThoiGianNgayThangNam(thoiGian),
+                    nhapXuat.getTrangThai(), Util.formatCurrency(nhapXuat.getThanhTien()), nhapXuat.getGhiChu()
                 });
             }
         }
         else if (truongHop.equals("Khac")) // Ket qua tim kiem, sap xep
         {
-            for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
+            for (NhapXuat nhapXuat: danhSachNhap)
             {
+                String thoiGian = nhapXuat.getThoiGian().toString();
                 dtmChiTietNhap.addRow(new Object[]
                 {
-                    chiTietNhap.getMaNguyenLieu(), chiTietNhap.getTenNguyenLieu(), Util.formatCurrency(chiTietNhap.getSoLuong()),
-                    chiTietNhap.getTaiKhoan(), chiTietNhap.getThoiGian(), Util.formatCurrency(chiTietNhap.getThanhTien()), 
-                    chiTietNhap.getGhiChu()
+                    nhapXuat.getMaNhapXuat(), nhapXuat.getTaiKhoan(), nhapXuat.dinhDangThoiGianNgayThangNam(thoiGian),
+                    nhapXuat.getTrangThai(), Util.formatCurrency(nhapXuat.getThanhTien()), nhapXuat.getGhiChu()
                 });
-            }          
+            }
         }
-    }   
-    
-    public void hienThiDanhSachXuat(ArrayList<ChiTietNhapXuat> danhSachXuat, String truongHop)
+    }     
+       
+    public void hienThiDanhSachXuat(ArrayList<NhapXuat> danhSachXuat, String truongHop)
     {
         dtmChiTietXuat.setRowCount(0);
         if (truongHop.equals("CSDL")) // Load len tu CSDL
         {
             danhSachXuat.clear();
             layDanhSachXuat();
-            for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
+            for (NhapXuat nhapXuat: danhSachXuat)
             {
+                String thoiGian = nhapXuat.getThoiGian().toString();
                 dtmChiTietXuat.addRow(new Object[]
                 {
-                    chiTietXuat.getMaNguyenLieu(), chiTietXuat.getTenNguyenLieu(), Util.formatCurrency(chiTietXuat.getSoLuong()),
-                    chiTietXuat.getTaiKhoan(), chiTietXuat.getThoiGian(), Util.formatCurrency(chiTietXuat.getThanhTien()),
-                    chiTietXuat.getGhiChu()
+                    nhapXuat.getMaNhapXuat(), nhapXuat.getTaiKhoan(), nhapXuat.dinhDangThoiGianNgayThangNam(thoiGian),
+                    nhapXuat.getTrangThai(), nhapXuat.getGhiChu()
                 });
             }
         }
         else if (truongHop.equals("Khac")) // Ket qua tim kiem, sap xep
         {
-            for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
+            for (NhapXuat nhapXuat: danhSachXuat)
             {
+                String thoiGian = nhapXuat.getThoiGian().toString();
                 dtmChiTietXuat.addRow(new Object[]
                 {
-                    chiTietXuat.getMaNguyenLieu(), chiTietXuat.getTenNguyenLieu(), Util.formatCurrency(chiTietXuat.getSoLuong()),
-                    chiTietXuat.getTaiKhoan(), chiTietXuat.getThoiGian(), Util.formatCurrency(chiTietXuat.getThanhTien()),
-                    chiTietXuat.getGhiChu()
+                    nhapXuat.getMaNhapXuat(), nhapXuat.getTaiKhoan(), nhapXuat.dinhDangThoiGianNgayThangNam(thoiGian),
+                    nhapXuat.getTrangThai(), nhapXuat.getGhiChu()
                 });
-            }        
+            }
         }
     } 
     
-    public void hienThiTongSoLuongVaSoTienNhap(ArrayList<ChiTietNhapXuat> danhSachNhapXuat)
+    public void hienThiTongSoTienNhap(ArrayList<NhapXuat> danhSachNhap)
     {
-        long tongSoLuong = 0;
         long tongSoTien = 0;
-        for (ChiTietNhapXuat chiTietNhapXuat: danhSachNhapXuat)
+        for (NhapXuat chiTietNhap: danhSachNhap)
         {
-            tongSoLuong = tongSoLuong + chiTietNhapXuat.getSoLuong();
-            tongSoTien = tongSoTien + chiTietNhapXuat.getThanhTien();
+            tongSoTien = tongSoTien + chiTietNhap.getThanhTien();
         }
-        tongSoLuongNhap_Lbl.setText("Số lượng nhập: " + Util.formatCurrency(tongSoLuong));
-        tongSoTienNhap_Lbl.setText("Tổng tiền nhập: " + Util.formatCurrency(tongSoTien) + " VND");
+        tongSoTienNhap_Lbl.setText("Tổng số tiền nhập nguyên liệu: " + Util.formatCurrency(tongSoTien) + " VND");
     }
     
-    public void hienThiTongSoLuongVaSoTienXuat(ArrayList<ChiTietNhapXuat> danhSachNhapXuat)
-    {
-        long tongSoLuong = 0;
-        long tongSoTien = 0;
-        for (ChiTietNhapXuat chiTietNhapXuat: danhSachNhapXuat)
-        {
-            tongSoLuong = tongSoLuong + chiTietNhapXuat.getSoLuong();
-            tongSoTien = tongSoTien + chiTietNhapXuat.getThanhTien();
-        }
-        tongSoLuongXuat_Lbl.setText("Số lượng xuất: " + Util.formatCurrency(tongSoLuong));
-        tongSoTienXuat_Lbl.setText("Tổng tiền xuất: " + Util.formatCurrency(tongSoTien) + " VND");
-    }       
-
-    public void sapXepDanhSachNhap(ArrayList<ChiTietNhapXuat> danhSachNhap, String truongHop, String tangGiam)
-    {  
-        if (truongHop.equals("MaNguyenLieu")) // Sap xep theo ma nguyen lieu
-        {
-            danhSachNhap.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return o1.getMaNguyenLieu().compareTo(o2.getMaNguyenLieu());
-                    }
-                    return o2.getMaNguyenLieu().compareTo(o1.getMaNguyenLieu());
-                }
-            });
-        }     
-        else if (truongHop.equals("TenNguyenLieu")) // Sap xep theo ten nguyen lieu
-        {
-            danhSachNhap.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return o1.getTenNguyenLieu().compareTo(o2.getTenNguyenLieu());
-                    }
-                    return o2.getTenNguyenLieu().compareTo(o1.getTenNguyenLieu());
-                }
-            });
-        }  
-        else if (truongHop.equals("SoLuong")) // Sap xep theo so luong
-        {
-            danhSachNhap.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return o1.getSoLuong() - o2.getSoLuong();
-                    }
-                    return o2.getSoLuong() - o1.getSoLuong();
-                }
-            });
-        }  
-        else if (truongHop.equals("ThoiGian")) // Sap xep theo thoi gian
-        {
-            danhSachNhap.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    String thoiGian1 = o1.dinhDangThoiGianNamThangNgay(o1.getThoiGian());
-                    String thoiGian2 = o2.dinhDangThoiGianNamThangNgay(o2.getThoiGian());
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return thoiGian1.compareTo(thoiGian2);
-                    }
-                    return thoiGian2.compareTo(thoiGian1);
-                }
-            });
-        }  
-        else if (truongHop.equals("ThanhTien")) // Sap xep theo thanh tien
-        {
-            danhSachNhap.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return (int) (o1.getThanhTien() - o2.getThanhTien());
-                    }
-                    return (int) (o2.getThanhTien() - o1.getThanhTien());
-                }
-            });        
-        }
-    }  
- 
-    public void sapXepDanhSachXuat(ArrayList<ChiTietNhapXuat> danhSachXuat, String truongHop, String tangGiam)
+    public void sapXepDanhSachNhapXuat(ArrayList<NhapXuat> danhSachNhapXuat, String truongHop, String tangGiam)
     {      
-        if (truongHop.equals("MaNguyenLieu")) // Sap xep theo ma nguyen lieu
+        if (truongHop.equals("MaNhapXuat")) // Sap xep theo ma nhap xuat
         {
-            danhSachXuat.sort(new Comparator<ChiTietNhapXuat>() {
+            danhSachNhapXuat.sort(new Comparator<NhapXuat>() {
                 @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
+                public int compare(NhapXuat o1, NhapXuat o2) 
                 {
                     if (tangGiam.equals("Tang"))
                     {
-                        return o1.getMaNguyenLieu().compareTo(o2.getMaNguyenLieu());
+                        return o1.getMaNhapXuat().compareTo(o2.getMaNhapXuat());
                     }
-                    return o2.getMaNguyenLieu().compareTo(o1.getMaNguyenLieu());
+                    return o2.getMaNhapXuat().compareTo(o1.getMaNhapXuat());
                 }
             });
         }     
-        else if (truongHop.equals("TenNguyenLieu")) // Sap xep theo ten nguyen lieu
+        else if (truongHop.equals("TaiKhoan")) // Sap xep theo ten tai khoan
         {
-            danhSachXuat.sort(new Comparator<ChiTietNhapXuat>() {
+            danhSachNhapXuat.sort(new Comparator<NhapXuat>() {
                 @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
+                public int compare(NhapXuat o1, NhapXuat o2) 
                 {
                     if (tangGiam.equals("Tang"))
                     {
-                        return o1.getTenNguyenLieu().compareTo(o2.getTenNguyenLieu());
+                        return o1.getTaiKhoan().compareTo(o2.getTaiKhoan());
                     }
-                    return o2.getTenNguyenLieu().compareTo(o1.getTenNguyenLieu());
-                }
-            });
-        }  
-        else if (truongHop.equals("SoLuong")) // Sap xep theo so luong
-        {
-            danhSachXuat.sort(new Comparator<ChiTietNhapXuat>() {
-                @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
-                {
-                    if (tangGiam.equals("Tang"))
-                    {
-                        return o1.getSoLuong() - o2.getSoLuong();
-                    }
-                    return o2.getSoLuong() - o1.getSoLuong();
+                    return o2.getTaiKhoan().compareTo(o1.getTaiKhoan());
                 }
             });
         }  
         else if (truongHop.equals("ThoiGian")) // Sap xep theo thoi gian
         {
-            danhSachXuat.sort(new Comparator<ChiTietNhapXuat>() {
+            danhSachNhapXuat.sort(new Comparator<NhapXuat>() {
                 @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
+                public int compare(NhapXuat o1, NhapXuat o2) 
                 {
-                    String thoiGian1 = o1.dinhDangThoiGianNamThangNgay(o1.getThoiGian());
-                    String thoiGian2 = o2.dinhDangThoiGianNamThangNgay(o2.getThoiGian());
                     if (tangGiam.equals("Tang"))
                     {
-                        return thoiGian1.compareTo(thoiGian2);
+                        return o1.getThoiGian().toString().compareTo(o2.getThoiGian().toString());
                     }
-                    return thoiGian2.compareTo(thoiGian1);
+                    return o2.getThoiGian().toString().compareTo(o1.getThoiGian().toString());
                 }
             });
-        }  
+        }      
         else if (truongHop.equals("ThanhTien")) // Sap xep theo thanh tien
         {
-            danhSachXuat.sort(new Comparator<ChiTietNhapXuat>() {
+            danhSachNhapXuat.sort(new Comparator<NhapXuat>() {
                 @Override
-                public int compare(ChiTietNhapXuat o1, ChiTietNhapXuat o2) 
+                public int compare(NhapXuat o1, NhapXuat o2) 
                 {
                     if (tangGiam.equals("Tang"))
                     {
@@ -1564,84 +1682,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                     }
                     return (int) (o2.getThanhTien() - o1.getThanhTien());
                 }
-            });        
+            });       
         }        
-    }          
-    
-    public void timKiemCTNX()
-    {
-        String duLieuCanTim = timKiemCTNX_TF.getText();
-        ArrayList<ChiTietNhapXuat> danhSachNhapTam = new ArrayList<>();
-        ArrayList<ChiTietNhapXuat> danhSachXuatTam = new ArrayList<>();
-        int luaChonTimKiem = timKiemCTNX_CBx.getSelectedIndex();
-        
-        if (duLieuCanTim.equals(""))
-        {
-            JOptionPane.showMessageDialog(jLayeredPane, "Vui lòng nhập thông tin cần tìm kiếm");
-            return;
-        }
-        if (luaChonTimKiem == 0) // Tim theo ma nguyen lieu
-        {
-            for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
-            {
-                if (chiTietNhap.getMaNguyenLieu().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachNhapTam.add(chiTietNhap);
-                }
-            }
-            for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-            {
-                if (chiTietXuat.getMaNguyenLieu().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachXuatTam.add(chiTietXuat);
-                }
-            }            
-            hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-            hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-            hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-            hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                 
-        }
-        else if (luaChonTimKiem == 1) // Tim theo ten nguyen lieu
-        {
-            for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
-            {
-                if (chiTietNhap.getTenNguyenLieu().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachNhapTam.add(chiTietNhap);
-                }
-            }
-            for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-            {
-                if (chiTietXuat.getTenNguyenLieu().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachXuatTam.add(chiTietXuat);
-                }
-            }            
-            hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-            hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-            hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-            hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                 
-        } 
-        else if (luaChonTimKiem == 3) // Tim theo tai khoan
-        {
-            for (ChiTietNhapXuat chiTietNhap: danhSachNhap)
-            {
-                if (chiTietNhap.getTaiKhoan().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachNhapTam.add(chiTietNhap);
-                }
-            }
-            for (ChiTietNhapXuat chiTietXuat: danhSachXuat)
-            {
-                if (chiTietXuat.getTaiKhoan().trim().toLowerCase().contains(duLieuCanTim.trim().toLowerCase()))
-                {
-                    danhSachXuatTam.add(chiTietXuat);
-                }
-            }            
-            hienThiDanhSachNhap(danhSachNhapTam, "Khac");
-            hienThiDanhSachXuat(danhSachXuatTam, "Khac");
-            hienThiTongSoLuongVaSoTienNhap(danhSachNhapTam);
-            hienThiTongSoLuongVaSoTienXuat(danhSachXuatTam);                 
-        }               
-    }           
+    }
 }

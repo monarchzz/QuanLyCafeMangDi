@@ -122,6 +122,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="maNguyenLieu_TF">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="tenNguyenLieu_Lbl">
       <Properties>

@@ -50,7 +50,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="donViTinh_Lbl" min="-2" pref="114" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="donViTinh_Cbx" min="-2" pref="94" max="-2" attributes="0"/>
+                              <Component id="donViTinh_CBx" min="-2" pref="94" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -100,7 +100,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="donViTinh_Lbl" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="donViTinh_Cbx" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="donViTinh_CBx" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -205,7 +205,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JComboBox" name="donViTinh_Cbx">
+    <Component class="javax.swing.JComboBox" name="donViTinh_CBx">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

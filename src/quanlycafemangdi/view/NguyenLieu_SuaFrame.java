@@ -16,7 +16,6 @@ import quanlycafemangdi.Util;
  */
 public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
 
-    private NguyenLieu_Panel nguyenLieuPanel = new NguyenLieu_Panel();
     private NguyenLieu nguyenLieu;
     
     private ArrayList<NguyenLieu> danhSachNguyenLieu;
@@ -24,6 +23,7 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
     private IOnFrameDispose onFrameDispose;
         
     private String loi;
+    private String buttonClicked = "";
     /**
      * Creates new form NhapNguyenLieuFrame
      */
@@ -64,6 +64,8 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
         themNguyenLieuMoi_Lbl.setText("Chỉnh sửa nguyên liệu");
 
         maNguyenLieu_Lbl.setText("Mã nguyên liệu");
+
+        maNguyenLieu_TF.setEditable(false);
 
         tenNguyenLieu_Lbl.setText("Tên nguyên liệu");
 
@@ -155,14 +157,14 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void huy_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huy_BtnActionPerformed
+        buttonClicked = "Huy";
         this.dispose();
     }//GEN-LAST:event_huy_BtnActionPerformed
 
     private void sua_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sua_BtnActionPerformed
         if (kiemTraLoi() == false)
         {
-            suaNguyenLieu();
-            this.dispose();
+            suaNguyenLieu();           
         }
     }//GEN-LAST:event_sua_BtnActionPerformed
 
@@ -282,18 +284,17 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
     @Override
     public void dispose() 
     {
-        onFrameDispose.onFrameDispose();
-        super.dispose(); //To change body of generated methods, choose Tools | Templates.
+        if (buttonClicked.equals("Huy"))
+        {
+            super.dispose();
+        }
+        else
+        {
+            onFrameDispose.onFrameDispose();
+            super.dispose(); //To change body of generated methods, choose Tools | Templates.            
+        }
     }    
-    
-    public void setOnFrameDispose(IOnFrameDispose onFrameDispose){
-        this.onFrameDispose = onFrameDispose;
-    } 
-       
-    public void setDanhSachNguyenLieu(ArrayList<NguyenLieu> danhSachNguyenLieu) {
-        this.danhSachNguyenLieu = danhSachNguyenLieu;
-    }  
-    
+        
     public void thietLapDuLieu(NguyenLieu nguyenLieu)
     {
         this.nguyenLieu = nguyenLieu;
@@ -302,8 +303,6 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
         tenNguyenLieu_TF.setText(nguyenLieu.getTenNguyenLieu());
         donViTinh_Cbx.setSelectedItem(nguyenLieu.getDonViTinh());
         gia_TF.setText(nguyenLieu.getGia() + "");
-        
-        maNguyenLieu_TF.setEditable(false);
     }    
     
     public void layDonViTinh()
@@ -350,15 +349,10 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
         String tenNguyenLieu = tenNguyenLieu_TF.getText();
         String gia = gia_TF.getText();
         
-//        else if (maNguyenLieu.matches(""))
-//        {
-//            loi = loi + "Mã nguyên liệu không đúng định dạng\n";
-//        }
-        
-       if (tenNguyenLieu.equals(""))
-       {
-           loi = loi + "Tên nguyên liệu không được để trống\n";
-       }
+        if (tenNguyenLieu.equals(""))
+        {
+            loi = loi + "Tên nguyên liệu không được để trống\n";
+        }
 
         if (gia.equals(""))
         {
@@ -398,7 +392,8 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
         nguyenLieu.setGia(Integer.parseInt(gia));
         
         suaNguyenLieuSQL(nguyenLieu);
-        JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nguyên liệu thành công");       
+        JOptionPane.showMessageDialog(rootPane, "Sửa thông tin nguyên liệu thành công");     
+        this.dispose();
     }
     
     public void suaNguyenLieuSQL(NguyenLieu nguyenLieu)
@@ -420,4 +415,12 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
             System.out.println("Sua nguyen lieu that bai");
         }
     }
+
+    public void setOnFrameDispose(IOnFrameDispose onFrameDispose){
+        this.onFrameDispose = onFrameDispose;
+    } 
+       
+    public void setDanhSachNguyenLieu(ArrayList<NguyenLieu> danhSachNguyenLieu) {
+        this.danhSachNguyenLieu = danhSachNguyenLieu;
+    }  
 }

@@ -8,6 +8,7 @@ package quanlycafemangdi.view;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import quanlycafemangdi.model.CaLamViec;
 import quanlycafemangdi.model.CongThuc;
 import quanlycafemangdi.model.DangKi;
 import quanlycafemangdi.model.DiaDiem;
+import quanlycafemangdi.model.NhapXuat;
 import quanlycafemangdi.model.SanPham;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
@@ -41,10 +43,10 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     
     private List<SanPham> dsSanPham;
     private List<CongThuc> dsCongThuc;
-    private final HashMap<Integer,Integer> thanhPhanHoaDon;
-    private final HashMap<Integer,Integer> thanhPhanDangKi;
-    private final HashMap<String,Integer> khoHienTai;
-    private final HashMap<String,Integer> khoDangKi;
+    private HashMap<Integer,Integer> thanhPhanHoaDon;
+    private HashMap<Integer,Integer> thanhPhanDangKi;
+    private HashMap<String,Integer> khoHienTai;
+    private HashMap<String,Integer> khoDangKi;
     private List<DiaDiem> dsDiaDiem;
     private List<CaLamViec> dsCaLamViec;
     private List<CaLamViec> dsCaLamViecHienTai;
@@ -73,8 +75,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         
         
         initData();
-        initTable();
     }
+    
     private void initTable(){
         xetBang(lichLamTable);
         xetBang(soLuongNguyenLieuTable);
@@ -118,6 +120,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         if(clv != null){
             HashMap<String,Integer> dKMap = data.layDSDangKiTheoCa(clv.getMaCLV());
             HashMap<String,Integer> bHMap = data.layDSBanHangTheoCa(clv.getMaCLV());
+            HashMap<String,Integer> traNLHashMap = data.layDSTraNLTheoCa(clv);
             HashMap<String,Integer> nguyenLieuBanHang = new HashMap<>();
             
             Set<String> mKSet = bHMap.keySet();// tra ve ma sp
@@ -137,10 +140,20 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             Set<String> kSet = dKMap.keySet();
             for (String key : kSet){
                 
-                int sl = dKMap.get(key) - nguyenLieuBanHang.get(key);
-                if (sl >= 0){
+                int slBH = 0;
+                int slTNL = 0;
+                if (nguyenLieuBanHang.get(key) != null){
+                    slBH = nguyenLieuBanHang.get(key);
+                }
+                if (traNLHashMap.get(key) != null){
+                    slTNL = traNLHashMap.get(key);
+                }
+                
+                int sl = dKMap.get(key) - slBH - slTNL;
+                if (sl > 0){
                     khoHienTai.put(key, sl);
                 }
+                
             }
         }
         
@@ -700,6 +713,17 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             if (!maCLV.equals("")){
                 DangKi dk = new DangKi(maDK, maCLV, tg, ghiChu, khoDangKi);
                 data.themDangKi(dk);
+                
+                NhapXuat nx = new NhapXuat();
+                nx.setMaNhapXuat(Util.autoGenId(Util.XUAT_NL));
+                nx.setTaiKhoan(ThongTinDangNhap.getTenDangNhap());
+                nx.setThoiGian(new Timestamp(new java.util.Date().getTime()));
+                nx.setTrangThai("1");
+                nx.setGhiChu("Đăng kí nguyên liệu");
+                nx.setChiTietNhapXuat(khoDangKi);
+                data.xuatNL(nx);
+
+                
                 // huy man hinh dang ki
                 huyDangKi();
 
@@ -1526,7 +1550,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         lichLamTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lichLamTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        lichLamTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         lichLamTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         lichLamTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         lichLamTable.setToolTipText("Nhấn 2 lần để xem");
@@ -1537,6 +1561,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         });
         jScrollPane3.setViewportView(lichLamTable);
 
+        diaDiemCB.setBackground(new java.awt.Color(254, 254, 254));
         diaDiemCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         diaDiemCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1548,6 +1573,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         sapXepTheoThoiGianCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tăng dần theo ngày", "Giảm dần theo ngày" }));
+        sapXepTheoThoiGianCB.setBackground(new java.awt.Color(254, 254, 254));
         sapXepTheoThoiGianCB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         sapXepTheoThoiGianCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1558,7 +1584,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         jLabel19.setText("Ngày làm");
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        chonNgayLamDC.setBackground(new java.awt.Color(255, 255, 255));
+        chonNgayLamDC.setBackground(new java.awt.Color(254, 254, 254));
         chonNgayLamDC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chonNgayLamDC.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -1627,7 +1653,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         chiTietCaLamViecPanel.setBackground(new java.awt.Color(255, 255, 255));
         chiTietCaLamViecPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setText("Đại điểm:");
+        jLabel7.setText("Địa điểm:");
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel9.setText("Ca làm việc:");
@@ -1860,8 +1886,9 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             }
         });
         soLuongNguyenLieuTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         soLuongNguyenLieuTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        soLuongNguyenLieuTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(soLuongNguyenLieuTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -2010,7 +2037,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        bangNLConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangNLConLaiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangNLConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         bangNLConLaiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane7.setViewportView(bangNLConLaiTable);
@@ -2070,8 +2097,9 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        bangSPConLaiTable.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangSPConLaiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangSPConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        bangSPConLaiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane8.setViewportView(bangSPConLaiTable);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -2210,9 +2238,24 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
     private void duaNLVeKhoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_duaNLVeKhoBtnActionPerformed
         // TODO add your handling code here:
-        //xoa het nguyen lieu
+        //xoa het nguyen lieu khoHienTaiHasMap
         // dua nl ve kho
-        JOptionPane.showMessageDialog(this, "Chức năng đang trong giai đoạn hoàn thiện", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        
+        NhapXuat nx = new NhapXuat();
+        nx.setMaNhapXuat(Util.autoGenId(Util.TRA_NL));
+        nx.setTaiKhoan(ThongTinDangNhap.getTenDangNhap());
+        nx.setThoiGian(new Timestamp(new java.util.Date().getTime()));
+        nx.setTrangThai("0");
+        nx.setGhiChu("Trả nguyên liệu thừa về kho");
+        nx.setChiTietNhapXuat(khoHienTai);
+        
+        data.traNL(nx);
+        
+        khoHienTai.clear();
+        
+        JOptionPane.showMessageDialog(this, "Trả nguyên liệu về kho thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        
+        capNhatHaiBangQuanLy();
     }//GEN-LAST:event_duaNLVeKhoBtnActionPerformed
 
 

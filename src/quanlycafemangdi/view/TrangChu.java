@@ -20,7 +20,6 @@ import quanlycafemangdi.model.ThongTinDangNhap;
 public class TrangChu extends javax.swing.JFrame {
     
     private NhanVienPanel nhanVienPanel;
-    private BanHangPanel banHangPanel;
     private NguyenLieu_Panel nguyenLieu_Panel;
     private SanPham_Panel sanPham_Panel;
     private ThongKePanel thongKePanel;
@@ -48,7 +47,6 @@ public class TrangChu extends javax.swing.JFrame {
         
         
         nhanVienPanel = new NhanVienPanel();
-        banHangPanel = new BanHangPanel();
         nguyenLieu_Panel = new NguyenLieu_Panel(trangChu_LPn, trangChu_Pn);
         sanPham_Panel = new SanPham_Panel(trangChu_LPn, trangChu_Pn);
         thongKePanel = new ThongKePanel();
@@ -910,10 +908,12 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void nhanVienClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienClick_LblMouseClicked
         doiMauKhiClick(evt, nhanVienClick_Pn, nhanVienClick_Lbl, nhanVienPanel);
+        nhanVienPanel.updateData();
     }//GEN-LAST:event_nhanVienClick_LblMouseClicked
 
     private void nhanVienClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nhanVienClick_PnMouseClicked
         doiMauKhiClick(evt, nhanVienClick_Pn, nhanVienClick_Lbl, nhanVienPanel);
+        nhanVienPanel.updateData();
     }//GEN-LAST:event_nhanVienClick_PnMouseClicked
 
     private void diaDiemClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_diaDiemClick_LblMouseClicked
@@ -925,19 +925,21 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_diaDiemClick_PnMouseClicked
 
     private void banHangClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_LblMouseClicked
-        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, banHangPanel);
+        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
     }//GEN-LAST:event_banHangClick_LblMouseClicked
 
     private void banHangClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_PnMouseClicked
-        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, banHangPanel);
+        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
     }//GEN-LAST:event_banHangClick_PnMouseClicked
 
     private void thongKeClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeClick_LblMouseClicked
         doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
+        thongKePanel.updateData();
     }//GEN-LAST:event_thongKeClick_LblMouseClicked
 
     private void thongKeClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeClick_PnMouseClicked
         doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
+        thongKePanel.updateData();
     }//GEN-LAST:event_thongKeClick_PnMouseClicked
 
     private void tuyChonClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tuyChonClick_LblMouseClicked

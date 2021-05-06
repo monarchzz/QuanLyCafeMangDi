@@ -682,7 +682,7 @@ public class TrangChu extends javax.swing.JFrame {
         });
 
         thongTinCaNhanClick_Lbl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        thongTinCaNhanClick_Lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/thongTinTaiKhoan.png"))); // NOI18N
+        thongTinCaNhanClick_Lbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/thongTinCaNhan.png"))); // NOI18N
         thongTinCaNhanClick_Lbl.setText("Thông tin cá nhân");
         thongTinCaNhanClick_Lbl.setPreferredSize(new java.awt.Dimension(99, 24));
         thongTinCaNhanClick_Lbl.addMouseListener(new java.awt.event.MouseAdapter() {

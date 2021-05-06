@@ -9,8 +9,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
@@ -21,6 +24,7 @@ import quanlycafemangdi.model.CaLamViec;
 import quanlycafemangdi.model.CongThuc;
 import quanlycafemangdi.model.DangKi;
 import quanlycafemangdi.model.DiaDiem;
+import quanlycafemangdi.model.Luong;
 import quanlycafemangdi.model.NhanVien;
 import quanlycafemangdi.model.SanPham;
 
@@ -46,8 +50,7 @@ public class Data {
     }
     
     
-    public boolean kiemTraDangNhap(String tenDangNhap, String matKhau)
-    {
+    public boolean kiemTraDangNhap(String tenDangNhap, String matKhau){
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
         try
         {
@@ -64,8 +67,7 @@ public class Data {
         return false;
     }
     
-    public String layChucVu(String tenDangNhap, String matKhau)
-    {
+    public String layChucVu(String tenDangNhap, String matKhau){
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
         try
         {
@@ -280,6 +282,8 @@ public class Data {
                 clv.setTK1(rs.getString("TK1"));
                 if (rs.getString("TK2") != null){
                     clv.setTK2(rs.getString("TK2"));
+                }else {
+                    clv.setTK2(null);
                 }
                 
                 list.add(clv);
@@ -317,7 +321,7 @@ public class Data {
     
     //doi san pham ra nguyen lieu theo ca
     // tra ve maSP va soLuong
-     public HashMap<String, Integer> layDSBanHangTheoCa(String maCLV){ 
+    public HashMap<String, Integer> layDSBanHangTheoCa(String maCLV){ 
         HashMap<String, Integer> mHashMap = new HashMap<>();
         
         String query = "select maSP, SUM(soLuong) as soLuong from ChiTietBH where maBH in "
@@ -361,7 +365,110 @@ public class Data {
         
     }
     
+    // lay ds ma cham luong
+    public List<String> layDSMaCL(){
+        ArrayList<String> mArrayList = new ArrayList<>();
+        
+        String query = "select maLuong from ChamLuong";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                
+                mArrayList.add(rs.getString("maLuong"));
+                
+            }
+                
+            
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return  mArrayList;
+    }
+    
+    // lau ds luong
+    public List<Luong> layDSLuong(){
+        ArrayList<Luong> mArrayList = new ArrayList<>();
+        
+        String query = "select ChamLuong.*, NhanVien.tenNV, NhanVien.cmnd , NhanVien.chucVu "
+                + "from ChamLuong,NhanVien where ChamLuong.tenTK = NhanVien.tenTK";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                String maLuong = rs.getString("maLuong");
+                String tenTK = rs.getString("tenTK");
+                String tenNV = rs.getString("tenNV");
+                String cmnd = rs.getString("cmnd");
+                String thangNam = rs.getString("thangNam");
+                int luongCoBan = rs.getInt("luongCoBan");
+                float heSoLuong = rs.getFloat("heSoLuong");
+                int soCaLam = rs.getInt("soCaLam");
+                
+                String luong = rs.getString("thanhTien");
+                long tienLuong = Long.valueOf(luong.substring(0,luong.indexOf(".")));
+                
+                int trangThai = rs.getInt("trangThai");
+                
+                String chucVu = rs.getString("chucVu");
+                
+                Luong luongNV = new Luong(maLuong, tenTK, tenNV, cmnd, thangNam, 
+                        luongCoBan, heSoLuong, soCaLam, tienLuong, trangThai, chucVu);
+                mArrayList.add(luongNV);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return mArrayList;
+    }
+    
     // 
+    public List<DangKi> layDSDangKi(){
+        ArrayList<DangKi> mArrayList = new ArrayList<>();
+        
+        String query = "select * from DangKi";
+        
+        try {
+            PreparedStatement ps1 = connection.prepareStatement(query);
+            ResultSet rs1 = ps1.executeQuery();
+            
+            while (rs1.next()){
+                if (rs1.getString("maDK") != null){
+                    DangKi dk = new DangKi();
+                    
+                    dk.setMaDK(rs1.getString("maDK"));
+                    dk.setMaCLV(rs1.getString("maCLV"));
+                    dk.setThoiGian(rs1.getString("tg"));
+                    dk.setGhiChu(rs1.getString("ghiChu"));
+                    
+                    String query1 = "select maNL,soLuong from ChiTietDK where maDK = '"
+                            + dk.getMaDK() + "'";
+                    
+                    HashMap<String,Integer> mHashMap = new HashMap<>();
+                    PreparedStatement ps2 = connection.prepareStatement(query1);
+                    ResultSet rs2 = ps2.executeQuery();
+                    while(rs2.next()){
+                        mHashMap.put(rs2.getString("maNL"), rs2.getInt("soLuong"));
+                    }
+                    
+                    dk.setChiTietDangKi(mHashMap);
+                    
+                    mArrayList.add(dk);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return mArrayList;
+    }
     
     // lay du lieu tu id 
     public String layTenNguyenLieu(String id){
@@ -627,7 +734,7 @@ public class Data {
         
         query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
                 + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "') " 
+                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
                 + "group by maNL";
         try {
             ps = connection.prepareStatement(query);
@@ -691,7 +798,7 @@ public class Data {
         
         query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
                 + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "') " 
+                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
                 + "group by maNL";
         try {
             ps = connection.prepareStatement(query);
@@ -757,7 +864,7 @@ public class Data {
         
         query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
                 + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "') " 
+                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
                 + "group by maNL";
         try {
             ps = connection.prepareStatement(query);
@@ -808,5 +915,122 @@ public class Data {
         }
         
         return -1;
+    }
+    public void capNhatLuong(Luong l){
+        String query = "DELETE FROM ChamLuong WHERE maLuong = '" 
+                + l.getMaLuong() 
+                + "' INSERT INTO ChamLuong VALUES(?,?,?,?,?,?,?,?)";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, l.getMaLuong());
+            ps.setString(2, l.getTenTK());
+            ps.setString(3, l.getThangNam());
+            ps.setInt(4, l.getLuongCoBan());
+            ps.setInt(5, l.getSoCaLam());
+            ps.setFloat(6, l.getHeSoLuong());
+            ps.setString(7, String.valueOf(l.getLuong()));
+            ps.setInt(8, l.getTrangThai());
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void taoLuong(Luong l) {
+        String query = "INSERT INTO ChamLuong VALUES(?,?,?,?,?,?,?,?)";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, l.getMaLuong());
+            ps.setString(2, l.getTenTK());
+            ps.setString(3, l.getThangNam());
+            ps.setInt(4, l.getLuongCoBan());
+            ps.setInt(5, l.getSoCaLam());
+            ps.setFloat(6, l.getHeSoLuong());
+            ps.setString(7, String.valueOf(l.getLuong()));
+            ps.setInt(8, l.getTrangThai());
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // tim thang chua nhap luong
+    public boolean ktThemThangLuong(String tg){
+        
+        String query = "select COUNT(thangNam) as soLuong from ChamLuong where thangNam = '" + tg + "'";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()){
+                int sl = rs.getInt("soLuong");
+                if (sl == 0){
+                    return false;
+                }
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return true;
+    }
+    
+    // lay ds thangnam ca lam viec
+    public List<String> layDSThangNamCLV(){
+        String query = "select ngay from CaLamViec";
+        
+        Set<String> mSet = new HashSet<>();
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            String tg  = DateTimeFormatter.ofPattern("yyyy").format(LocalDateTime.now());
+            
+            while(rs.next()){
+                String tg1 = rs.getString("ngay");
+                if (tg1 != null && tg1.contains(tg)){
+                    tg1 = tg1.substring(0,7);
+                    mSet.add(tg1);
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ArrayList<String> mList = new ArrayList<>(mSet);
+        return mList;
+    }
+    
+    // lay chi tiet ban hang theo ma ban hang
+    public HashMap<String, String> chiTietBanHang(String maBH){
+        HashMap<String,String> mHashMap = new HashMap<>();
+        
+        String query = "select SanPham.tenSP, ChiTietBH.soLuong, DonViTinh.tenDV from SanPham, "
+                + "ChiTietBH, DonViTinh where SanPham.maSP = ChiTietBH.maSP "
+                + "and ChiTietBH.maBH = '" + maBH + "' "
+                + "and SanPham.maDV = DonViTinh.maDV";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                if (rs.getString("tenSP") != null){
+                    mHashMap.put(rs.getString("tenSP"), rs.getInt("soLuong") + " " + rs.getString("tenDV"));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return mHashMap;
     }
 }

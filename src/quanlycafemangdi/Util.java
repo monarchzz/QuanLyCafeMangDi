@@ -23,6 +23,8 @@ public class Util {
     public static final int SP_TABLE = 0;
     public static final int BH_TABLE = 1;
     public static final int DK_TABLE = 2;
+    public static final int CL_TABLE = 3;
+    
     
     public static void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
         jLayeredPane.removeAll();
@@ -87,6 +89,9 @@ public class Util {
             case Util.DK_TABLE -> {
                 return taoMaDK();
             }
+            case Util.CL_TABLE ->{
+                return taoMaCL();
+            }
         }
         
         return null;
@@ -114,6 +119,23 @@ public class Util {
         int maxNumber = 0;
         if (!dsDangKi.isEmpty()){
             for (String item: dsDangKi){
+                int number = Integer.valueOf(item.substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return String.format(name + "%04d", maxNumber);
+    }
+    private static String taoMaCL(){
+        String name = "CL";
+        List<String> dsChamLuong = Data.getInstance().layDSMaCL();
+        int maxNumber = 0;
+        if (!dsChamLuong.isEmpty()){
+            for (String item: dsChamLuong){
                 int number = Integer.valueOf(item.substring(2));
                 if (number > maxNumber){
                     maxNumber = number;

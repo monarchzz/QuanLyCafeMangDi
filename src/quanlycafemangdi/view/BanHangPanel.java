@@ -1541,6 +1541,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         });
         jScrollPane3.setViewportView(lichLamTable);
 
+        diaDiemCB.setBackground(new java.awt.Color(254, 254, 254));
         diaDiemCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         diaDiemCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1552,6 +1553,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         sapXepTheoThoiGianCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tăng dần theo ngày", "Giảm dần theo ngày" }));
+        sapXepTheoThoiGianCB.setBackground(new java.awt.Color(254, 254, 254));
         sapXepTheoThoiGianCB.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         sapXepTheoThoiGianCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1562,7 +1564,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         jLabel19.setText("Ngày làm");
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        chonNgayLamDC.setBackground(new java.awt.Color(255, 255, 255));
+        chonNgayLamDC.setBackground(new java.awt.Color(254, 254, 254));
         chonNgayLamDC.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chonNgayLamDC.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -1631,7 +1633,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         chiTietCaLamViecPanel.setBackground(new java.awt.Color(255, 255, 255));
         chiTietCaLamViecPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel7.setText("Đại điểm:");
+        jLabel7.setText("Địa điểm:");
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel9.setText("Ca làm việc:");
@@ -1866,6 +1868,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         soLuongNguyenLieuTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         soLuongNguyenLieuTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         soLuongNguyenLieuTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        soLuongNguyenLieuTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane4.setViewportView(soLuongNguyenLieuTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -2076,6 +2079,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         ));
         bangSPConLaiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangSPConLaiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        bangSPConLaiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane8.setViewportView(bangSPConLaiTable);
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));

@@ -545,6 +545,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(943, 617));
 
+        timKiemTextField.setBackground(new java.awt.Color(254, 254, 254));
+        timKiemTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timKiemTextField.setToolTipText("Tìm kiếm nhân viên");
         timKiemTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -605,6 +607,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Sắp xếp theo");
 
+        sapXepComboBox.setBackground(new java.awt.Color(254, 254, 254));
         sapXepComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sapXepComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,6 +615,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             }
         });
 
+        timKiemComboBox.setBackground(new java.awt.Color(254, 254, 254));
         timKiemComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timKiemComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,6 +623,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             }
         });
 
+        sapXepTGCB.setBackground(new java.awt.Color(254, 254, 254));
         sapXepTGCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sapXepTGCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tăng dần", "Giảm dần" }));
         sapXepTGCB.addActionListener(new java.awt.event.ActionListener() {
@@ -648,6 +653,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         gioiTinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gioiTinh.setText("Giới tính");
 
+        gioiTinhCB.setBackground(new java.awt.Color(254, 254, 254));
         gioiTinhCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gioiTinhCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
@@ -673,6 +679,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         chucVuLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chucVuLb.setText("Chức vụ");
 
+        chucVuCB.setBackground(new java.awt.Color(254, 254, 254));
         chucVuCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chucVuCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên bán hàng", "Quản lý", "admin" }));
         chucVuCB.addActionListener(new java.awt.event.ActionListener() {

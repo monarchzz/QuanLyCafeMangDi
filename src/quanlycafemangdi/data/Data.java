@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -580,5 +581,186 @@ public class Data {
         } catch (SQLException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    //DIA DIEM
+//    public List<DiaDiem> layDSDiaDiem(){
+//        ArrayList<DiaDiem> list = new ArrayList<>();
+//        
+//        String sql = "select * from DiaDiem";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                int trangThai = rs.getInt("trangThai");
+//                
+//                if (trangThai == 1){
+//                    String maDD = rs.getString("maDD");
+//                    String viTri = rs.getString("viTri");
+//                    list.add(new DiaDiem(maDD, viTri));
+//                }
+//            }
+//        } catch (SQLException e) {
+//            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//        return list;
+//    }
+
+    //kiem tra ma dia diem
+    public boolean kiemTraMaDD(String maDD) {
+        String sql = "select maDD from DiaDiem";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (maDD.equals(rs.getString("maDD"))){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
+    //kiem tra vi tri dia diem
+    public boolean kiemTraViTri(String viTri) {
+        String sql = "select viTri from DiaDiem";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (viTri.equals(rs.getString("viTri"))){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+
+    public void themDiaDiem(DiaDiem diaDiem){
+        String sql = "insert into DiaDiem values(?,?,?)";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, diaDiem.getMaDD());
+            ps.setString(2, diaDiem.getViTri());
+            ps.setInt(3, 1);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //trang thai 1: hoat dong, 0: nghỉ
+    public void xoaDiaDiem(DiaDiem diaDiem){
+        String sql = "update DiaDiem set trangThai = '0' where maDD = '" + diaDiem.getMaDD() + "'";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void suaDiaDiem(DiaDiem ddCu, DiaDiem ddMoi){
+        String sql = "delete from DiaDiem where maDD = '" + ddCu.getMaDD() + "'";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  
+        themDiaDiem(ddMoi);
+    }
+ 
+    //CA LAM VIEC
+//    public List<CaLamViec> layDSCaLamViec(){
+//        ArrayList<CaLamViec> list = new ArrayList<>();
+//         
+//        String sql = "select * from CaLamViec";
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ResultSet rs = ps.executeQuery();
+//            while(rs.next()){
+//                String maCLV = rs.getString("maCLV");
+//                String maDD = rs.getString("maDD");
+//                String caLamViec = rs.getString("caLamViec");
+//                String ngayLam = rs.getString("ngay");
+//                String tk1 = rs.getString("tk1");
+//                String tk2 = rs.getString("tk2");
+//                list.add(new CaLamViec(maCLV, maDD, caLamViec, ngayLam, tk1, tk2));
+//            }
+//        } catch (SQLException e) {
+//            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+//        }
+//        return list;
+//    }  
+//    
+    
+    //kiem tra ma ca lam viec
+    public boolean kiemTraMaCLV(String maCLV) {
+        String sql = "select maCLV from CaLamViec";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (maCLV.equals(rs.getString("maCLV"))){
+                    return false;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
+     public void themCaLamViec(CaLamViec caLamViec){
+        String sql = "insert into CaLamViec values(?,?,?,?,?,?)";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, caLamViec.getMaCLV());
+            ps.setString(2, caLamViec.getMaDD());
+            ps.setString(3, caLamViec.getCaLamViec());
+            ps.setString(4, caLamViec.getNgay());
+            ps.setString(5, caLamViec.getTK1());
+            ps.setString(6, caLamViec.getTK2());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void xoaCaLamViec(CaLamViec caLamViec){
+        String sql = "delete from CaLamViec where maCLV = '" + caLamViec.getMaCLV() + "'" ;
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void suaThongTinCaLamViec(CaLamViec clvCu, CaLamViec clvMoi){
+        String sql = "delete from CaLamViec where maCLV = '" + clvCu.getMaCLV() + "'";
+        
+        try {         
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        themCaLamViec(clvMoi);
     }
 }

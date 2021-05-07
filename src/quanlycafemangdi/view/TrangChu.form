@@ -901,6 +901,9 @@
                       <Dimension value="[72, 24]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel8MouseClicked"/>
+                  </Events>
 
                   <Layout>
                     <DimensionLayout dim="0">

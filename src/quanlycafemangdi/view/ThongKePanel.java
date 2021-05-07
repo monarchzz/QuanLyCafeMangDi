@@ -1472,6 +1472,8 @@ public class ThongKePanel extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(254, 254, 254));
+
         chiTietTKNamTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1483,6 +1485,7 @@ public class ThongKePanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        chiTietTKNamTable.setBackground(new java.awt.Color(254, 254, 254));
         chiTietTKNamTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         chiTietTKNamTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         chiTietTKNamTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -2321,8 +2324,8 @@ public class ThongKePanel extends javax.swing.JPanel {
         });
         jScrollPane7.setViewportView(tKDangKiTable);
 
-        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel36.setText("Ngày");
+        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         chonNgayDKDP.setBackground(new java.awt.Color(254, 254, 254));
         chonNgayDKDP.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -2332,20 +2335,20 @@ public class ThongKePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel37.setText("Ca làm");
+        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
+        caLamDKCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Sáng", "Chiều" }));
         caLamDKCB.setBackground(new java.awt.Color(254, 254, 254));
         caLamDKCB.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        caLamDKCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Sáng", "Chiều" }));
         caLamDKCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 caLamDKCBActionPerformed(evt);
             }
         });
 
-        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel38.setText("Địa điểm");
+        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         diaDiemDKCB.setBackground(new java.awt.Color(254, 254, 254));
         diaDiemDKCB.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -2399,9 +2402,9 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel22.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel39.setText("Thống kê đăng kí");
         jLabel39.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel39.setText("Thống kê đăng kí");
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
@@ -2426,9 +2429,9 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel26.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel40.setText("Chi tiết");
         jLabel40.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel40.setText("Chi tiết");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -2447,23 +2450,23 @@ public class ThongKePanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel41.setText("Nhân viên chính");
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel42.setText("Địa điểm");
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel43.setText("Ca làm");
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel44.setText("Ngày");
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel45.setText("Thời gian");
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel48.setText("Nhân viên phụ");
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new java.awt.GridLayout(2, 1));
@@ -2512,8 +2515,8 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel28.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel49.setText("Ghi chú");
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         ghiChuTA.setEditable(false);
         ghiChuTA.setBackground(new java.awt.Color(254, 254, 254));
@@ -2546,26 +2549,26 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel18.add(jPanel28);
 
-        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel47.setText("Danh sách sản phẩm");
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTenNVCLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietTenNVCLb.setText("Nhân viên chính");
+        chiTietTenNVCLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTenNVPLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietTenNVPLb.setText("Nhân viên chính");
+        chiTietTenNVPLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietDDDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietDDDKLb.setText("Nhân viên chính");
+        chiTietDDDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietCaLamDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietCaLamDKLb.setText("Nhân viên chính");
+        chiTietCaLamDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietNgayDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietNgayDKLb.setText("Nhân viên chính");
+        chiTietNgayDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTGDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         chiTietTGDKLb.setText("Nhân viên chính");
+        chiTietTGDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
         jPanel25.setLayout(jPanel25Layout);

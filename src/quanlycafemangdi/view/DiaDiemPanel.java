@@ -2,6 +2,8 @@
 package quanlycafemangdi.view;
 
 import com.github.lgooddatepicker.components.DatePickerSettings;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -15,6 +17,7 @@ import javax.print.SimpleDoc;
 import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import quanlycafemangdi.Util;
 import quanlycafemangdi.data.Data;
@@ -42,6 +45,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         initComponents();
      
         data = Data.getInstance();
+        
+        xetBang(jT_DSCLV);
+        xetBang(jT_DSDD);
         
         dtmDD = new DefaultTableModel(){
             @Override
@@ -83,6 +89,13 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 //        khoiTaoBangCLV();
 //    }
     
+    private void xetBang(JTable table){
+        table.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));
+        table.getTableHeader().setBackground(new Color(114,102,186));
+        table.getTableHeader().setForeground(Color.white);
+        table.setBackground(new Color(254,254,254));
+    }
     private void khoiTaoBangDD(){
         dsDiaDiem = Data.getInstance().layDSDiaDiem();
         
@@ -354,16 +367,20 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         jPanel4 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(943, 617));
 
-        jTP_DiaDiem.setBackground(new java.awt.Color(153, 153, 153));
+        jTP_DiaDiem.setBackground(new java.awt.Color(32, 136, 203));
         jTP_DiaDiem.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jTP_DiaDiem.setForeground(new java.awt.Color(255, 255, 255));
         jTP_DiaDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTP_DiaDiem.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jTP_DiaDiem.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jTP_DiaDiem.setPreferredSize(new java.awt.Dimension(943, 617));
 
+        jP_DD.setBackground(new java.awt.Color(255, 255, 255));
         jP_DD.setPreferredSize(new java.awt.Dimension(943, 617));
 
+        jCB_TimKiemDD.setBackground(new java.awt.Color(254, 254, 254));
         jCB_TimKiemDD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_TimKiemDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -371,6 +388,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,32 +411,39 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         });
         jScrollPane1.setViewportView(jT_DSDD);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Sắp xếp theo: ");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jCB_SapXepDD.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jCB_SapXepDD.setBackground(new java.awt.Color(254, 254, 254));
+        jCB_SapXepDD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_SapXepDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCB_SapXepDDActionPerformed(evt);
             }
         });
 
-        jB_ThemDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_ThemDD.setText(" Thêm địa điểm");
+        jB_ThemDD.setBackground(new java.awt.Color(32, 136, 203));
+        jB_ThemDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_ThemDD.setForeground(new java.awt.Color(255, 255, 255));
         jB_ThemDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_ThemDDActionPerformed(evt);
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Vị trí");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jTF_ViTriDD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTF_ViTriDD.setBackground(new java.awt.Color(254, 254, 254));
 
         jLP_ChucNangDD.setLayout(new java.awt.CardLayout());
+
+        jP_HienTTDD.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jP_HienTTDDLayout = new javax.swing.GroupLayout(jP_HienTTDD);
         jP_HienTTDD.setLayout(jP_HienTTDDLayout);
@@ -433,16 +458,22 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangDD.add(jP_HienTTDD, "card4");
 
+        jP_ThemDD.setBackground(new java.awt.Color(255, 255, 255));
+
         jB_TaoDD.setText("Thêm");
+        jB_TaoDD.setBackground(new java.awt.Color(32, 136, 203));
         jB_TaoDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_TaoDD.setForeground(new java.awt.Color(255, 255, 255));
         jB_TaoDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_TaoDDActionPerformed(evt);
             }
         });
 
-        jB_Thoat1DD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat1DD.setText("Thoát");
+        jB_Thoat1DD.setBackground(new java.awt.Color(32, 136, 203));
+        jB_Thoat1DD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_Thoat1DD.setForeground(new java.awt.Color(255, 255, 255));
         jB_Thoat1DD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Thoat1DDActionPerformed(evt);
@@ -471,26 +502,33 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangDD.add(jP_ThemDD, "card2");
 
+        jP_SuaXoaDD.setBackground(new java.awt.Color(255, 255, 255));
         jP_SuaXoaDD.setPreferredSize(new java.awt.Dimension(250, 73));
 
-        jB_SuaDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_SuaDD.setText("Sửa");
+        jB_SuaDD.setBackground(new java.awt.Color(32, 136, 203));
+        jB_SuaDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_SuaDD.setForeground(new java.awt.Color(255, 255, 255));
         jB_SuaDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_SuaDDActionPerformed(evt);
             }
         });
 
-        jB_XoaDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_XoaDD.setText("Xóa");
+        jB_XoaDD.setBackground(new java.awt.Color(32, 136, 203));
+        jB_XoaDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_XoaDD.setForeground(new java.awt.Color(255, 255, 255));
         jB_XoaDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_XoaDDActionPerformed(evt);
             }
         });
 
-        jB_Thoat2DD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat2DD.setText("Thoát");
+        jB_Thoat2DD.setBackground(new java.awt.Color(32, 136, 203));
+        jB_Thoat2DD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_Thoat2DD.setForeground(new java.awt.Color(255, 255, 255));
         jB_Thoat2DD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Thoat2DDActionPerformed(evt);
@@ -523,8 +561,11 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangDD.add(jP_SuaXoaDD, "card3");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(114, 102, 186));
+
         jLabel1.setText("Thông tin địa điểm");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -569,7 +610,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                     .addComponent(jLabel4))
                 .addGap(50, 50, 50)
                 .addComponent(jLP_ChucNangDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jP_DDLayout = new javax.swing.GroupLayout(jP_DD);
@@ -614,19 +655,19 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jP_DDLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jTP_DiaDiem.addTab("Địa điểm ", jP_DD);
 
-        jP_CLV.setBackground(new java.awt.Color(204, 204, 204));
+        jP_CLV.setBackground(new java.awt.Color(255, 255, 255));
         jP_CLV.setFocusable(false);
         jP_CLV.setPreferredSize(new java.awt.Dimension(943, 617));
 
         jTF_TimKiemCLV.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jCB_TimKiemCLV.setBackground(new java.awt.Color(240, 240, 240));
+        jCB_TimKiemCLV.setBackground(new java.awt.Color(254, 254, 254));
         jCB_TimKiemCLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_TimKiemCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -634,6 +675,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
+        jScrollPane2.setBackground(new java.awt.Color(254, 254, 254));
         jScrollPane2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jScrollPane2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -656,9 +698,10 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         });
         jScrollPane2.setViewportView(jT_DSCLV);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Sắp xếp theo: ");
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jCB_SapXepCLV.setBackground(new java.awt.Color(254, 254, 254));
         jCB_SapXepCLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_SapXepCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -666,14 +709,17 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
-        jB_ThemCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_ThemCLV.setText("Thêm ca làm việc");
+        jB_ThemCLV.setBackground(new java.awt.Color(32, 136, 203));
+        jB_ThemCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jB_ThemCLV.setForeground(new java.awt.Color(255, 255, 255));
         jB_ThemCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_ThemCLVActionPerformed(evt);
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTF_TK1CLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -683,25 +729,28 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel6.setText("Mã ca làm việc");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jTF_TK2CLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel7.setText("Mã địa điểm");
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setText("Ca làm việc");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
+        jCB_CaLam.setBackground(new java.awt.Color(254, 254, 254));
         jCB_CaLam.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel9.setText("Ngày làm");
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jDC_DateCLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLP_ChucNangCLV.setLayout(new java.awt.CardLayout());
+
+        jP_HienCLV.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jP_HienCLVLayout = new javax.swing.GroupLayout(jP_HienCLV);
         jP_HienCLV.setLayout(jP_HienCLVLayout);
@@ -716,24 +765,24 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangCLV.add(jP_HienCLV, "card4");
 
-        jB_SuaCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_SuaCLV.setText("Sửa");
+        jB_SuaCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_SuaCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_SuaCLVActionPerformed(evt);
             }
         });
 
-        jB_XoaCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_XoaCLV.setText("Xóa");
+        jB_XoaCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_XoaCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_XoaCLVActionPerformed(evt);
             }
         });
 
-        jB_Thoat2CLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat2CLV.setText("Thoát");
+        jB_Thoat2CLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat2CLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Thoat2CLVActionPerformed(evt);
@@ -766,16 +815,16 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangCLV.add(jP_SuaXoaCLV, "card3");
 
-        jB_TaoCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_TaoCLV.setText("Thêm");
+        jB_TaoCLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_TaoCLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_TaoCLVActionPerformed(evt);
             }
         });
 
-        jB_Thoat1CLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat1CLV.setText("Thoát");
+        jB_Thoat1CLV.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_Thoat1CLV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_Thoat1CLVActionPerformed(evt);
@@ -805,11 +854,11 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangCLV.add(jP_ThemCLV, "card2");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel10.setText("Nhân viên 1");
+        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel11.setText("Nhân viên 2");
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         jTF_MaCLV.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -820,8 +869,11 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jPanel4.setBackground(new java.awt.Color(114, 102, 186));
+
         jLabel12.setText("Thông tin ca làm việc");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);

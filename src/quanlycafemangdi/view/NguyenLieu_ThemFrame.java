@@ -10,6 +10,7 @@ import quanlycafemangdi.model.NguyenLieu;
 import java.sql.*;
 import java.util.ArrayList;
 import quanlycafemangdi.Util;
+import quanlycafemangdi.model.NhapXuat;
 import quanlycafemangdi.model.ThongTinDangNhap;
 /**
  *
@@ -19,13 +20,13 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     
     private ArrayList<NguyenLieu> danhSachNguyenLieu;
     private ArrayList<String> danhSachMaNhapXuat = new ArrayList<>();
+    private ArrayList<NhapXuat> danhSachNhap = new ArrayList<>();
     
     private IOnFrameDispose onFrameDispose;
         
     private String loi;
-    /**
-     * Creates new form NhapNguyenLieuFrame
-     */
+    private String buttonClicked = "";
+
     public NguyenLieu_ThemFrame() {
         initComponents();
         
@@ -37,7 +38,6 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         ghiChu_TA.setText("Thêm nguyên liệu mới vào kho");
     }
     
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +63,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         huy_Btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ghiChu_TA = new javax.swing.JTextArea();
-        donViTinh_Cbx = new javax.swing.JComboBox<>();
+        donViTinh_CBx = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -124,7 +124,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(donViTinh_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(donViTinh_Cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(donViTinh_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(140, 140, 140))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(tenNguyenLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,7 +162,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(donViTinh_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(donViTinh_Cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(donViTinh_CBx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(gia_TF)
@@ -186,6 +186,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void huy_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huy_BtnActionPerformed
+        buttonClicked = "Huy";
         this.dispose();
     }//GEN-LAST:event_huy_BtnActionPerformed
 
@@ -263,7 +264,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> donViTinh_Cbx;
+    private javax.swing.JComboBox<String> donViTinh_CBx;
     private javax.swing.JLabel donViTinh_Lbl;
     private javax.swing.JLabel ghiChu_Lbl;
     private javax.swing.JTextArea ghiChu_TA;
@@ -285,18 +286,17 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     @Override
     public void dispose() 
     {
-        onFrameDispose.onFrameDispose();
-        super.dispose(); //To change body of generated methods, choose Tools | Templates.
+        if (buttonClicked.equals("Huy"))
+        {
+            super.dispose();
+        }
+        else
+        {
+            onFrameDispose.onFrameDispose();
+            super.dispose(); //To change body of generated methods, choose Tools | Templates.            
+        }
     }    
-    
-    public void setOnFrameDispose(IOnFrameDispose onFrameDispose){
-        this.onFrameDispose = onFrameDispose;
-    } 
-    
-    public void setDanhSachNguyenLieu(ArrayList<NguyenLieu> danhSachNguyenLieu) {
-        this.danhSachNguyenLieu = danhSachNguyenLieu;
-    }    
-    
+
     public void layDonViTinh()
     {
         Connection connect = Util.getConnection();
@@ -307,7 +307,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
             ResultSet rs = ps.executeQuery();
             while (rs.next())
             {
-                donViTinh_Cbx.addItem(rs.getString("tenDV"));
+                donViTinh_CBx.addItem(rs.getString("tenDV"));
             }
         }catch (SQLException ex)
         {
@@ -403,15 +403,11 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         {
             loi = loi + "Mã nguyên liệu đã tồn tại\n";
         }
-//        else if (maNguyenLieu.matches(""))
-//        {
-//            loi = loi + "Mã nguyên liệu không đúng định dạng\n";
-//        }
         
-       if (tenNguyenLieu.equals(""))
-       {
-           loi = loi + "Tên nguyên liệu không được để trống\n";
-       }
+        if (tenNguyenLieu.equals(""))
+        {
+            loi = loi + "Tên nguyên liệu không được để trống\n";
+        }
 
         if (gia.equals(""))
         {
@@ -419,7 +415,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         }
         else if (gia.matches("\\d+") == false)
         {
-            loi = loi + "Giá tiền chỉ có thể là số\n";
+            loi = loi + "Giá tiền không hợp lệ\n";
         }
         
         if (soLuong.equals(""))
@@ -449,22 +445,30 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     
     public void themNguyenLieu()
     {
-        // Bang nguyen lieu
+        // Nguyen lieu
         String maNguyenLieu = maNguyenLieu_TF.getText();
         String tenNguyenLieu = tenNguyenLieu_TF.getText();
-        String donViTinh = (String) donViTinh_Cbx.getSelectedItem();
+        String donViTinh = (String) donViTinh_CBx.getSelectedItem();
         String maDonVi = layMaDonVi(donViTinh);
         String gia = gia_TF.getText();
         
-        // Bang nhap xuat
+        // Nhap xuat
         String maNhapXuat = taoMaNhapXuat();
         String tenTK = ThongTinDangNhap.getTenDangNhap();
-        java.sql.Timestamp thoiGian = new java.sql.Timestamp(new java.util.Date().getTime());
+        Timestamp thoiGian = new Timestamp(new java.util.Date().getTime());
         String trangThai = "0";
         String ghiChu = ghiChu_TA.getText();
-        
-        // Bang chi tiet nhap xuat + nguyen lieu
         String soLuong = soLuong_TF.getText();       
+        
+        NhapXuat nhapXuat = new NhapXuat();
+        nhapXuat.setMaNhapXuat(maNhapXuat);
+        nhapXuat.setTaiKhoan(tenTK);
+        nhapXuat.setThoiGian(thoiGian);
+        nhapXuat.setTrangThai(trangThai);
+        nhapXuat.setGhiChu(ghiChu);
+        nhapXuat.getChiTietNhapXuat().put(maNguyenLieu, Integer.parseInt(soLuong));
+        nhapXuat.setThanhTien(Long.parseLong(gia)*Integer.parseInt(soLuong));
+        danhSachNhap.add(nhapXuat);
         
         NguyenLieu nguyenLieu = new NguyenLieu(maNguyenLieu, tenNguyenLieu, maDonVi, donViTinh,
                 Long.parseLong(gia), Integer.parseInt(soLuong));
@@ -508,5 +512,16 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
             System.out.println("Them nguyen lieu that bai");
         }
     }
-          
+
+    public void setDanhSachNhap(ArrayList<NhapXuat> danhSachNhap) {
+        this.danhSachNhap = danhSachNhap;
+    }         
+    
+    public void setOnFrameDispose(IOnFrameDispose onFrameDispose){
+        this.onFrameDispose = onFrameDispose;
+    } 
+    
+    public void setDanhSachNguyenLieu(ArrayList<NguyenLieu> danhSachNguyenLieu) {
+        this.danhSachNguyenLieu = danhSachNguyenLieu;
+    }        
 }

@@ -15,7 +15,7 @@ public class CongThuc {
     private String maCT;
     private String maSP;
     private String cachLam;
-    private HashMap<String, Integer> chiTietCT;
+    private HashMap<String, Integer> chiTietCT = new HashMap<>();
 
     public CongThuc() {
     }

@@ -99,7 +99,7 @@ public class NguyenLieu
             }
         }catch (SQLException ex)
         {
-            System.out.println("Truy van that bai");
+            System.out.println("Lay don vi tinh that bai");
         }
         return null;
     }   

@@ -308,8 +308,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         jCB_SapXepDD = new javax.swing.JComboBox<>();
         jB_ThemDD = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jTF_MaDD = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTF_ViTriDD = new javax.swing.JTextField();
         jLP_ChucNangDD = new javax.swing.JLayeredPane();
@@ -415,11 +413,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel3.setText("Mã địa điểm");
-
-        jTF_MaDD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel4.setText("Vị trí");
 
@@ -440,8 +433,8 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jLP_ChucNangDD.add(jP_HienTTDD, "card4");
 
-        jB_TaoDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_TaoDD.setText("Thêm");
+        jB_TaoDD.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jB_TaoDD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jB_TaoDDActionPerformed(evt);
@@ -560,13 +553,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLP_ChucNangDD)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTF_ViTriDD, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(jTF_MaDD))
+                        .addComponent(jLabel4)
+                        .addGap(70, 70, 70)
+                        .addComponent(jTF_ViTriDD, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -574,11 +563,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTF_MaDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(97, 97, 97)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTF_ViTriDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -1103,10 +1088,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             int kink = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa thông tin địa điểm không?", "Thông báo", JOptionPane.YES_NO_OPTION);
 
             if(kink == 0){
-                String maDD = jTF_MaDD.getText();
                 String viTri = jTF_ViTriDD.getText();
                 
-                DiaDiem ddm = new DiaDiem(maDD, viTri);
+                DiaDiem ddm = new DiaDiem(dd.getMaDD(), viTri);
                 data.suaDiaDiem(dd, ddm);
                 JOptionPane.showMessageDialog(this, "Sửa thông tin thành công");
                 xoaThongTinDD();
@@ -1245,7 +1229,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1267,7 +1250,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTF_MaCLV;
-    private javax.swing.JTextField jTF_MaDD;
     private javax.swing.JTextField jTF_MaDDCLV;
     private javax.swing.JTextField jTF_TK1CLV;
     private javax.swing.JTextField jTF_TK2CLV;
@@ -1290,19 +1272,14 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     
     //xoa thong tin 
     public void xoaThongTinDD(){
-        jTF_MaDD.setText("");
         jTF_ViTriDD.setText("");
     }
     
     //kiem tra thong tin them dai diem
     public boolean kTThongTinDD(){
         String loi = "";
-        String maDD = jTF_MaDD.getText();
         String viTri = jTF_ViTriDD.getText();
         
-        if(maDD.trim().equals("")){
-            loi += "Mã địa điểm không được bỏ trống.\n"; 
-        }
         if(viTri.replace("\\s\\s+", "").trim().equals("")){
             loi += "Vị trí không được bỏ trống.\n";
         }
@@ -1322,12 +1299,8 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     //kiem tra thong tin dia diem truoc khi sua
     public boolean kTHopLeDD(DiaDiem dd){
         String loi = "";
-        String maDD = jTF_MaDD.getText();
         String viTri = jTF_ViTriDD.getText();
         
-        if(maDD.trim().equals("")){
-            loi += "Mã địa điểm không được bỏ trống.\n"; 
-        }
         if(viTri.replace("\\s\\s+", "").trim().equals("")){
             loi += "Vị trí không được bỏ trống.\n";
         }else if(!viTri.equals(dd.getViTri()) && !kiemTraViTri(viTri)){
@@ -1347,29 +1320,25 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     }
     
     public void hienTTDD(DiaDiem dd, boolean hienTF){    
-        jTF_MaDD.setText(dd.getMaDD());
         jTF_ViTriDD.setText(dd.getViTri());
         
         hienTFDD(hienTF);
     }
     
     public void hienTFDD(boolean flag){
-        jTF_MaDD.setEnabled(flag);
         jTF_ViTriDD.setEnabled(flag);
     }
     
     public void enableTFDD(){
-        jTF_MaDD.setEnabled(true);
         jTF_ViTriDD.setEnabled(true);
         
         xoaThongTinDD();
     }
 
     public void themDiaDiem(){
-        String maDD = jTF_MaDD.getText();
         String viTri = jTF_ViTriDD.getText();
         
-        DiaDiem dd = new DiaDiem(maDD, viTri);
+        DiaDiem dd = new DiaDiem(Util.autoGenId(Util.DD_TABLE),viTri);
         data.themDiaDiem(dd);
     }
     
@@ -1460,7 +1429,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     
     public void hienTTCLV(CaLamViec clv, boolean  hienTF){
         jTF_MaCLV.setText(clv.getMaCLV());
-        jTF_MaDD.setText(clv.getMaDD());
         jCB_CaLam.setSelectedItem(clv.getCaLamViec());
         jDC_DateCLV.setText(clv.getNgay());
         jTF_TK1CLV.setText(clv.getTK1());
@@ -1471,7 +1439,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     
     public void hienTFCLV(boolean flag){
         jTF_MaCLV.setEnabled(flag);
-        jTF_MaDD.setEnabled(flag);
         jCB_CaLam.setEnabled(flag);
         jDC_DateCLV.setEnabled(flag);
         jTF_TK1CLV.setEnabled(flag);
@@ -1480,7 +1447,6 @@ public class DiaDiemPanel extends javax.swing.JPanel{
     
     public void enableTFCLV(){
         jTF_MaCLV.setEnabled(true);
-        jTF_MaDD.setEnabled(true);
         jCB_CaLam.setEnabled(true);
         jDC_DateCLV.setEnabled(true);
         jTF_TK1CLV.setEnabled(true);

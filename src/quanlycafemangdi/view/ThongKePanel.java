@@ -28,6 +28,7 @@ import quanlycafemangdi.model.DangKi;
 import quanlycafemangdi.model.DiaDiem;
 import quanlycafemangdi.model.Luong;
 import quanlycafemangdi.model.NhanVien;
+import quanlycafemangdi.model.ThongTinDangNhap;
 import quanlycafemangdi.view.chart.ChartAdapter;
 import quanlycafemangdi.view.chart.DatasetValue;
 import quanlycafemangdi.view.chart.MChartPanel;
@@ -196,9 +197,9 @@ public class ThongKePanel extends javax.swing.JPanel {
 //            }else loiNhuanList.add(new DatasetValue("Lợi nhuận",d1.getCategory(),0));
         }
         
-        doanhThuLb.setText(String.valueOf((long)doanhThuList.get(0).getValue()));
-        chiPhiLb.setText(String.valueOf((long)chiPhiList.get(0).getValue()));
-        loiNhuanLb.setText(String.valueOf((long)loiNhuanList.get(0).getValue()));
+        doanhThuLb.setText(Util.formatCurrency((long)doanhThuList.get(0).getValue()));
+        chiPhiLb.setText(Util.formatCurrency((long)chiPhiList.get(0).getValue()));
+        loiNhuanLb.setText(Util.formatCurrency((long)loiNhuanList.get(0).getValue()));
         
         Collections.reverse(doanhThuList);
         Collections.reverse(chiPhiList);
@@ -244,9 +245,9 @@ public class ThongKePanel extends javax.swing.JPanel {
             loiNhuanList.add(new DatasetValue("Lợi nhuận",d1.getCategory(),lN));
         }
         
-        doanhThuLb.setText(String.valueOf((long)doanhThuList.get(0).getValue()));
-        chiPhiLb.setText(String.valueOf((long)chiPhiList.get(0).getValue()));
-        loiNhuanLb.setText(String.valueOf((long)loiNhuanList.get(0).getValue()));
+        doanhThuLb.setText(Util.formatCurrency((long)doanhThuList.get(0).getValue()));
+        chiPhiLb.setText(Util.formatCurrency((long)chiPhiList.get(0).getValue()));
+        loiNhuanLb.setText(Util.formatCurrency((long)loiNhuanList.get(0).getValue()));
         
         
         Collections.reverse(doanhThuList);
@@ -273,9 +274,9 @@ public class ThongKePanel extends javax.swing.JPanel {
             
         }
         
-        doanhThuLb.setText(String.valueOf((long)doanhThuList.get(0).getValue()));
-        chiPhiLb.setText(String.valueOf((long)chiPhiList.get(0).getValue()));
-        loiNhuanLb.setText(String.valueOf((long)loiNhuanList.get(0).getValue()));
+        doanhThuLb.setText(Util.formatCurrency((long)doanhThuList.get(0).getValue()));
+        chiPhiLb.setText(Util.formatCurrency((long)chiPhiList.get(0).getValue()));
+        loiNhuanLb.setText(Util.formatCurrency((long)loiNhuanList.get(0).getValue()));
         
         Collections.reverse(doanhThuList);
         Collections.reverse(chiPhiList);
@@ -599,11 +600,15 @@ public class ThongKePanel extends javax.swing.JPanel {
                 luongCBNVTFTKL.setEnabled(false);
                 ttlPanel.setVisible(false);
             }else{// chua thanh toan
-                soCLVNVTFTKL.setEnabled(true);
-                hslNVTFTKL.setEnabled(true);
-                luongCBNVTFTKL.setEnabled(true);
-                ttlPanel.setVisible(true);
+                if (ThongTinDangNhap.getChucVu().equals("admin")){
+                    soCLVNVTFTKL.setEnabled(true);
+                    hslNVTFTKL.setEnabled(true);
+                    luongCBNVTFTKL.setEnabled(true);
+                    ttlPanel.setVisible(true);
+                }
+                
             }
+                
             
             tKNVLbTKL.setText(l.getTenTK());
             tenNVLbTKL.setText(l.getTenNV());

@@ -1579,7 +1579,7 @@ public class TrangChu extends javax.swing.JFrame {
     
     public void xetChucVu(String chucVu)
     {
-        if (chucVu.equals("Nhân viên") || chucVu.equals("Nhân Viên"))
+        if (chucVu.toLowerCase().contains("nhân viên"))
         {
             anChucNang(quanLyKhoClick_Pn, quanLyKhoClick_Lbl);
             anChucNang(sanPhamClick_Pn, sanPhamClick_Lbl);

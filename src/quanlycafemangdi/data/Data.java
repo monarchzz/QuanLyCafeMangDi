@@ -687,20 +687,22 @@ public class Data {
     }
     
     // sua thong tin nhan vien
-    public void suaThongTinNhanVien(NhanVien thongTinNVCu, NhanVien thongTinNVMoi){
+    public void suaThongTinNhanVien(NhanVien thongTinNVMoi){
+        String query = "update NhanVien set "
+                + "matKhau = '" + thongTinNVMoi.getMatKhau() + "', "
+                + "chucVu = N'" + thongTinNVMoi.getChucVu() + "', "
+                + "cmnd = '" + thongTinNVMoi.getSoCM() + "', "
+                + "sdt = '" + thongTinNVMoi.getSdt() + "', "
+                + "gioiTinh = N'" + thongTinNVMoi.getGioiTinh() + "', "
+                + "tenNV = N'" + thongTinNVMoi.getTenNhanVien() + "' "
+                + "where tenTK = '" + thongTinNVMoi.getTenTk() + "'";
+        
         try {
-            // xoa nhan vien
-            String query = "delete from NhanVien where tenTK = '"
-                    + thongTinNVCu.getTenTk() + "'";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.execute();
-            
         } catch (SQLException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        // tao nhan vien
-        taoNhanVien(thongTinNVMoi);
     }
     
     // tao hoa don ban hang
@@ -1362,5 +1364,28 @@ public class Data {
         
         return  mArrayList;
         
+    }
+    
+    public List<String> layDSChucVu(){
+        ArrayList<String> mArrayList = new ArrayList<>();
+        
+        String query = "select distinct chucVu from NhanVien";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+               
+                mArrayList.add(rs.getString("chucVu"));
+                
+            }
+                
+            
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return  mArrayList;
     }
 }

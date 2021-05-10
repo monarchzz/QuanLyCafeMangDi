@@ -68,6 +68,7 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nhập nguyên liệu");
+        setBackground(new java.awt.Color(254, 254, 254));
 
         nhapNguyenLieu_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         nhapNguyenLieu_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

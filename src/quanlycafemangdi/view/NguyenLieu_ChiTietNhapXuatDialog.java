@@ -82,7 +82,9 @@ public class NguyenLieu_ChiTietNhapXuatDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nhập/xuất nguyên liệu");
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        kiemTraKetQua_Pn.setBackground(new java.awt.Color(255, 255, 255));
         kiemTraKetQua_Pn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         kiemTraKetQua_Pn.setPreferredSize(new java.awt.Dimension(638, 364));
 
@@ -127,6 +129,7 @@ public class NguyenLieu_ChiTietNhapXuatDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         huy_Btn.setBackground(new java.awt.Color(32, 136, 203));

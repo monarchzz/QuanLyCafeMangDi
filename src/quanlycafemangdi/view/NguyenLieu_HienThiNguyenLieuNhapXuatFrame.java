@@ -47,6 +47,7 @@ public class NguyenLieu_HienThiNguyenLieuNhapXuatFrame extends javax.swing.JFram
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Danh sách nguyên liệu được nhập/xuất");
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
         danhSachNguyenLieuNhapXuat_Lbl.setBackground(new java.awt.Color(114, 102, 186));

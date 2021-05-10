@@ -92,6 +92,7 @@ public class SanPham_ChiTietCongThucDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        kiemTraKetQua_Pn.setBackground(new java.awt.Color(255, 255, 255));
         kiemTraKetQua_Pn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         kiemTraKetQua_Lbl.setBackground(new java.awt.Color(114, 102, 186));
@@ -154,6 +155,7 @@ public class SanPham_ChiTietCongThucDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         chiTietCongThuc_Lbl.setBackground(new java.awt.Color(114, 102, 186));

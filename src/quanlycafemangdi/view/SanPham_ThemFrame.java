@@ -70,6 +70,7 @@ public class SanPham_ThemFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thêm sản phẩm mới");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         themSanPhamMoi_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         themSanPhamMoi_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,6 +100,7 @@ public class SanPham_ThemFrame extends javax.swing.JFrame {
 
         gia_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        donViTinh_CBx.setBackground(new java.awt.Color(254, 254, 254));
         donViTinh_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         congThuc_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

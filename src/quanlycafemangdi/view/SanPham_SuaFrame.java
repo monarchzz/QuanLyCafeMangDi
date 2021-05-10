@@ -64,6 +64,7 @@ public class SanPham_SuaFrame extends javax.swing.JFrame {
         huy_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         chinhSuaThongTinSanPham_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         chinhSuaThongTinSanPham_Lbl.setText("Chỉnh sửa thông tin sản phẩm");
@@ -87,6 +88,7 @@ public class SanPham_SuaFrame extends javax.swing.JFrame {
 
         gia_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        donViTinh_CBx.setBackground(new java.awt.Color(254, 254, 254));
         donViTinh_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         congThuc_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N

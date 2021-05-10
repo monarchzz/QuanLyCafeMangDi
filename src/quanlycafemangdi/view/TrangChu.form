@@ -115,6 +115,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="16" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="887687hjhj"/>
               </Properties>
@@ -127,6 +130,9 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="16" style="1"/>
                 </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="sdfsdfsdf"/>
               </Properties>
@@ -138,6 +144,9 @@
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="16" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="sdadsa"/>
@@ -607,6 +616,11 @@
                   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
                   <SubComponents>
                     <Container class="javax.swing.JPanel" name="thongTinCaNhan_Pn">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                      </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                           <CardConstraints cardName="card2"/>
@@ -682,7 +696,7 @@
                                       <Component id="hoVaTen_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="hoVaTen_TF" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="397" max="32767" attributes="0"/>
+                                  <EmptySpace pref="394" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -691,7 +705,7 @@
                         <Component class="javax.swing.JLabel" name="thongTinCaNhan_Lbl">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Tahoma" size="18" style="1"/>
+                              <Font name="Tahoma" size="20" style="1"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin c&#xe1; nh&#xe2;n"/>
                           </Properties>
@@ -1421,13 +1435,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="thongTinCaNhanClick_Lbl" pref="175" max="32767" attributes="0"/>
+                              <Component id="thongTinCaNhanClick_Lbl" pref="156" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="thongTinCaNhanClick_Lbl" alignment="1" pref="165" max="32767" attributes="0"/>
+                          <Component id="thongTinCaNhanClick_Lbl" alignment="1" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

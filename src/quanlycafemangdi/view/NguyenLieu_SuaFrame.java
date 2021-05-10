@@ -60,6 +60,7 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Chỉnh sửa nguyên liệu");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         themNguyenLieuMoi_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         themNguyenLieuMoi_Lbl.setText("Chỉnh sửa nguyên liệu");
@@ -83,6 +84,7 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
 
         gia_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        donViTinh_Cbx.setBackground(new java.awt.Color(254, 254, 254));
         donViTinh_Cbx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         donViTinh_Cbx.setPreferredSize(new java.awt.Dimension(35, 23));
 

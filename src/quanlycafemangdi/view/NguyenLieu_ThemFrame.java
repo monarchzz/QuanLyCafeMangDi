@@ -19,8 +19,10 @@ import quanlycafemangdi.model.ThongTinDangNhap;
 public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     
     private ArrayList<NguyenLieu> danhSachNguyenLieu;
-    private ArrayList<String> danhSachMaNhapXuat = new ArrayList<>();
     private ArrayList<NhapXuat> danhSachNhap = new ArrayList<>();
+    
+    private ArrayList<String> danhSachMaNhapXuat = new ArrayList<>();
+    private ArrayList<String> danhSachMaNguyenLieu = new ArrayList<>();
     
     private IOnFrameDispose onFrameDispose;
         
@@ -32,9 +34,12 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         
-        layDanhSachMaNhapXuat(danhSachMaNhapXuat); 
+        layDanhSachMaNhapXuat(); 
+        layDanhSachMaNguyenLieu();
+        
         layDonViTinh();
         
+        maNguyenLieu_TF.setText(taoMaNguyenLieu());
         ghiChu_TA.setText("Thêm nguyên liệu mới vào kho");
     }
     
@@ -67,6 +72,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Thêm nguyên liệu mới");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         themNguyenLieuMoi_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         themNguyenLieuMoi_Lbl.setText("Thêm nguyên liệu mới");
@@ -74,6 +80,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         maNguyenLieu_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         maNguyenLieu_Lbl.setText("Mã nguyên liệu:");
 
+        maNguyenLieu_TF.setEditable(false);
         maNguyenLieu_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         tenNguyenLieu_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -350,7 +357,25 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         return null;
     }    
  
-    public void layDanhSachMaNhapXuat(ArrayList<String> danhSachMaNhapXuat)
+    public void layDanhSachMaNguyenLieu()
+    {
+        Connection connect = Util.getConnection();
+        String query = "select * from NguyenLieu";
+        try
+        {
+            PreparedStatement ps = connect.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next())
+            {
+                danhSachMaNguyenLieu.add(rs.getString("maNL"));
+            }
+        }catch (SQLException ex)
+        {
+            System.out.println("Lay danh sach ma nguyen lieu that bai");
+        }              
+    }
+    
+    public void layDanhSachMaNhapXuat()
     {
         Connection connect = Util.getConnection();
         String query = "select * from NhapXuat";
@@ -380,45 +405,57 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         return maNhapXuat;        
     }     
     
-    public boolean kiemTraMaNguyenLieu(String maNguyenLieu)
+    public String taoMaNguyenLieu()
     {
-        Connection connect = Util.getConnection();
-        String query = "select * from NguyenLieu";
-        try
+        int STT = 0;
+        String maNguyenLieu = "NL" + String.valueOf(STT);
+        while (danhSachMaNguyenLieu.contains(maNguyenLieu))
         {
-            PreparedStatement ps = connect.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next())
-            {
-                if (maNguyenLieu.equals(rs.getString("maNL")))
-                {
-                    return true;
-                }
-            }
-        }catch (SQLException ex)
-        {
-            System.out.println("Kiem tra ma nguyen lieu that bai");
+            STT++;
+            maNguyenLieu = "NL" + String.valueOf(STT);
         }
-        return false;
-    }    
+        return maNguyenLieu;           
+    }
+    
+//    public boolean kiemTraMaNguyenLieu(String maNguyenLieu)
+//    {
+//        Connection connect = Util.getConnection();
+//        String query = "select * from NguyenLieu";
+//        try
+//        {
+//            PreparedStatement ps = connect.prepareStatement(query);
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next())
+//            {
+//                if (maNguyenLieu.equals(rs.getString("maNL")))
+//                {
+//                    return true;
+//                }
+//            }
+//        }catch (SQLException ex)
+//        {
+//            System.out.println("Kiem tra ma nguyen lieu that bai");
+//        }
+//        return false;
+//    }    
 
     public boolean kiemTraLoi()
     {   
         loi = "";
         
-        String maNguyenLieu = maNguyenLieu_TF.getText();
+//        String maNguyenLieu = maNguyenLieu_TF.getText();
         String tenNguyenLieu = tenNguyenLieu_TF.getText();
         String gia = gia_TF.getText();
         String soLuong = soLuong_TF.getText();
         
-        if (maNguyenLieu.equals(""))
-        {
-            loi = loi + "Mã nguyên liệu không được để trống\n";
-        }
-        else if (kiemTraMaNguyenLieu(maNguyenLieu) == true)
-        {
-            loi = loi + "Mã nguyên liệu đã tồn tại\n";
-        }
+//        if (maNguyenLieu.equals(""))
+//        {
+//            loi = loi + "Mã nguyên liệu không được để trống\n";
+//        }
+//        else if (kiemTraMaNguyenLieu(maNguyenLieu) == true)
+//        {
+//            loi = loi + "Mã nguyên liệu đã tồn tại\n";
+//        }
         
         if (tenNguyenLieu.equals(""))
         {
@@ -483,7 +520,8 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         nhapXuat.setTrangThai(trangThai);
         nhapXuat.setGhiChu(ghiChu);
         nhapXuat.getChiTietNhapXuat().put(maNguyenLieu, Integer.parseInt(soLuong));
-        nhapXuat.setThanhTien(Long.parseLong(gia)*Integer.parseInt(soLuong));
+        long thanhTien = Long.parseLong(gia)*Integer.parseInt(soLuong);
+        nhapXuat.setThanhTien(thanhTien);
         danhSachNhap.add(nhapXuat);
         
         NguyenLieu nguyenLieu = new NguyenLieu(maNguyenLieu, tenNguyenLieu, maDonVi, donViTinh,
@@ -491,18 +529,18 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         danhSachNguyenLieu.add(nguyenLieu);
         
         themNguyenLieuSQL(maNguyenLieu, tenNguyenLieu, maDonVi, Long.parseLong(gia),
-                Integer.parseInt(soLuong), maNhapXuat, tenTK, thoiGian, trangThai, ghiChu);
+                Integer.parseInt(soLuong), maNhapXuat, tenTK, thoiGian, trangThai, thanhTien, ghiChu);
         JOptionPane.showMessageDialog(rootPane, "Thêm nguyên liệu mới thành công");
         this.dispose();
     }
        
     public void themNguyenLieuSQL(String maNguyenLieu, String tenNguyenLieu, String maDonVi, long gia,
             int soLuong, String maNhapXuat, String tenTaiKhoan, Timestamp thoiGian, String trangThai, 
-            String ghiChu)
+            long thanhTien, String ghiChu)
     {
         Connection connect = Util.getConnection();
         String query = "insert into NguyenLieu values (?,?,?,?,?)"
-                    +  " insert into NhapXuat values (?,?,?,?,?)"
+                    +  " insert into NhapXuat values (?,?,?,?,?,?)"
                     +  " insert into ChiTietNhapXuat values (?,?,?)";
         try
         {
@@ -516,10 +554,11 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
             ps.setString(7, tenTaiKhoan);
             ps.setTimestamp(8, thoiGian);
             ps.setString(9, trangThai);
-            ps.setString(10, ghiChu);
-            ps.setString(11, maNhapXuat);
-            ps.setString(12, maNguyenLieu);
-            ps.setInt(13, soLuong);
+            ps.setLong(10, thanhTien);
+            ps.setString(11, ghiChu);
+            ps.setString(12, maNhapXuat);
+            ps.setString(13, maNguyenLieu);
+            ps.setInt(14, soLuong);
             ps.executeUpdate();
             ps.close();
             connect.close();

@@ -97,8 +97,10 @@ public class SanPham_Panel extends javax.swing.JPanel implements IOnFrameDispose
         donViTinh_TF = new javax.swing.JTextField();
         donViTinh_Lbl = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1000, 600));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         sapXep_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -107,7 +109,7 @@ public class SanPham_Panel extends javax.swing.JPanel implements IOnFrameDispose
         luuY_Lbl.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
         luuY_Lbl.setText("* Double click để chỉnh sửa dữ liệu");
 
-        timKiem_CBx.setBackground(new java.awt.Color(255, 204, 204));
+        timKiem_CBx.setBackground(new java.awt.Color(254, 254, 254));
         timKiem_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timKiem_CBx.setPreferredSize(new java.awt.Dimension(30, 43));
         timKiem_CBx.addActionListener(new java.awt.event.ActionListener() {
@@ -194,7 +196,7 @@ public class SanPham_Panel extends javax.swing.JPanel implements IOnFrameDispose
         });
         jScrollPane1.setViewportView(sanPham_Table);
 
-        sapXep_CBx.setBackground(new java.awt.Color(255, 204, 204));
+        sapXep_CBx.setBackground(new java.awt.Color(254, 254, 254));
         sapXep_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sapXep_CBx.setPreferredSize(new java.awt.Dimension(30, 43));
         sapXep_CBx.addActionListener(new java.awt.event.ActionListener() {
@@ -290,6 +292,7 @@ public class SanPham_Panel extends javax.swing.JPanel implements IOnFrameDispose
                 .addContainerGap())
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nguyenLieuCan_Table.setModel(new javax.swing.table.DefaultTableModel(

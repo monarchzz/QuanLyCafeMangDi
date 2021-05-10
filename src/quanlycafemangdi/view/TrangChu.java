@@ -329,7 +329,6 @@ public class TrangChu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1550, 816));
         addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
                 formComponentAdded(evt);
@@ -343,16 +342,19 @@ public class TrangChu extends javax.swing.JFrame {
 
         hienThiTenNguoiDung_Lbl.setBackground(new java.awt.Color(153, 153, 255));
         hienThiTenNguoiDung_Lbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        hienThiTenNguoiDung_Lbl.setForeground(new java.awt.Color(255, 255, 255));
         hienThiTenNguoiDung_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         hienThiTenNguoiDung_Lbl.setText("887687hjhj");
 
         ngay_Lbl.setBackground(new java.awt.Color(153, 153, 255));
         ngay_Lbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        ngay_Lbl.setForeground(new java.awt.Color(255, 255, 255));
         ngay_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ngay_Lbl.setText("sdfsdfsdf");
 
         thoiGian_Lbl.setBackground(new java.awt.Color(153, 153, 255));
         thoiGian_Lbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        thoiGian_Lbl.setForeground(new java.awt.Color(255, 255, 255));
         thoiGian_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         thoiGian_Lbl.setText("sdadsa");
 
@@ -620,7 +622,9 @@ public class TrangChu extends javax.swing.JFrame {
 
         tinhNangCuaTuyChon_LPn.setLayout(new java.awt.CardLayout());
 
-        thongTinCaNhan_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        thongTinCaNhan_Pn.setBackground(new java.awt.Color(255, 255, 255));
+
+        thongTinCaNhan_Lbl.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         thongTinCaNhan_Lbl.setText("Thông tin cá nhân");
 
         tenTaiKhoan_Lbl.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -721,7 +725,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addGroup(thongTinCaNhan_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hoVaTen_Lbl)
                     .addComponent(hoVaTen_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addContainerGap(394, Short.MAX_VALUE))
         );
 
         tinhNangCuaTuyChon_LPn.add(thongTinCaNhan_Pn, "card2");
@@ -1127,11 +1131,11 @@ public class TrangChu extends javax.swing.JFrame {
             thongTinCaNhanClick_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, thongTinCaNhanClick_PnLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(thongTinCaNhanClick_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                .addComponent(thongTinCaNhanClick_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
         );
         thongTinCaNhanClick_PnLayout.setVerticalGroup(
             thongTinCaNhanClick_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(thongTinCaNhanClick_Lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+            .addComponent(thongTinCaNhanClick_Lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tuyChon2_Pn.add(thongTinCaNhanClick_Pn);

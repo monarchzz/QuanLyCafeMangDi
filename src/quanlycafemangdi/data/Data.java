@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quanlycafemangdi.Util;
+import static quanlycafemangdi.Util.hashing;
 import quanlycafemangdi.model.BanHang;
 import quanlycafemangdi.model.CaLamViec;
 import quanlycafemangdi.model.CongThuc;
@@ -50,8 +51,9 @@ public class Data {
         return INSTANCE;
     }
     
-    
-    public boolean kiemTraDangNhap(String tenDangNhap, String matKhau){
+    public boolean kiemTraDangNhap(String tenDangNhap, String matKhau)
+    {
+        matKhau = Util.hashing(matKhau);
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
         try
         {
@@ -68,8 +70,9 @@ public class Data {
         return false;
     }
     
-    public String layChucVu(String tenDangNhap, String matKhau){
-        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
+    public String layChucVu(String tenDangNhap, String matKhau)
+    {
+        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "'";
         try
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -654,13 +657,12 @@ public class Data {
     }
     
     public void taoNhanVien(NhanVien nhanVien){
-        String query = "insert into NhanVien values(?,?,?,?,?,?,?,?)";
-        
-        
+        String query = "insert into NhanVien values(?,?,?,?,?,?,?,?)";               
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, nhanVien.getTenTk());
-            ps.setString(2, nhanVien.getMatKhau());
+            String hashedPassword = Util.hashing(nhanVien.getMatKhau());
+            ps.setString(2, hashedPassword);
             ps.setString(3, nhanVien.getChucVu());
             ps.setString(4, nhanVien.getSoCM());
             ps.setString(5, nhanVien.getSdt());
@@ -687,20 +689,22 @@ public class Data {
     }
     
     // sua thong tin nhan vien
-    public void suaThongTinNhanVien(NhanVien thongTinNVCu, NhanVien thongTinNVMoi){
+    public void suaThongTinNhanVien(NhanVien thongTinNVMoi){
+        String query = "update NhanVien set "
+                + "matKhau = '" + Util.hashing(thongTinNVMoi.getMatKhau()) + "', "
+                + "chucVu = N'" + thongTinNVMoi.getChucVu() + "', "
+                + "cmnd = '" + thongTinNVMoi.getSoCM() + "', "
+                + "sdt = '" + thongTinNVMoi.getSdt() + "', "
+                + "gioiTinh = N'" + thongTinNVMoi.getGioiTinh() + "', "
+                + "tenNV = N'" + thongTinNVMoi.getTenNhanVien() + "' "
+                + "where tenTK = '" + thongTinNVMoi.getTenTk() + "'";
+        
         try {
-            // xoa nhan vien
-            String query = "delete from NhanVien where tenTK = '"
-                    + thongTinNVCu.getTenTk() + "'";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.execute();
-            
         } catch (SQLException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        // tao nhan vien
-        taoNhanVien(thongTinNVMoi);
     }
     
     // tao hoa don ban hang
@@ -1374,8 +1378,30 @@ public class Data {
         return  mArrayList;
         
     }
-
-    public List<String> layDSMaCLV() {
+    
+     public List<String> layDSChucVu(){
+        ArrayList<String> mArrayList = new ArrayList<>();
+        
+        String query = "select distinct chucVu from NhanVien";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+               
+                mArrayList.add(rs.getString("chucVu"));
+                
+            }
+                
+            
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return  mArrayList;
+    }
+     public List<String> layDSMaCLV() {
         ArrayList<String> mArrayList = new ArrayList<>();
         
         String query = "select maCLV from CaLamViec";

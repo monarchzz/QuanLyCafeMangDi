@@ -40,7 +40,12 @@ public class NhanVienPanel extends javax.swing.JPanel{
     private List<String> dsTimKiem = new ArrayList<>(
             Arrays.asList("Tên tài khoản", "Họ tên","Chức vụ", 
                     "Số chứng minh", "Số điện thoại"));
+    private List<String> dsChucVu;
     private final Data data;
+    
+    private final String nhanVienString = "nhân viên".toLowerCase();
+    private final String quanLyString = "Quản lý".toLowerCase();
+    private final String adminString = "admin";
     
     
     public NhanVienPanel() {
@@ -65,6 +70,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     
     public void updateData(){
+        
+        
         khoiTaoBang();
         khoiTaoComboBox();
         taoThongTinNhanVien();
@@ -118,8 +125,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     private void taoThongTinNhanVien(){
         
-        // neu la nhan vien ban hang thì khong cho them nha vien
-        if (ThongTinDangNhap.getChucVu().equals("Nhân viên bán hàng")){
+        // neu la nhan vien ban hang thì khong cho them nhan vien
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(nhanVienString)){
             themNhanVienButton.setEnabled(false);
         }
         
@@ -137,19 +144,23 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
     }
     private void chucVuCBMode(int mode){
+        dsChucVu = data.layDSChucVu();
         chucVuCB.removeAllItems();
         // xoa 
         if (mode == 0){
-            chucVuCB.addItem("Nhân viên bán hàng");
-            chucVuCB.addItem("Quản lý");
+            for (String item : dsChucVu){
+                if (!item.toLowerCase().contains(adminString)){
+                    chucVuCB.addItem(item);
+                }
+            }
         }else {
-            chucVuCB.addItem("Nhân viên bán hàng");
-            chucVuCB.addItem("Quản lý");
-            chucVuCB.addItem("admin");
+            for (String item : dsChucVu){
+                chucVuCB.addItem(item);
+            }
         }
     }
     private void hienThongTinNhanVien(NhanVien nv, boolean hienTF){
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(1);
         }else {
             chucVuCBMode(0);
@@ -162,6 +173,9 @@ public class NhanVienPanel extends javax.swing.JPanel{
         sdtTF.setText(nv.getSdt());
         chucVuCB.setSelectedItem(nv.getChucVu());
         tenDangNhapTF.setText(nv.getTenTk());
+        
+        matKhauTF.setText("");
+        nhapLaiMatKhauTF.setText("");
 
         hienTF(hienTF);
         
@@ -178,6 +192,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
     private void khoiTaoComboBox() {
         // Tao SapXepComboBox
+        sapXepComboBox.removeAllItems();
+        timKiemComboBox.removeAllItems();
         for(String item : dsSapXep) {
             sapXepComboBox.addItem(item);
         }
@@ -328,7 +344,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         tenDangNhapTF.setEnabled(true);
         matKhauPanel.setVisible(true);
         
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(1);
         }else {
             chucVuCBMode(0);
@@ -356,30 +372,29 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     private void taoTK(){
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
+        String gT = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
+        String chucVu = chucVuCB.getEditor().getItem().toString().trim().toLowerCase();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         
-        NhanVien nv = new NhanVien(tenDN, chucVu, cmnd, sdt, gioiTinh, tenNV, mk);
+        NhanVien nv = new NhanVien(tenDN, chucVu, cmnd, sdt, gT, tenNV, mk);
         
         data.taoNhanVien(nv);
     }
     
     private boolean kiemTra(){
-        
         String loi = "";
         
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         String cMK = String.valueOf(nhapLaiMatKhauTF.getPassword());
+        
+        String cv = chucVuCB.getEditor().getItem().toString().toLowerCase().trim();
         
         if (tenNV.trim().equals("")){
             loi += "Tên nhân viên không được để trống\n";
@@ -397,15 +412,29 @@ public class NhanVienPanel extends javax.swing.JPanel{
         if (tenDN.trim().equals("")){
             loi += "Tên đăng nhập không được để trống\n";
         }
+        else if(tenDN.trim().contains(" ")) {
+            loi += "Tên đăng nhập không chứa khoảng trắng\n";
+        }
         else if (!kiemTraTDN(tenDN)){
             loi += "Tên đăng nhập đã tồn tại\n";
         }
+        
         if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
             loi += "Mật khẩu phải có ít nhất 6 ký tự\n";
         }
         if (!cMK.equals(mk)){
-            loi += "Mật khẩu các nhận không chính xác";
+            loi += "Mật khẩu xác nhận không chính xác\n";
         }
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString) && !cv.contains(adminString)){
+                loi += "Tên chức vụ phải chứa nhân viên, quản lý, hoặc admin.\n";
+            }
+        }else {
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString)){
+                loi += "Tên chức vụ phải chứa nhân viên hoặc quản lý.\n";
+            }
+        }
+        
         if (!loi.equals("")){
             hienLoi(loi);
             return false;
@@ -434,17 +463,22 @@ public class NhanVienPanel extends javax.swing.JPanel{
             if (mode == 0) {
                 // lay du lieu nhan vien
                 String tenNV = tenNhanVienTF.getText();
-                String gioiTinh = gioiTinhCB.getSelectedItem().toString();
+                System.out.println(tenNV);
+                String gT = gioiTinhCB.getSelectedItem().toString();
                 String cmnd = cmndTF.getText();
                 String sdt = sdtTF.getText();
-                String chucVu = chucVuCB.getSelectedItem().toString();
+                String chucVu = chucVuCB.getEditor().getItem().toString().trim().toLowerCase();
                 String tenDN = tenDangNhapTF.getText();
                 String mk = String.valueOf(matKhauTF.getPassword());
+                
+                if (mk.trim().isEmpty()){
+                    mk = nv.getMatKhau();
+                }
 
                 // nhan vien moi
-                NhanVien nvm = new NhanVien(tenDN, chucVu, cmnd, sdt, gioiTinh, tenNV, mk);
+                NhanVien nvm = new NhanVien(tenDN, chucVu, cmnd, sdt, gT, tenNV, mk);
                 
-                data.suaThongTinNhanVien(nv,nvm);
+                data.suaThongTinNhanVien(nvm);
                 JOptionPane.showMessageDialog(this, "Sửa thông tin nhân viên thành công",
                         "Thông báo",JOptionPane.INFORMATION_MESSAGE);
                 
@@ -458,13 +492,13 @@ public class NhanVienPanel extends javax.swing.JPanel{
         String loi = "";
         
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         String cMK = String.valueOf(nhapLaiMatKhauTF.getPassword());
+        
+        String cv = chucVuCB.getEditor().getItem().toString().toLowerCase().trim();
         
         if (tenNV.trim().equals("")){
             loi += "Tên nhân viên không được để trống\n";
@@ -485,12 +519,24 @@ public class NhanVienPanel extends javax.swing.JPanel{
         else if (!tenDN.equals(nv.getTenTk()) && !kiemTraTDN(tenDN)){
             loi += "Tên đăng nhập đã tồn tại\n";
         }
-        
-        if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
+        if (!mk.trim().isEmpty() && !cMK.trim().isEmpty()){
+            if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
             loi += "Mật khẩu phải có ít nhất 6 ký tự\n";
+            }
+            if (!cMK.equals(mk)){
+                loi += "Mật khẩu xác nhận không chính xác";
+            }
         }
-        if (!cMK.equals(mk)){
-            loi += "Mật khẩu xác nhận không chính xác";
+        
+        
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString) && !cv.contains(adminString)){
+                loi += "Tên chức vụ phải chứa nhân viên, quản lý, hoặc admin.\n";
+            }
+        }else {
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString)){
+                loi += "Tên chức vụ phải chứa nhân viên hoặc quản lý.\n";
+            }
         }
         if (!loi.equals("")){
             hienLoi(loi);
@@ -687,6 +733,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         chucVuLb.setText("Chức vụ");
 
         chucVuCB.setBackground(new java.awt.Color(254, 254, 254));
+        chucVuCB.setEditable(true);
         chucVuCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chucVuCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên bán hàng", "Quản lý", "admin" }));
         chucVuCB.addActionListener(new java.awt.event.ActionListener() {
@@ -736,7 +783,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             .addGroup(suaNhanVienPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(xoaNhanVienBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(suaThongTinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -957,7 +1004,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
         jPanel3.setBackground(new java.awt.Color(114, 102, 186));
 
-        jLabel3.setBackground(new java.awt.Color(114, 102, 186));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Quản lý nhân viên");
@@ -1038,7 +1085,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }//GEN-LAST:event_sapXepComboBoxActionPerformed
 
     private void themNhanVienButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themNhanVienButtonActionPerformed
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(0);
         }else {
             chucVuCBMode(1);
@@ -1075,17 +1122,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
         hienThongTinNhanVien(nv,false);
         //xet quyen cho nhan vien
-        if (ThongTinDangNhap.getChucVu().equals("Nhân viên bán hàng")){
-//            suaNhanVienPanel.setVisible(false);
-            chucNangPanel.add(panelTam);
-            chucNangPanel.repaint();
-            chucNangPanel.validate();
-        }else if (ThongTinDangNhap.getChucVu().equals("Quản lý") && nv.getChucVu().equals("Quản lý")){
-//            suaNhanVienPanel.setVisible(false);
-            chucNangPanel.add(panelTam);
-            chucNangPanel.repaint();
-            chucNangPanel.validate();
-        }else if (nv.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) ){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();

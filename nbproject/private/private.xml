@@ -3,8 +3,30 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/QuanLyCafeMangDi/src/quanlycafemangdi/view/DangNhap.java</file>
-            <file>file:/D:/QuanLyCafeMangDi/src/quanlycafemangdi/view/TrangChu.java</file>
+<<<<<<< HEAD
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_Panel.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/SanPham_SuaFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_HienThiNguyenLieuNhapXuatFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/SanPham_Panel.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/SanPham_ChiTietCongThucDialog.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NhanVienPanel.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/Design.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_XuatFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_NhapFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_SuaFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_ChiTietNhapXuatDialog.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NguyenLieu_ThemFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/SanPham_ThemFrame.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/SanPhamPanel.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/data/Data.java</file>
+            <file>file:/D:/Program%20Files/Hoc/School/Nhap%20Mon%20Cong%20Nghe%20Phan%20Mem/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/TrangChu.java</file>
+=======
+            <file>file:/D:/E-learning/CNPM/Project/QuanLyCafeMangDi/src/quanlycafemangdi/QuanLyCafeMangDi.java</file>
+            <file>file:/D:/E-learning/CNPM/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/BanHangPanel.java</file>
+            <file>file:/D:/E-learning/CNPM/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/NhanVienPanel.java</file>
+            <file>file:/D:/E-learning/CNPM/Project/QuanLyCafeMangDi/src/quanlycafemangdi/model/BanHang.java</file>
+            <file>file:/D:/E-learning/CNPM/Project/QuanLyCafeMangDi/src/quanlycafemangdi/view/TrangChu.java</file>
+>>>>>>> 5afd63447a0d207d35dc5695a3d9e31fb15b10a0
         </group>
     </open-files>
 </project-private>

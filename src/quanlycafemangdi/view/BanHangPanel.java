@@ -75,6 +75,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         
         
         initData();
+        initTable();
     }
     
     private void initTable(){

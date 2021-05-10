@@ -5,6 +5,8 @@
  */
 package quanlycafemangdi;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -251,4 +253,29 @@ public class Util {
         
         return -1;
     }
+    
+    public static String hashing(String originalPassword)
+    {
+        String hashedPassword = "";
+        try 
+        {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            md.update(originalPassword.getBytes());
+            byte[] hash = md.digest(); // Hash password va dua vao trong mang byte
+            // Convert mang byte sang String
+            StringBuilder sb = new StringBuilder();
+            for (byte b: hash)
+            {
+                sb.append(String.format("%02x", b)); // String.format("%02x"): convert sang hexa (chu thuong),
+                                                     //   chu in hoa: %02X
+            }
+            hashedPassword = sb.toString();
+            return hashedPassword;
+        }catch (NoSuchAlgorithmException e) 
+        {
+            System.out.println("Hash that bai");
+        }
+        return "";
+    }      
+        
 }

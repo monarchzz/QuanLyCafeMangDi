@@ -8,6 +8,7 @@ package quanlycafemangdi.view;
 import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.table.DefaultTableModel;
+import quanlycafemangdi.Design;
 import quanlycafemangdi.Util;
 import quanlycafemangdi.model.NguyenLieu;
 import quanlycafemangdi.model.NhapXuat;
@@ -27,6 +28,8 @@ public class NguyenLieu_HienThiNguyenLieuNhapXuatFrame extends javax.swing.JFram
     
     public NguyenLieu_HienThiNguyenLieuNhapXuatFrame() {
         initComponents();
+        
+        Design.thietKeBang(danhSachNguyenLieuNhapXuat_Table, "Nho");
     }
 
     /**
@@ -41,13 +44,20 @@ public class NguyenLieu_HienThiNguyenLieuNhapXuatFrame extends javax.swing.JFram
         danhSachNguyenLieuNhapXuat_Lbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         danhSachNguyenLieuNhapXuat_Table = new javax.swing.JTable();
-        quayLai_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Danh sách nguyên liệu được nhập/xuất");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
-        danhSachNguyenLieuNhapXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        danhSachNguyenLieuNhapXuat_Lbl.setBackground(new java.awt.Color(114, 102, 186));
+        danhSachNguyenLieuNhapXuat_Lbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        danhSachNguyenLieuNhapXuat_Lbl.setForeground(new java.awt.Color(255, 255, 255));
+        danhSachNguyenLieuNhapXuat_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         danhSachNguyenLieuNhapXuat_Lbl.setText("Danh sách nguyên liệu");
+        danhSachNguyenLieuNhapXuat_Lbl.setOpaque(true);
 
+        danhSachNguyenLieuNhapXuat_Table.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         danhSachNguyenLieuNhapXuat_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -56,45 +66,28 @@ public class NguyenLieu_HienThiNguyenLieuNhapXuatFrame extends javax.swing.JFram
 
             }
         ));
+        danhSachNguyenLieuNhapXuat_Table.setIntercellSpacing(new java.awt.Dimension(0, 1));
+        danhSachNguyenLieuNhapXuat_Table.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        danhSachNguyenLieuNhapXuat_Table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(danhSachNguyenLieuNhapXuat_Table);
-
-        quayLai_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HinhAnh/quayLai.png"))); // NOI18N
-        quayLai_Btn.setText("Quay lại");
-        quayLai_Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                quayLai_BtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(quayLai_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(183, 183, 183)
-                .addComponent(danhSachNguyenLieuNhapXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE)
+            .addComponent(danhSachNguyenLieuNhapXuat_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quayLai_Btn)
-                    .addComponent(danhSachNguyenLieuNhapXuat_Lbl))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(danhSachNguyenLieuNhapXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void quayLai_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quayLai_BtnActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_quayLai_BtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,7 +129,6 @@ public class NguyenLieu_HienThiNguyenLieuNhapXuatFrame extends javax.swing.JFram
     private javax.swing.JLabel danhSachNguyenLieuNhapXuat_Lbl;
     private javax.swing.JTable danhSachNguyenLieuNhapXuat_Table;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton quayLai_Btn;
     // End of variables declaration//GEN-END:variables
         
     public void khoiTaoBangChiTietNhap()

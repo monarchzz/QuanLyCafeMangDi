@@ -38,9 +38,8 @@ public class DangNhap extends javax.swing.JFrame {
         hienThiMatKhau_CB = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Dang nhap");
+        setTitle("Đăng nhập");
         setBackground(new java.awt.Color(102, 255, 0));
-        setPreferredSize(new java.awt.Dimension(415, 353));
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));

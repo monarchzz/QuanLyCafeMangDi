@@ -67,41 +67,56 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
         huy_Btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Nhập nguyên liệu");
+        setBackground(new java.awt.Color(254, 254, 254));
 
+        nhapNguyenLieu_Lbl.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        nhapNguyenLieu_Lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nhapNguyenLieu_Lbl.setText("Nhập nguyên liệu");
+        nhapNguyenLieu_Lbl.setOpaque(true);
 
+        maNhapXuat_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         maNhapXuat_Lbl.setText("Mã nhập xuất:");
 
         maNhapXuat_TF.setEditable(false);
+        maNhapXuat_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         maNhapXuat_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 maNhapXuat_TFActionPerformed(evt);
             }
         });
 
+        nguoiThucHien_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nguoiThucHien_Lbl.setText("Người thực hiện:");
 
         nguoiThucHien_TF.setEditable(false);
+        nguoiThucHien_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nguoiThucHien_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nguoiThucHien_TFActionPerformed(evt);
             }
         });
 
+        trangThai_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         trangThai_Lbl.setText("Trạng thái:");
 
         trangThai_TF.setEditable(false);
+        trangThai_TF.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         trangThai_TF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 trangThai_TFActionPerformed(evt);
             }
         });
 
-        ghiChu_Lbl.setText("Ghi chú");
+        ghiChu_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ghiChu_Lbl.setText("Ghi chú:");
 
+        chiTiet_Lbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chiTiet_Lbl.setText("Chi tiết:");
 
+        danhSachNguyenLieu_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         danhSachNguyenLieu_Btn.setText("Danh sách nguyên liệu");
+        danhSachNguyenLieu_Btn.setPreferredSize(new java.awt.Dimension(175, 23));
         danhSachNguyenLieu_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 danhSachNguyenLieu_BtnActionPerformed(evt);
@@ -109,9 +124,11 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
         });
 
         ghiChu_TA.setColumns(20);
+        ghiChu_TA.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ghiChu_TA.setRows(5);
         jScrollPane1.setViewportView(ghiChu_TA);
 
+        nhap_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nhap_Btn.setText("Nhập");
         nhap_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +136,7 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
             }
         });
 
+        huy_Btn.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         huy_Btn.setText("Hủy");
         huy_Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,32 +150,31 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nguoiThucHien_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(chiTiet_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ghiChu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(trangThai_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(9, 9, 9)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(danhSachNguyenLieu_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nguoiThucHien_TF))
+                                .addComponent(trangThai_TF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ghiChu_Lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(chiTiet_Lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trangThai_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(maNhapXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(maNhapXuat_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nguoiThucHien_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(danhSachNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(trangThai_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nguoiThucHien_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(maNhapXuat_TF, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nhapNguyenLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(174, 174, 174))
+                        .addComponent(maNhapXuat_TF)))
+                .addContainerGap(129, Short.MAX_VALUE))
+            .addComponent(nhapNguyenLieu_Lbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,27 +184,27 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(maNhapXuat_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(maNhapXuat_Lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nguoiThucHien_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nguoiThucHien_Lbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(nguoiThucHien_Lbl)
+                    .addComponent(nguoiThucHien_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(trangThai_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trangThai_Lbl))
+                    .addComponent(trangThai_Lbl)
+                    .addComponent(trangThai_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chiTiet_Lbl)
-                    .addComponent(danhSachNguyenLieu_Btn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(danhSachNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ghiChu_Lbl)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(huy_Btn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nhap_Btn))
-                .addGap(0, 22, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -344,7 +361,7 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
         nhapXuat.setTrangThai(trangThai);
         nhapXuat.setGhiChu(ghiChu);
         // Khong co setChiTietNhapXuat() va setThanhTien() vi da duoc set ben dialog
-        nhapNguyenLieuSQL(maNhapXuat, tenTaiKhoan, thoiGian, trangThai, ghiChu);
+        nhapNguyenLieuSQL(maNhapXuat, tenTaiKhoan, thoiGian, trangThai, nhapXuat.getThanhTien(), ghiChu);
 
         danhSachNhap.add(nhapXuat);
         
@@ -353,10 +370,10 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
     }
     
     public void nhapNguyenLieuSQL(String maNhapXuat, String tenTaiKhoan,Timestamp thoiGian, String trangThai, 
-            String ghiChu)
+            long thanhTien, String ghiChu)
     {
         Connection connect = Util.getConnection();
-        String query = "insert into NhapXuat values (?,?,?,?,?)";
+        String query = "insert into NhapXuat values (?,?,?,?,?,?)";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);
@@ -364,7 +381,8 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
             ps.setString(2, tenTaiKhoan);
             ps.setTimestamp(3, thoiGian);
             ps.setString(4, trangThai);
-            ps.setString(5, ghiChu);
+            ps.setLong(5, thanhTien);
+            ps.setString(6, ghiChu);
             ps.executeUpdate();
             
             Set<String> keySet = nhapXuat.getChiTietNhapXuat().keySet();

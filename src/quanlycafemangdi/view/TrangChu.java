@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 import quanlycafemangdi.Util;
 import quanlycafemangdi.model.ThongTinDangNhap;
 
@@ -49,8 +50,8 @@ public class TrangChu extends javax.swing.JFrame {
         
         nhanVienPanel = new NhanVienPanel();
         banHangPanel = new BanHangPanel();
-        nguyenLieu_Panel = new NguyenLieu_Panel(trangChu_LPn, trangChu_Pn);
-        sanPham_Panel = new SanPham_Panel(trangChu_LPn, trangChu_Pn);
+        nguyenLieu_Panel = new NguyenLieu_Panel();
+        sanPham_Panel = new SanPham_Panel();
         thongKePanel = new ThongKePanel();
     }
 
@@ -851,29 +852,35 @@ public class TrangChu extends javax.swing.JFrame {
         String matKhauMoi = matKhauMoi_PwF.getText();
         String nhapLaiMatKhauMoi = nhapLaiMatKhauMoi_PwF.getText();
         
-        boolean trongMatKhauCu = false, trongMatKhauMoi = false, trongNhapLaiMatKhauMoi = false;
         if (matKhauCu.equals(""))
         {
-            trongMatKhauCu = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
                     JOptionPane.ERROR_MESSAGE);
         }
         else if (matKhauMoi.equals(""))
         {
-            trongMatKhauMoi = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
                     JOptionPane.ERROR_MESSAGE);
         }        
         else if (nhapLaiMatKhauMoi.equals(""))
         {
-            trongNhapLaiMatKhauMoi = true;
-            JOptionPane.showMessageDialog(rootPane, "Vui long nhap day du thong tin.", "Loi",
+            JOptionPane.showMessageDialog(rootPane, "Vui lòng nhập đầy đủ thông tin", "Lỗi",
                     JOptionPane.ERROR_MESSAGE);
         }        
+        else if (matKhauCu.equals(ThongTinDangNhap.getMatKhau()) == false)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu cũ không chính xác", "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);            
+        }
+        else if (matKhauMoi.equals(nhapLaiMatKhauMoi) == false)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu mới không trùng khớp", "Lỗi",
+                    JOptionPane.ERROR_MESSAGE);                
+        }
         else
         {
-            doiMatKhau(ThongTinDangNhap.getTenDangNhap(), ThongTinDangNhap.getMatKhau());
-            JOptionPane.showMessageDialog(rootPane, "Doi mat khau thanh cong");
+            doiMatKhau(ThongTinDangNhap.getTenDangNhap(), matKhauMoi);
+            JOptionPane.showMessageDialog(rootPane, "Đổi mật khẩu thành công");
             matKhauCu_PwF.setText("");
             matKhauMoi_PwF.setText("");
             nhapLaiMatKhauMoi_PwF.setText("");                
@@ -1036,7 +1043,6 @@ public class TrangChu extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TrangChu().setVisible(true);
@@ -1107,7 +1113,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JPanel tuyChon_Pn;
     private javax.swing.JButton xacNhan_Btn;
     // End of variables declaration//GEN-END:variables
-    
+        
     public void anChucNang(JPanel panelClick, JLabel labelClick)
     {
         panelClick.setVisible(false);
@@ -1148,24 +1154,24 @@ public class TrangChu extends javax.swing.JFrame {
             }
         }catch (SQLException ex)
         {
-            System.out.println("Truy van that bai");
+            System.out.println("Lay thong tin tai khoan that bai");
         }
     }
     
     public void doiMatKhau(String tenDangNhap, String matKhau)
     {
+        matKhau = Util.hashing(matKhau);
         String query = "update NhanVien set matKhau = '" + matKhau + "' where tenTK = '" + tenDangNhap + "'";
         try
         {
             Connection connect = Util.getConnection();
             PreparedStatement ps = connect.prepareStatement(query);
-            ps.setString(2, matKhau);
             ps.executeUpdate();
             ps.close();
             connect.close();
         }catch (SQLException ex)
         {
-            System.out.println("Truy van that bai");
+            System.out.println("Doi mat khau that bai");
         }
     }
     

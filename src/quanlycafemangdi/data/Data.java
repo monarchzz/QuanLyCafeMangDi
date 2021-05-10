@@ -16,6 +16,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import quanlycafemangdi.Util;
+import static quanlycafemangdi.Util.hashing;
 import quanlycafemangdi.model.BanHang;
 import quanlycafemangdi.model.CaLamViec;
 import quanlycafemangdi.model.CongThuc;
@@ -48,6 +49,7 @@ public class Data {
     
     public boolean kiemTraDangNhap(String tenDangNhap, String matKhau)
     {
+        matKhau = Util.hashing(matKhau);
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
         try
         {
@@ -66,6 +68,7 @@ public class Data {
     
     public String layChucVu(String tenDangNhap, String matKhau)
     {
+        matKhau = Util.hashing(matKhau);
         String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
         try
         {
@@ -466,13 +469,12 @@ public class Data {
     }
     
     public void taoNhanVien(NhanVien nhanVien){
-        String query = "insert into NhanVien values(?,?,?,?,?,?,?,?)";
-        
-        
+        String query = "insert into NhanVien values(?,?,?,?,?,?,?,?)";               
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, nhanVien.getTenTk());
-            ps.setString(2, nhanVien.getMatKhau());
+            String hashedPassword = Util.hashing(nhanVien.getMatKhau());
+            ps.setString(2, hashedPassword);
             ps.setString(3, nhanVien.getChucVu());
             ps.setString(4, nhanVien.getSoCM());
             ps.setString(5, nhanVien.getSdt());

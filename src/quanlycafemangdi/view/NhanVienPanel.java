@@ -783,7 +783,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             .addGroup(suaNhanVienPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(xoaNhanVienBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(suaThongTinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1004,7 +1004,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
         jPanel3.setBackground(new java.awt.Color(114, 102, 186));
 
-        jLabel3.setBackground(new java.awt.Color(114, 102, 186));
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Quản lý nhân viên");
@@ -1122,18 +1122,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
         hienThongTinNhanVien(nv,false);
         //xet quyen cho nhan vien
-        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(nhanVienString)){
-//            suaNhanVienPanel.setVisible(false);
-            chucNangPanel.add(panelTam);
-            chucNangPanel.repaint();
-            chucNangPanel.validate();
-        }else if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) 
-                && nv.getChucVu().toLowerCase().contains(quanLyString)){
-//            suaNhanVienPanel.setVisible(false);
-            chucNangPanel.add(panelTam);
-            chucNangPanel.repaint();
-            chucNangPanel.validate();
-        }else if (nv.getChucVu().toLowerCase().contains(adminString)){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) ){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();

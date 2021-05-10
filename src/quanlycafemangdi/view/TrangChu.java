@@ -68,6 +68,7 @@ public class TrangChu extends javax.swing.JFrame {
         thongKePanel = new ThongKePanel();
         
         initTrangChu();
+        
     }
     
     private void initTrangChu(){
@@ -431,7 +432,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(doanhThuLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         jPanel5Layout.setVerticalGroup(
@@ -471,7 +472,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                     .addComponent(chiPhiLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
@@ -513,7 +514,7 @@ public class TrangChu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loiNhuanLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE))
                 .addGap(30, 30, 30))
         );
         jPanel8Layout.setVerticalGroup(
@@ -673,7 +674,7 @@ public class TrangChu extends javax.swing.JFrame {
         thongTinCaNhan_PnLayout.setHorizontalGroup(
             thongTinCaNhan_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(thongTinCaNhan_PnLayout.createSequentialGroup()
-                .addContainerGap(647, Short.MAX_VALUE)
+                .addContainerGap(667, Short.MAX_VALUE)
                 .addGroup(thongTinCaNhan_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, thongTinCaNhan_PnLayout.createSequentialGroup()
                         .addGroup(thongTinCaNhan_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -794,7 +795,7 @@ public class TrangChu extends javax.swing.JFrame {
                     .addGroup(doiMatKhau_PnLayout.createSequentialGroup()
                         .addGap(402, 402, 402)
                         .addComponent(doiMatKhau_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(636, Short.MAX_VALUE))
+                .addContainerGap(656, Short.MAX_VALUE))
         );
         doiMatKhau_PnLayout.setVerticalGroup(
             doiMatKhau_PnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,6 +846,7 @@ public class TrangChu extends javax.swing.JFrame {
         quanLy_Pn.setPreferredSize(new java.awt.Dimension(30, 535));
         quanLy_Pn.setLayout(new javax.swing.BoxLayout(quanLy_Pn, javax.swing.BoxLayout.PAGE_AXIS));
 
+        trangChuClick_Pn.setBackground(new java.awt.Color(255, 255, 255));
         trangChuClick_Pn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         trangChuClick_Pn.setPreferredSize(new java.awt.Dimension(72, 30));
         trangChuClick_Pn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1252,10 +1254,7 @@ public class TrangChu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1367,14 +1366,6 @@ public class TrangChu extends javax.swing.JFrame {
         doiMauKhiClick(evt, diaDiemClick_Pn, diaDiemClick_Lbl, new DiaDiemPanel());
     }//GEN-LAST:event_diaDiemClick_PnMouseClicked
 
-    private void banHangClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_LblMouseClicked
-        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
-    }//GEN-LAST:event_banHangClick_LblMouseClicked
-
-    private void banHangClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_PnMouseClicked
-        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
-    }//GEN-LAST:event_banHangClick_PnMouseClicked
-
     private void thongKeClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_thongKeClick_LblMouseClicked
         doiMauKhiClick(evt, thongKeClick_Pn, thongKeClick_Lbl, thongKePanel);
         thongKePanel.updateData();
@@ -1462,6 +1453,14 @@ public class TrangChu extends javax.swing.JFrame {
     private void chonTGCBPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_chonTGCBPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_chonTGCBPropertyChange
+
+    private void banHangClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_PnMouseClicked
+        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
+    }//GEN-LAST:event_banHangClick_PnMouseClicked
+
+    private void banHangClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_banHangClick_LblMouseClicked
+        doiMauKhiClick(evt, banHangClick_Pn, banHangClick_Lbl, new BanHangPanel());
+    }//GEN-LAST:event_banHangClick_LblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1596,6 +1595,12 @@ public class TrangChu extends javax.swing.JFrame {
             anChucNang(nhanVienClick_Pn, nhanVienClick_Lbl);
             anChucNang(diaDiemClick_Pn, diaDiemClick_Lbl);
             anChucNang(thongKeClick_Pn, thongKeClick_Lbl);
+            anChucNang(trangChuClick_Pn, trangChuClick_Lbl);
+            
+            Util.doiPanel(trangChu_LPn, new BanHangPanel());
+            banHangClick_Pn.setBackground(Color.white);
+        }else {
+            anChucNang(banHangClick_Pn, banHangClick_Lbl);
         }
     }
       
@@ -1660,11 +1665,11 @@ public class TrangChu extends javax.swing.JFrame {
         diaDiemClick_Pn.setBackground(null);
         diaDiemClick_Lbl.setBackground(null);
         
-        banHangClick_Pn.setBackground(null);
-        banHangClick_Lbl.setBackground(null);
-        
         thongKeClick_Pn.setBackground(null);
         thongKeClick_Lbl.setBackground(null);
+        
+        banHangClick_Pn.setBackground(null);
+        banHangClick_Lbl.setBackground(null);
         
         tuyChonClick_Pn.setBackground(null);
         tuyChonClick_Lbl.setBackground(null);
@@ -1684,13 +1689,13 @@ public class TrangChu extends javax.swing.JFrame {
         {
             Util.doiPanel(trangChu_LPn, panelDisplay);
             panelClick.setBackground(Color.white);
-            labelClick.setBackground(Color.white);   
+//            labelClick.setBackground(Color.white);   
         }
         else if (source instanceof JLabel)
         {
             Util.doiPanel(trangChu_LPn, panelDisplay);
             panelClick.setBackground(Color.white);
-            labelClick.setBackground(Color.white);            
+//            labelClick.setBackground(Color.white);            
         }
     }
 }

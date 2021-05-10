@@ -691,7 +691,7 @@ public class Data {
     // sua thong tin nhan vien
     public void suaThongTinNhanVien(NhanVien thongTinNVMoi){
         String query = "update NhanVien set "
-                + "matKhau = '" + thongTinNVMoi.getMatKhau() + "', "
+                + "matKhau = '" + Util.hashing(thongTinNVMoi.getMatKhau()) + "', "
                 + "chucVu = N'" + thongTinNVMoi.getChucVu() + "', "
                 + "cmnd = '" + thongTinNVMoi.getSoCM() + "', "
                 + "sdt = '" + thongTinNVMoi.getSdt() + "', "

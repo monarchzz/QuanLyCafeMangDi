@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.time.chrono.ThaiBuddhistEra;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -304,7 +305,7 @@ public class Data {
     }
     // lay danh sach dang ki
     // tra ve maNl va soLuong
-    public HashMap<String, Integer> layDSDangKiTheoCa(String maCLV){ 
+    public HashMap<String, Integer> layDSNLDangKiTheoCa(String maCLV){ 
         HashMap<String, Integer> mHashMap = new HashMap<>();
         
         String query = "select maNL, SUM(soLuong) as soLuong from ChiTietDK where maDK in "
@@ -325,7 +326,7 @@ public class Data {
     
     //doi san pham ra nguyen lieu theo ca
     // tra ve maSP va soLuong
-    public HashMap<String, Integer> layDSBanHangTheoCa(String maCLV){ 
+    public HashMap<String, Integer> layDSBanSPTheoCa(String maCLV){ 
         HashMap<String, Integer> mHashMap = new HashMap<>();
         
         String query = "select maSP, SUM(soLuong) as soLuong from ChiTietBH where maBH in "
@@ -800,35 +801,21 @@ public class Data {
         String ngayBT = ngay + " 00:00:00";
         String ngayKT = ngay + " 23:59:59";
         
-        // lay gia tien cua nguyen lieu
-        HashMap<String, Integer> giaTienMap = new HashMap<>();
-        String query = "select maNL,gia from NguyenLieu";
-        PreparedStatement ps;
-        try {
-            ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                String giaTien = rs.getString("gia");
-                if (giaTien!= null ){
-                    giaTienMap.put(rs.getString("maNL"), Integer.valueOf(giaTien.substring(0,giaTien.indexOf("."))));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         
-        query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
-                + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
-                + "group by maNL";
+        String query = "select SUM(thanhTien) as thanhTien from NhapXuat " 
+                + "where tg > '" + ngayBT + "' and tg < '" + ngayKT 
+                + "' and trangThai = 0 " ;
         try {
-            ps = connection.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             long giaTien = 0;
             while (rs.next()){
-                if (rs.getString("maNL") != null){
-                    int soLuong = rs.getInt("soLuong");
-                    giaTien += giaTienMap.get(rs.getString("maNL")) * soLuong;
+                if (rs.getString("thanhTien") != null){
+                    String tien = rs.getString("thanhTien");
+                    tien = tien.substring(0, tien.indexOf("."));
+                    
+                    giaTien = Long.valueOf(tien);
                 }
             }
             
@@ -864,35 +851,19 @@ public class Data {
         String ngayBT = bt + " 00:00:00";
         String ngayKT = kt + " 23:59:59";
         
-        // lay gia tien cua nguyen lieu
-        HashMap<String, Integer> giaTienMap = new HashMap<>();
-        String query = "select maNL,gia from NguyenLieu";
-        PreparedStatement ps;
+         String query = "select SUM(thanhTien) as thanhTien from NhapXuat " 
+                + "where tg > '" + ngayBT + "' and tg < '" + ngayKT 
+                + "' and trangThai = 0 " ;
         try {
-            ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                String giaTien = rs.getString("gia");
-                if (giaTien!= null ){
-                    giaTienMap.put(rs.getString("maNL"), Integer.valueOf(giaTien.substring(0,giaTien.indexOf("."))));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
-                + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
-                + "group by maNL";
-        try {
-            ps = connection.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             long giaTien = 0;
             while (rs.next()){
-                if (rs.getString("maNL") != null){
-                    int soLuong = rs.getInt("soLuong");
-                    giaTien += giaTienMap.get(rs.getString("maNL")) * soLuong;
+                if (rs.getString("thanhTien") != null){
+                    String tien = rs.getString("thanhTien");
+                    tien = tien.substring(0, tien.indexOf("."));
+                    
+                    giaTien = Long.valueOf(tien);
                 }
             }
             
@@ -930,35 +901,19 @@ public class Data {
         String ngayBT = nam + "-01-01 00:00:00";
         String ngayKT = nam + "-12-31 23:59:59";
         
-        // lay gia tien cua nguyen lieu
-        HashMap<String, Integer> giaTienMap = new HashMap<>();
-        String query = "select maNL,gia from NguyenLieu";
-        PreparedStatement ps;
+         String query = "select SUM(thanhTien) as thanhTien from NhapXuat " 
+                + "where tg > '" + ngayBT + "' and tg < '" + ngayKT 
+                + "' and trangThai = 0 " ;
         try {
-            ps = connection.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                String giaTien = rs.getString("gia");
-                if (giaTien!= null ){
-                    giaTienMap.put(rs.getString("maNL"), Integer.valueOf(giaTien.substring(0,giaTien.indexOf("."))));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        query = "select maNL,SUM(soLuong) as soLuong from ChiTietNhapXuat " 
-                + "where maNX in (select maNX from NhapXuat where tg > '" 
-                + ngayBT + "' and tg < '" + ngayKT + "' and trangThai = 0) " 
-                + "group by maNL";
-        try {
-            ps = connection.prepareStatement(query);
+            PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             long giaTien = 0;
             while (rs.next()){
-                if (rs.getString("maNL") != null){
-                    int soLuong = rs.getInt("soLuong");
-                    giaTien += giaTienMap.get(rs.getString("maNL")) * soLuong;
+                if (rs.getString("thanhTien") != null){
+                    String tien = rs.getString("thanhTien");
+                    tien = tien.substring(0, tien.indexOf("."));
+                    
+                    giaTien = Long.valueOf(tien);
                 }
             }
             
@@ -1119,7 +1074,7 @@ public class Data {
         return mHashMap;
     }
     public void xuatNL(NhapXuat nx){
-        String query = "insert into NhapXuat values (?,?,?,?,?)";
+        String query = "insert into NhapXuat values (?,?,?,?,?,?)";
         try
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -1127,7 +1082,8 @@ public class Data {
             ps.setString(2, nx.getTaiKhoan());
             ps.setTimestamp(3, nx.getThoiGian());
             ps.setString(4, "1");
-            ps.setString(5, nx.getGhiChu());
+            ps.setString(5, String.valueOf(nx.getThanhTien()));
+            ps.setString(6, nx.getGhiChu());
             ps.executeUpdate();
             
             Set<String> keySet = nx.getChiTietNhapXuat().keySet();
@@ -1153,7 +1109,7 @@ public class Data {
         }
     }
     public void traNL(NhapXuat nx){
-        String query = "insert into NhapXuat values (?,?,?,?,?)";
+        String query = "insert into NhapXuat values (?,?,?,?,?,?)";
         try
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -1161,7 +1117,8 @@ public class Data {
             ps.setString(2, nx.getTaiKhoan());
             ps.setTimestamp(3, nx.getThoiGian());
             ps.setString(4, "2");
-            ps.setString(5, nx.getGhiChu());
+            ps.setString(5, String.valueOf(nx.getThanhTien()));
+            ps.setString(6, nx.getGhiChu());
             ps.executeUpdate();
             
             Set<String> keySet = nx.getChiTietNhapXuat().keySet();
@@ -1423,5 +1380,30 @@ public class Data {
         
         return  mArrayList;
         
+    }
+     
+    public List<BanHang> layDSBanHangTheoCa(CaLamViec clv){
+        ArrayList<BanHang> dsBanHang = new ArrayList<>(layDSBanHang());
+        ArrayList<BanHang> mArrayList = new ArrayList<>();
+        
+        for (BanHang bh : dsBanHang){
+            if (bh.getMaCLV().equals(clv.getMaCLV())){
+                mArrayList.add(bh);
+            }
+        }
+        
+        return mArrayList;
+    }
+    public List<DangKi> layDSDangKiTheoCa(CaLamViec clv){
+        ArrayList<DangKi> dsDangKi = new ArrayList<>(layDSDangKi());
+        ArrayList<DangKi> mArrayList = new ArrayList<>();
+      
+        for (DangKi dk : dsDangKi){
+            if (dk.getMaCLV().equals(clv.getMaCLV())){
+                mArrayList.add(dk);
+            }
+        }
+        
+        return mArrayList;
     }
 }

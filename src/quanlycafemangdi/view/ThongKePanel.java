@@ -2552,22 +2552,16 @@ public class ThongKePanel extends javax.swing.JPanel {
         jLabel47.setText("Danh sách sản phẩm");
         jLabel47.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTenNVCLb.setText("Nhân viên chính");
         chiTietTenNVCLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTenNVPLb.setText("Nhân viên chính");
         chiTietTenNVPLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietDDDKLb.setText("Nhân viên chính");
         chiTietDDDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietCaLamDKLb.setText("Nhân viên chính");
         chiTietCaLamDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietNgayDKLb.setText("Nhân viên chính");
         chiTietNgayDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
-        chiTietTGDKLb.setText("Nhân viên chính");
         chiTietTGDKLb.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);

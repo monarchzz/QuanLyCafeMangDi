@@ -1207,6 +1207,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             jLP_ChucNangCLV.repaint();
             jLP_ChucNangCLV.validate();
         }
+        hienTFCLV(true);
     }//GEN-LAST:event_jB_ThemCLVActionPerformed
 
     private void jCB_TimKiemCLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_TimKiemCLVActionPerformed

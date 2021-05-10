@@ -51,12 +51,16 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private List<CaLamViec> dsCaLamViec;
     private List<CaLamViec> dsCaLamViecHienTai;
     private ArrayList<CaLamViec> dsCaLamViecDialog;
+    private List<BanHang> dsBanHangTrongCLV;
+    private List<DangKi> dsDangKiTrongCLV;
     
     private DefaultTableModel defaultTableModelLichLam;
     private DefaultTableModel defaultTableModelDangKi;
     private DefaultTableModel defaultTableModelDialog;
     private DefaultTableModel defaultTableModelNL;
     private DefaultTableModel defaultTableModelSP;
+    private DefaultTableModel defaultTableModelBH;
+    private DefaultTableModel defaultTableModelDK;
     
     private int soLuongSanPhamBanHang;
     private long tongTien;
@@ -84,6 +88,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         xetBang(bangNLConLaiTable);
         xetBang(bangSPConLaiTable);
         xetBang(luaChonCLVTable);
+        xetBang(thongKeBHTable);
+        xetBang(thongKeDKTable);
     }
     private void xetBang(JTable table){
         table.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -101,6 +107,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         taoDuLieuKhoHienTai();
         taoDuLieuDialog();
         taoDuLieuQuanLyNLBan();
+        taoDuLieuThongKe();
         
         if(layCaLamViecHienTai() == null){
             banHangPanel.removeAll();
@@ -119,8 +126,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         khoHienTai.clear();
         CaLamViec clv = layCaLamViecHienTai();
         if(clv != null){
-            HashMap<String,Integer> dKMap = data.layDSDangKiTheoCa(clv.getMaCLV());
-            HashMap<String,Integer> bHMap = data.layDSBanHangTheoCa(clv.getMaCLV());
+            HashMap<String,Integer> dKMap = data.layDSNLDangKiTheoCa(clv.getMaCLV());
+            HashMap<String,Integer> bHMap = data.layDSBanSPTheoCa(clv.getMaCLV());
             HashMap<String,Integer> traNLHashMap = data.layDSTraNLTheoCa(clv);
             HashMap<String,Integer> nguyenLieuBanHang = new HashMap<>();
             
@@ -315,6 +322,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         JOptionPane.showMessageDialog(this, "Thanh toán thành công","Thông báo",JOptionPane.INFORMATION_MESSAGE);
         xoaHoaDon();
         capNhatHaiBangQuanLy();
+        capNhatThongKeTable();
     }
     
     private void xetNutThanhToanHien(boolean b){
@@ -722,6 +730,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 nx.setTrangThai("1");
                 nx.setGhiChu("Đăng kí nguyên liệu");
                 nx.setChiTietNhapXuat(khoDangKi);
+                nx.setThanhTien(0);
                 data.xuatNL(nx);
 
                 
@@ -734,6 +743,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 taoDuLieuKhoHienTai();
                 
                 capNhatHaiBangQuanLy();
+                capNhatThongKeTable();
             }
         }else {
             // bao loi
@@ -812,6 +822,87 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             
         }
     }
+    
+    // thong ke panel
+    private void taoDuLieuThongKe(){
+        defaultTableModelBH = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        defaultTableModelDK = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        defaultTableModelBH.setColumnCount(0);
+        defaultTableModelBH.addColumn("Thời gian");
+        defaultTableModelBH.addColumn("Sản phẩm");
+        defaultTableModelBH.addColumn("Thành tiền");
+        
+        defaultTableModelDK.setColumnCount(0);
+        defaultTableModelDK.addColumn("Thời gian");
+        defaultTableModelDK.addColumn("Nguyên liệu");
+        
+        
+        thongKeBHTable.setModel(defaultTableModelBH);
+        
+        thongKeDKTable.setModel(defaultTableModelDK);
+        
+        
+        capNhatThongKeTable();
+    }
+    private void capNhatThongKeTable(){
+        defaultTableModelBH.setRowCount(0);
+        defaultTableModelDK.setRowCount(0);
+        
+        CaLamViec clv = layCaLamViecHienTai();
+        if (clv != null){
+            dsBanHangTrongCLV = data.layDSBanHangTheoCa(clv);
+            dsDangKiTrongCLV = data.layDSDangKiTheoCa(clv);
+            
+            for (BanHang bh : dsBanHangTrongCLV){
+                String[] p = bh.getTg().split(" ");
+                String gio = p[1].substring(0,8);
+                
+                String sp = "";
+                HashMap<String, String> mHashMap = data.chiTietBanHang(bh.getMaBH());
+                if (!mHashMap.isEmpty()){
+                    Set<String> keySet = mHashMap.keySet();
+                    for (String key : keySet){
+                        sp += key + ": " + mHashMap.get(key) + ", ";
+                    }
+                }
+                
+                defaultTableModelBH.addRow(new Object[]{gio, sp, Util.formatCurrency(bh.getTongTien())});
+            }
+            
+            for (DangKi dk : dsDangKiTrongCLV){
+                String[] p = dk.getThoiGian().split(" ");
+                String gio = p[1].substring(0,8);
+                
+                String nl = "";
+                if (!dk.getChiTietDangKi().isEmpty()){
+                    Set<String> keySet = dk.getChiTietDangKi().keySet();
+
+                    for (String key : keySet){
+                        String tenVaDV = data.layTenNguyenLieu(key);
+
+                        String dv = tenVaDV.substring(0,tenVaDV.indexOf(" "));
+                        String tenNL = tenVaDV.substring(tenVaDV.indexOf(" ") + 1);
+
+                        nl += tenNL + ": " + dk.getChiTietDangKi().get(key) + " " + dv + ", ";
+                    }
+                }
+                
+                defaultTableModelDK.addRow(new Object[]{gio, nl});
+            }
+        }
+    }
+    
+    
     
     
 /////////// Dialog
@@ -979,6 +1070,17 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         bangSPConLaiTable = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         duaNLVeKhoBtn = new javax.swing.JButton();
+        thongkePanel = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        thongKeBHTable = new javax.swing.JTable();
+        jPanel23 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        thongKeDKTable = new javax.swing.JTable();
 
         chonLichLamDialog.setTitle("Chọn ca làm việc");
         chonLichLamDialog.setBackground(new java.awt.Color(255, 255, 255));
@@ -1108,8 +1210,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         setPreferredSize(new java.awt.Dimension(1000, 500));
 
         mTabbedPane.setBackground(new java.awt.Color(32, 136, 203));
-        mTabbedPane.setForeground(new java.awt.Color(255, 255, 255));
         mTabbedPane.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        mTabbedPane.setForeground(new java.awt.Color(255, 255, 255));
         mTabbedPane.setPreferredSize(new java.awt.Dimension(1000, 500));
 
         banHangPanel.setLayout(new java.awt.CardLayout());
@@ -1752,8 +1854,6 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel7.getAccessibleContext().setAccessibleName("Địa điểm:");
-
         javax.swing.GroupLayout lichLamPanelLayout = new javax.swing.GroupLayout(lichLamPanel);
         lichLamPanel.setLayout(lichLamPanelLayout);
         lichLamPanelLayout.setHorizontalGroup(
@@ -2157,6 +2257,131 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
 
         mTabbedPane.addTab("Quản lý nguyên liệu bán ", quanLyNguyenLieuBanPanel);
 
+        thongkePanel.setBackground(new java.awt.Color(255, 255, 255));
+        thongkePanel.setLayout(new javax.swing.BoxLayout(thongkePanel, javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel22.setBackground(new java.awt.Color(114, 102, 186));
+
+        jLabel28.setBackground(new java.awt.Color(114, 102, 186));
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("Thống kê bán hàng");
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        thongKeBHTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        thongKeBHTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
+        thongKeBHTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        thongKeBHTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane9.setViewportView(thongKeBHTable);
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
+        );
+
+        thongkePanel.add(jPanel21);
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel24.setBackground(new java.awt.Color(114, 102, 186));
+
+        jLabel29.setBackground(new java.awt.Color(114, 102, 186));
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setText("Thống kê đăng kí");
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+
+        thongKeDKTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        thongKeDKTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
+        thongKeDKTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
+        thongKeDKTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane10.setViewportView(thongKeDKTable);
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
+        );
+
+        thongkePanel.add(jPanel23);
+
+        mTabbedPane.addTab("Thống kê", thongkePanel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -2249,6 +2474,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         nx.setTrangThai("0");
         nx.setGhiChu("Trả nguyên liệu thừa về kho");
         nx.setChiTietNhapXuat(khoHienTai);
+        nx.setThanhTien(0);
         
         data.traNL(nx);
         
@@ -2310,6 +2536,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -2330,6 +2558,10 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2338,6 +2570,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2345,6 +2578,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JPanel khongCoCaLamPanel;
     private javax.swing.JPanel lichLamPanel;
     private javax.swing.JTable lichLamTable;
@@ -2366,6 +2600,9 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
     private javax.swing.JButton thanhToanBtn;
     private javax.swing.JPanel thanhToanPanel;
     private javax.swing.JPanel thanhToanPanel1;
+    private javax.swing.JTable thongKeBHTable;
+    private javax.swing.JTable thongKeDKTable;
+    private javax.swing.JPanel thongkePanel;
     private javax.swing.JLabel tongTienLb;
     // End of variables declaration//GEN-END:variables
 

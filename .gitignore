@@ -1,9 +1,6 @@
 build/built-jar.properties
 build/classes/
 /dist/
-<<<<<<< HEAD
 /nbproject/private/
 /build/
-=======
 nbproject/private/private.xml
->>>>>>> aeac657a09db9826526cc37b1f319de8bed20b3a

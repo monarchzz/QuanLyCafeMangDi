@@ -25,8 +25,8 @@ public class Util {
     public static final int DK_TABLE = 2;
     public static final int CL_TABLE = 3;// cham luong
     public static final int TRA_NL = 4;// tra nguyen lieu
-    public static final int DD_TABLE = 5;// tra nguyen lieu
-    
+    public static final int DD_TABLE = 5;
+    public static final int CLV_TABLE = 6; 
     
     public static void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
         jLayeredPane.removeAll();
@@ -62,6 +62,7 @@ public class Util {
         }
        
     }    
+    
     public static Connection getConnection()
     {
         Connection connect = null;
@@ -100,6 +101,9 @@ public class Util {
             }
             case Util.DD_TABLE -> {
                 return  taoMaDD();
+            }
+            case Util.CLV_TABLE -> {
+                return taoMaCLV();
             }
         }
         
@@ -190,6 +194,7 @@ public class Util {
         
         return name + maxNumber;
     }
+    
     private static String taoMaDD(){
         String name = "DD";
         List<String> dsDiaDiem = Data.getInstance().layDSMaDD();
@@ -207,6 +212,25 @@ public class Util {
         
         return name + maxNumber;
     }
+    
+    private static String taoMaCLV(){
+        String name = "CL";
+        List<String> dsCaLamViec = Data.getInstance().layDSMaCLV();
+        int maxNumber = 0;
+        if (!dsCaLamViec.isEmpty()){
+            for (String item: dsCaLamViec){
+                int number = Integer.valueOf(item.substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return name + maxNumber;
+    }
+    
     public static int soNGayTrongThang(int thang, int nam){
         switch(thang){
             case 1,3,5,7,8,10,12 ->{

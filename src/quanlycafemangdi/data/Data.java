@@ -423,8 +423,8 @@ public class Data {
         
         return  mArrayList;
     }
-    // lay ds ma nhap xuat
     
+    // lay ds ma nhap xuat
     public List<String> layDSMaXuat(){
         ArrayList<String> mArrayList = new ArrayList<>();
         
@@ -1316,28 +1316,39 @@ public class Data {
         }
     }
     
-    public void xoaCaLamViec(CaLamViec caLamViec){
-        String sql = "delete from CaLamViec where maCLV = '" + caLamViec.getMaCLV() + "'" ;
-        
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void xoaCaLamViec(CaLamViec caLamViec){
+//        String sql = "delete from CaLamViec where maCLV = '" + caLamViec.getMaCLV() + "'" ;
+//        
+//        try {
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ps.executeUpdate();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
-    public void suaThongTinCaLamViec(CaLamViec clvCu, CaLamViec clvMoi){
-        String sql = "delete from CaLamViec where maCLV = '" + clvCu.getMaCLV() + "'";
+    public void suaThongTinCaLamViec(CaLamViec clvMoi){
+        String t2 = clvMoi.getTK2();
+        if (t2 == null){
+            t2 = "null";
+        }else {
+            t2 = "'" + clvMoi.getTK2() + "'";
+        }
+        String sql = "update CaLamViec set "
+                + "maDD = '" + clvMoi.getMaDD() + "', "
+                + "caLamViec = N'" + clvMoi.getCaLamViec() + "', "
+                + "ngay = '" + clvMoi.getNgay() + "', "
+                + "TK1 = '" + clvMoi.getTK1() + "', "
+                + "TK2 = " + t2 + " "
+                + "where CaLamViec.maCLV = '" + clvMoi.getMaCLV() + "'";
         
         try {         
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.executeUpdate();
+            ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
      
-        themCaLamViec(clvMoi);
     }
     
     public List<String> layDSMaDD(){
@@ -1352,6 +1363,30 @@ public class Data {
             while(rs.next()){
                
                 mArrayList.add(rs.getString("maDD"));
+                
+            }
+                
+            
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return  mArrayList;
+        
+    }
+
+    public List<String> layDSMaCLV() {
+        ArrayList<String> mArrayList = new ArrayList<>();
+        
+        String query = "select maCLV from CaLamViec";
+        
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+               
+                mArrayList.add(rs.getString("maCLV"));
                 
             }
                 

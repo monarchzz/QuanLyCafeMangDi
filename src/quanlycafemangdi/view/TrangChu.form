@@ -627,72 +627,90 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace pref="667" max="32767" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" pref="557" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="hoVaTen_Lbl" max="32767" attributes="0"/>
-                                              <Component id="gioiTinh_Lbl" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="SDT_Lbl" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="CMND_Lbl" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="tenTaiKhoan_Lbl" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="chucVu_Lbl" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="tenTaiKhoan_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
-                                              <Component id="chucVu_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="tenTaiKhoan_Lbl" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="chucVu_Lbl" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="hoVaTen_Lbl" max="32767" attributes="0"/>
+                                                      <Component id="gioiTinh_Lbl" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="SDT_Lbl" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="CMND_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="CMND_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                                               <Component id="SDT_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                                               <Component id="gioiTinh_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                                               <Component id="hoVaTen_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Component id="tenTaiKhoan_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
+                                              <Component id="chucVu_TF" alignment="0" min="-2" pref="242" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="299" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                                           <Component id="thongTinCaNhan_Lbl" min="-2" pref="226" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="338" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <EmptySpace pref="334" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                                  <Component id="thongTinCaNhan_Lbl" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tenTaiKhoan_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tenTaiKhoan_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="238" max="-2" attributes="0"/>
+                                          <Component id="thongTinCaNhan_Lbl" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="tenTaiKhoan_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="tenTaiKhoan_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="chucVu_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="chucVu_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="CMND_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="CMND_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="SDT_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="SDT_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="gioiTinh_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="gioiTinh_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="hoVaTen_TF" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="hoVaTen_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="chucVu_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="chucVu_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="CMND_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="CMND_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="SDT_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SDT_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="gioiTinh_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="gioiTinh_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="hoVaTen_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="hoVaTen_TF" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace pref="394" max="32767" attributes="0"/>
+                                  <EmptySpace pref="309" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -802,6 +820,13 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="16" style="0"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                        <Component class="javax.swing.JLabel" name="jLabel3">
+                          <Properties>
+                            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                              <Image iconType="3" name="/HinhAnh/man-avatar-profile-vector-21372065.jpg"/>
                             </Property>
                           </Properties>
                         </Component>

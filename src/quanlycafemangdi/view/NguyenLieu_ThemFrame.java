@@ -125,6 +125,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         ghiChu_TA.setRows(5);
         jScrollPane1.setViewportView(ghiChu_TA);
 
+        donViTinh_CBx.setBackground(new java.awt.Color(254, 254, 254));
         donViTinh_CBx.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         donViTinh_CBx.setPreferredSize(new java.awt.Dimension(30, 23));
 

@@ -1122,7 +1122,12 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
         hienThongTinNhanVien(nv,false);
         //xet quyen cho nhan vien
-        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) ){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString)
+                && nv.getChucVu().toLowerCase().contains(nhanVienString)){
+            chucNangPanel.add(suaNhanVienPanel);
+            chucNangPanel.repaint();
+            chucNangPanel.validate();
+        }else if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) ){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();

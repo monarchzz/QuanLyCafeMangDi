@@ -1060,9 +1060,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jPanel7.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel13.setText("Quản lý ca làm việc");
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Quản lý địa điểm");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1122,7 +1122,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                     .addComponent(jCB_SapXepCLV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jP_CLVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 401, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                 .addContainerGap())
         );

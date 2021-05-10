@@ -40,7 +40,12 @@ public class NhanVienPanel extends javax.swing.JPanel{
     private List<String> dsTimKiem = new ArrayList<>(
             Arrays.asList("Tên tài khoản", "Họ tên","Chức vụ", 
                     "Số chứng minh", "Số điện thoại"));
+    private List<String> dsChucVu;
     private final Data data;
+    
+    private final String nhanVienString = "nhân viên".toLowerCase();
+    private final String quanLyString = "Quản lý".toLowerCase();
+    private final String adminString = "admin";
     
     
     public NhanVienPanel() {
@@ -63,6 +68,15 @@ public class NhanVienPanel extends javax.swing.JPanel{
         taoThongTinNhanVien();
         
     }
+    
+    public void updateData(){
+        
+        
+        khoiTaoBang();
+        khoiTaoComboBox();
+        taoThongTinNhanVien();
+    }
+    
     private void updateDataTable(){
         khoiTaoBang();
     }
@@ -111,8 +125,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     private void taoThongTinNhanVien(){
         
-        // neu la nhan vien ban hang thì khong cho them nha vien
-        if (ThongTinDangNhap.getChucVu().equals("Nhân viên bán hàng")){
+        // neu la nhan vien ban hang thì khong cho them nhan vien
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(nhanVienString)){
             themNhanVienButton.setEnabled(false);
         }
         
@@ -130,19 +144,23 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
     }
     private void chucVuCBMode(int mode){
+        dsChucVu = data.layDSChucVu();
         chucVuCB.removeAllItems();
         // xoa 
         if (mode == 0){
-            chucVuCB.addItem("Nhân viên bán hàng");
-            chucVuCB.addItem("Quản lý");
+            for (String item : dsChucVu){
+                if (!item.toLowerCase().contains(adminString)){
+                    chucVuCB.addItem(item);
+                }
+            }
         }else {
-            chucVuCB.addItem("Nhân viên bán hàng");
-            chucVuCB.addItem("Quản lý");
-            chucVuCB.addItem("admin");
+            for (String item : dsChucVu){
+                chucVuCB.addItem(item);
+            }
         }
     }
     private void hienThongTinNhanVien(NhanVien nv, boolean hienTF){
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(1);
         }else {
             chucVuCBMode(0);
@@ -155,6 +173,9 @@ public class NhanVienPanel extends javax.swing.JPanel{
         sdtTF.setText(nv.getSdt());
         chucVuCB.setSelectedItem(nv.getChucVu());
         tenDangNhapTF.setText(nv.getTenTk());
+        
+        matKhauTF.setText("");
+        nhapLaiMatKhauTF.setText("");
 
         hienTF(hienTF);
         
@@ -171,6 +192,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
     private void khoiTaoComboBox() {
         // Tao SapXepComboBox
+        sapXepComboBox.removeAllItems();
+        timKiemComboBox.removeAllItems();
         for(String item : dsSapXep) {
             sapXepComboBox.addItem(item);
         }
@@ -321,7 +344,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         tenDangNhapTF.setEnabled(true);
         matKhauPanel.setVisible(true);
         
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(1);
         }else {
             chucVuCBMode(0);
@@ -349,30 +372,29 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     private void taoTK(){
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
+        String gT = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
+        String chucVu = chucVuCB.getEditor().getItem().toString().trim().toLowerCase();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         
-        NhanVien nv = new NhanVien(tenDN, chucVu, cmnd, sdt, gioiTinh, tenNV, mk);
+        NhanVien nv = new NhanVien(tenDN, chucVu, cmnd, sdt, gT, tenNV, mk);
         
         data.taoNhanVien(nv);
     }
     
     private boolean kiemTra(){
-        
         String loi = "";
         
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         String cMK = String.valueOf(nhapLaiMatKhauTF.getPassword());
+        
+        String cv = chucVuCB.getEditor().getItem().toString().toLowerCase().trim();
         
         if (tenNV.trim().equals("")){
             loi += "Tên nhân viên không được để trống\n";
@@ -390,15 +412,29 @@ public class NhanVienPanel extends javax.swing.JPanel{
         if (tenDN.trim().equals("")){
             loi += "Tên đăng nhập không được để trống\n";
         }
+        else if(tenDN.trim().contains(" ")) {
+            loi += "Tên đăng nhập không chứa khoảng trắng\n";
+        }
         else if (!kiemTraTDN(tenDN)){
             loi += "Tên đăng nhập đã tồn tại\n";
         }
+        
         if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
             loi += "Mật khẩu phải có ít nhất 6 ký tự\n";
         }
         if (!cMK.equals(mk)){
-            loi += "Mật khẩu các nhận không chính xác";
+            loi += "Mật khẩu xác nhận không chính xác\n";
         }
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString) && !cv.contains(adminString)){
+                loi += "Tên chức vụ phải chứa nhân viên, quản lý, hoặc admin.\n";
+            }
+        }else {
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString)){
+                loi += "Tên chức vụ phải chứa nhân viên hoặc quản lý.\n";
+            }
+        }
+        
         if (!loi.equals("")){
             hienLoi(loi);
             return false;
@@ -427,17 +463,22 @@ public class NhanVienPanel extends javax.swing.JPanel{
             if (mode == 0) {
                 // lay du lieu nhan vien
                 String tenNV = tenNhanVienTF.getText();
-                String gioiTinh = gioiTinhCB.getSelectedItem().toString();
+                System.out.println(tenNV);
+                String gT = gioiTinhCB.getSelectedItem().toString();
                 String cmnd = cmndTF.getText();
                 String sdt = sdtTF.getText();
-                String chucVu = chucVuCB.getSelectedItem().toString();
+                String chucVu = chucVuCB.getEditor().getItem().toString().trim().toLowerCase();
                 String tenDN = tenDangNhapTF.getText();
                 String mk = String.valueOf(matKhauTF.getPassword());
+                
+                if (mk.trim().isEmpty()){
+                    mk = nv.getMatKhau();
+                }
 
                 // nhan vien moi
-                NhanVien nvm = new NhanVien(tenDN, chucVu, cmnd, sdt, gioiTinh, tenNV, mk);
+                NhanVien nvm = new NhanVien(tenDN, chucVu, cmnd, sdt, gT, tenNV, mk);
                 
-                data.suaThongTinNhanVien(nv,nvm);
+                data.suaThongTinNhanVien(nvm);
                 JOptionPane.showMessageDialog(this, "Sửa thông tin nhân viên thành công",
                         "Thông báo",JOptionPane.INFORMATION_MESSAGE);
                 
@@ -451,13 +492,13 @@ public class NhanVienPanel extends javax.swing.JPanel{
         String loi = "";
         
         String tenNV = tenNhanVienTF.getText();
-        String gioiTinh = gioiTinhCB.getSelectedItem().toString();
         String cmnd = cmndTF.getText();
         String sdt = sdtTF.getText();
-        String chucVu = chucVuCB.getSelectedItem().toString();
         String tenDN = tenDangNhapTF.getText();
         String mk = String.valueOf(matKhauTF.getPassword());
         String cMK = String.valueOf(nhapLaiMatKhauTF.getPassword());
+        
+        String cv = chucVuCB.getEditor().getItem().toString().toLowerCase().trim();
         
         if (tenNV.trim().equals("")){
             loi += "Tên nhân viên không được để trống\n";
@@ -478,12 +519,24 @@ public class NhanVienPanel extends javax.swing.JPanel{
         else if (!tenDN.equals(nv.getTenTk()) && !kiemTraTDN(tenDN)){
             loi += "Tên đăng nhập đã tồn tại\n";
         }
-        
-        if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
+        if (!mk.trim().isEmpty() && !cMK.trim().isEmpty()){
+            if(!mk.matches("[a-zA-Z0-9_]{6,}$")){
             loi += "Mật khẩu phải có ít nhất 6 ký tự\n";
+            }
+            if (!cMK.equals(mk)){
+                loi += "Mật khẩu xác nhận không chính xác";
+            }
         }
-        if (!cMK.equals(mk)){
-            loi += "Mật khẩu xác nhận không chính xác";
+        
+        
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString) && !cv.contains(adminString)){
+                loi += "Tên chức vụ phải chứa nhân viên, quản lý, hoặc admin.\n";
+            }
+        }else {
+            if (!cv.contains(nhanVienString) && !cv.contains(quanLyString)){
+                loi += "Tên chức vụ phải chứa nhân viên hoặc quản lý.\n";
+            }
         }
         if (!loi.equals("")){
             hienLoi(loi);
@@ -545,6 +598,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(943, 617));
 
+        timKiemTextField.setBackground(new java.awt.Color(254, 254, 254));
+        timKiemTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timKiemTextField.setToolTipText("Tìm kiếm nhân viên");
         timKiemTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -589,7 +644,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         bangNhanVien.setFocusable(false);
         bangNhanVien.setRowHeight(25);
         bangNhanVien.setRowMargin(5);
-        bangNhanVien.setSelectionBackground(new java.awt.Color(114, 102, 186));
+        bangNhanVien.setSelectionBackground(new java.awt.Color(153, 153, 255));
         bangNhanVien.setSelectionForeground(new java.awt.Color(254, 254, 254));
         bangNhanVien.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         bangNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -605,6 +660,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Sắp xếp theo");
 
+        sapXepComboBox.setBackground(new java.awt.Color(254, 254, 254));
         sapXepComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sapXepComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,6 +668,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             }
         });
 
+        timKiemComboBox.setBackground(new java.awt.Color(254, 254, 254));
         timKiemComboBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         timKiemComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,6 +676,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
             }
         });
 
+        sapXepTGCB.setBackground(new java.awt.Color(254, 254, 254));
         sapXepTGCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sapXepTGCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tăng dần", "Giảm dần" }));
         sapXepTGCB.addActionListener(new java.awt.event.ActionListener() {
@@ -648,6 +706,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         gioiTinh.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gioiTinh.setText("Giới tính");
 
+        gioiTinhCB.setBackground(new java.awt.Color(254, 254, 254));
         gioiTinhCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         gioiTinhCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
 
@@ -658,7 +717,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
         cmndLb.setBackground(new java.awt.Color(255, 255, 255));
         cmndLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        cmndLb.setText("Chứng CMND");
+        cmndLb.setText("CMND");
 
         sdtLb.setBackground(new java.awt.Color(255, 255, 255));
         sdtLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -673,6 +732,8 @@ public class NhanVienPanel extends javax.swing.JPanel{
         chucVuLb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chucVuLb.setText("Chức vụ");
 
+        chucVuCB.setBackground(new java.awt.Color(254, 254, 254));
+        chucVuCB.setEditable(true);
         chucVuCB.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         chucVuCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên bán hàng", "Quản lý", "admin" }));
         chucVuCB.addActionListener(new java.awt.event.ActionListener() {
@@ -1024,7 +1085,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }//GEN-LAST:event_sapXepComboBoxActionPerformed
 
     private void themNhanVienButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themNhanVienButtonActionPerformed
-        if (ThongTinDangNhap.getChucVu().equals("admin")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
             chucVuCBMode(0);
         }else {
             chucVuCBMode(1);
@@ -1061,17 +1122,18 @@ public class NhanVienPanel extends javax.swing.JPanel{
         
         hienThongTinNhanVien(nv,false);
         //xet quyen cho nhan vien
-        if (ThongTinDangNhap.getChucVu().equals("Nhân viên bán hàng")){
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(nhanVienString)){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();
             chucNangPanel.validate();
-        }else if (ThongTinDangNhap.getChucVu().equals("Quản lý") && nv.getChucVu().equals("Quản lý")){
+        }else if (ThongTinDangNhap.getChucVu().toLowerCase().contains(quanLyString) 
+                && nv.getChucVu().toLowerCase().contains(quanLyString)){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();
             chucNangPanel.validate();
-        }else if (nv.getChucVu().equals("admin")){
+        }else if (nv.getChucVu().toLowerCase().contains(adminString)){
 //            suaNhanVienPanel.setVisible(false);
             chucNangPanel.add(panelTam);
             chucNangPanel.repaint();

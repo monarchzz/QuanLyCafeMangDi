@@ -22,9 +22,13 @@ import quanlycafemangdi.model.BanHang;
  */
 public class Util {
     
-    public static final int SP_TABLE = 0;
+    public static final int XUAT_NL = 0;
     public static final int BH_TABLE = 1;
     public static final int DK_TABLE = 2;
+    public static final int CL_TABLE = 3;// cham luong
+    public static final int TRA_NL = 4;// tra nguyen lieu
+    public static final int DD_TABLE = 5;// tra nguyen lieu
+    
     
     public static void doiPanel(JLayeredPane jLayeredPane,JPanel panel){
         jLayeredPane.removeAll();
@@ -34,16 +38,31 @@ public class Util {
     }
     
     public static String formatCurrency(long currencyAmount){
-        String tmp = String.valueOf(currencyAmount);
-        int count = 0;
-        for (int i = tmp.length() - 1; i >= 0; i--){
-            count++;
-            if (count == 3 && i!= 0) {
-                count = 0;
-                tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+        if (currencyAmount >= 0){
+            String tmp = String.valueOf(currencyAmount);
+            int count = 0;
+            for (int i = tmp.length() - 1; i >= 0; i--){
+                count++;
+                if (count == 3 && i!= 0) {
+                    count = 0;
+                    tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+                }
             }
+            return tmp;
+        }else {
+            currencyAmount = Math.abs(currencyAmount);
+            String tmp = String.valueOf(currencyAmount);
+            int count = 0;
+            for (int i = tmp.length() - 1; i >= 0; i--){
+                count++;
+                if (count == 3 && i!= 0) {
+                    count = 0;
+                    tmp = tmp.substring(0,i) + "," + tmp.substring(i);
+                }
+            }
+            return "-" + tmp;
         }
-        return tmp;
+       
     }    
     public static Connection getConnection()
     {
@@ -69,10 +88,20 @@ public class Util {
             case Util.BH_TABLE -> {
                 return taoMaBH();
             }
-            case Util.SP_TABLE -> {
+            case Util.XUAT_NL -> {
+                return taoMaXuat();
             }
             case Util.DK_TABLE -> {
                 return taoMaDK();
+            }
+            case Util.CL_TABLE ->{// cham luong
+                return taoMaCL();
+            }
+            case Util.TRA_NL ->{// cham luong
+                return taoMaTra();
+            }
+            case Util.DD_TABLE -> {
+                return  taoMaDD();
             }
         }
         
@@ -93,7 +122,7 @@ public class Util {
         
         maxNumber++;
         
-        return String.format(name + "%04d", maxNumber);
+        return name + maxNumber;
     }
     private static String taoMaDK(){
         String name = "DK";
@@ -110,7 +139,95 @@ public class Util {
         
         maxNumber++;
         
-        return String.format(name + "%04d", maxNumber);
+        return name + maxNumber;
+    }
+    private static String taoMaCL(){
+        String name = "CL";
+        List<String> dsChamLuong = Data.getInstance().layDSMaCL();
+        int maxNumber = 0;
+        if (!dsChamLuong.isEmpty()){
+            for (String item: dsChamLuong){
+                int number = Integer.valueOf(item.substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return name + maxNumber;
+    }
+    private static String taoMaXuat(){
+        String name = "X";
+        List<String> dsChamLuong = Data.getInstance().layDSMaXuat();
+        int maxNumber = 0;
+        if (!dsChamLuong.isEmpty()){
+            for (String item: dsChamLuong){
+                int number = Integer.valueOf(item.substring(1));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return name + maxNumber;
+    }
+    private static String taoMaTra(){
+        String name = "T";
+        List<String> dsChamLuong = Data.getInstance().layDSMaTra();
+        int maxNumber = 0;
+        if (!dsChamLuong.isEmpty()){
+            for (String item: dsChamLuong){
+                int number = Integer.valueOf(item.substring(1));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return name + maxNumber;
+    }
+    private static String taoMaDD(){
+        String name = "DD";
+        List<String> dsDiaDiem = Data.getInstance().layDSMaDD();
+        int maxNumber = 0;
+        if (!dsDiaDiem.isEmpty()){
+            for (String item: dsDiaDiem){
+                int number = Integer.valueOf(item.substring(2));
+                if (number > maxNumber){
+                    maxNumber = number;
+                }
+            }
+        }
+        
+        maxNumber++;
+        
+        return name + maxNumber;
+    }
+    public static int soNGayTrongThang(int thang, int nam){
+        switch(thang){
+            case 1,3,5,7,8,10,12 ->{
+                return 31;
+            }
+            case 4,6,9,11 -> {
+                return 30;
+            }
+            case 2 -> {
+                if ((nam % 4 == 0 && nam % 100 != 0) || (nam % 400 == 0)) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            }
+            
+        }
+        
+        return -1;
     }
     
     public static String hashing(String originalPassword)

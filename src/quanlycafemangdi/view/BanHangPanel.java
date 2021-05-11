@@ -863,27 +863,43 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             dsBanHangTrongCLV = data.layDSBanHangTheoCa(clv);
             dsDangKiTrongCLV = data.layDSDangKiTheoCa(clv);
             
+            
+            
             for (BanHang bh : dsBanHangTrongCLV){
                 String[] p = bh.getTg().split(" ");
                 String gio = p[1].substring(0,8);
                 
-                String sp = "";
+                int dem = 0;
+                
                 HashMap<String, String> mHashMap = data.chiTietBanHang(bh.getMaBH());
                 if (!mHashMap.isEmpty()){
                     Set<String> keySet = mHashMap.keySet();
                     for (String key : keySet){
-                        sp += key + ": " + mHashMap.get(key) + ", ";
+                        if (dem == 0){
+                            defaultTableModelBH.addRow(new Object[]{
+                                gio, key + ": " + mHashMap.get(key), 
+                                Util.formatCurrency(bh.getTongTien())
+                            });
+                            dem ++;
+                            
+                        }else {
+                            defaultTableModelBH.addRow(new Object[]{
+                                "", key + ": " + mHashMap.get(key), ""});
+                        }
                     }
                 }
                 
-                defaultTableModelBH.addRow(new Object[]{gio, sp, Util.formatCurrency(bh.getTongTien())});
+                
             }
+            
+            
             
             for (DangKi dk : dsDangKiTrongCLV){
                 String[] p = dk.getThoiGian().split(" ");
                 String gio = p[1].substring(0,8);
                 
-                String nl = "";
+                int dem = 0;
+                
                 if (!dk.getChiTietDangKi().isEmpty()){
                     Set<String> keySet = dk.getChiTietDangKi().keySet();
 
@@ -893,11 +909,18 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                         String dv = tenVaDV.substring(0,tenVaDV.indexOf(" "));
                         String tenNL = tenVaDV.substring(tenVaDV.indexOf(" ") + 1);
 
-                        nl += tenNL + ": " + dk.getChiTietDangKi().get(key) + " " + dv + ", ";
+                        String nl = tenNL + ": " + dk.getChiTietDangKi().get(key) + " " + dv;
+                        
+                        if (dem == 0){
+                            dem ++;
+                             defaultTableModelDK.addRow(new Object[]{gio, nl});
+                        }else {
+                             defaultTableModelDK.addRow(new Object[]{"", nl});
+                        }
                     }
                 }
                 
-                defaultTableModelDK.addRow(new Object[]{gio, nl});
+               
             }
         }
     }

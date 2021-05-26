@@ -864,7 +864,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         nhapLaiMatKhauLb.setPreferredSize(new java.awt.Dimension(115, 17));
 
         hienMKCheckBox.setBackground(new java.awt.Color(255, 255, 255));
-        hienMKCheckBox.setText("Hiện thị mật khẩu");
+        hienMKCheckBox.setText("Hiển thị mật khẩu");
         hienMKCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hienMKCheckBoxActionPerformed(evt);

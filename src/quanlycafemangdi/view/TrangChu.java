@@ -1356,10 +1356,12 @@ public class TrangChu extends javax.swing.JFrame {
 
     private void trangChuClick_PnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trangChuClick_PnMouseClicked
         doiMauKhiClick(evt, trangChuClick_Pn, trangChuClick_Lbl, trangChu_Pn);
+        taoDuLieuTongQuanPanel();
     }//GEN-LAST:event_trangChuClick_PnMouseClicked
 
     private void trangChuClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trangChuClick_LblMouseClicked
         doiMauKhiClick(evt, trangChuClick_Pn, trangChuClick_Lbl, trangChu_Pn);
+        taoDuLieuTongQuanPanel();
     }//GEN-LAST:event_trangChuClick_LblMouseClicked
 
     private void quanLyKhoClick_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quanLyKhoClick_LblMouseClicked

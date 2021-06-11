@@ -36,6 +36,7 @@ public class DangNhap extends javax.swing.JFrame {
         matKhau_Lbl = new javax.swing.JLabel();
         matKhau_PwF = new javax.swing.JPasswordField();
         hienThiMatKhau_CB = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Đăng nhập");
@@ -101,6 +102,13 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Quên mật khẩu?");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -114,7 +122,10 @@ public class DangNhap extends javax.swing.JFrame {
                         .addComponent(tenDangNhap_Lbl)
                         .addComponent(tenDangNhap_TF)
                         .addComponent(matKhau_PwF)
-                        .addComponent(hienThiMatKhau_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(hienThiMatKhau_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1))
                         .addComponent(dangNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
@@ -132,7 +143,9 @@ public class DangNhap extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(matKhau_PwF, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(hienThiMatKhau_CB)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hienThiMatKhau_CB)
+                    .addComponent(jLabel1))
                 .addGap(5, 5, 5)
                 .addComponent(dangNhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(56, Short.MAX_VALUE))
@@ -193,6 +206,11 @@ public class DangNhap extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_matKhau_PwFActionPerformed
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        QuenMatKhauDialog quenMatKhauDialog = new QuenMatKhauDialog(this, rootPaneCheckingEnabled);
+        quenMatKhauDialog.setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +250,7 @@ public class DangNhap extends javax.swing.JFrame {
     private javax.swing.JButton dangNhap_Btn;
     private javax.swing.JLabel dangNhap_Lbl;
     private javax.swing.JCheckBox hienThiMatKhau_CB;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel matKhau_Lbl;
     private javax.swing.JPasswordField matKhau_PwF;

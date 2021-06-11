@@ -15,9 +15,9 @@ import javax.swing.JTable;
  */
 public class Design 
 {
-    public static void thietKeBang(JTable table, String kichThuoChu)
+    public static void thietKeBang(JTable table, String kichThuocChu)
     {
-        if (kichThuoChu.equals("Lon"))
+        if (kichThuocChu.equals("Lon"))
         {
             table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 14));          
         }
@@ -28,6 +28,6 @@ public class Design
         table.getTableHeader().setOpaque(false);
         table.getTableHeader().setBackground(new Color(32,136,203));
         table.getTableHeader().setForeground(new Color(255,255,255));
-        table.setRowHeight(25);          
+        table.setRowHeight(25);  
     }    
 }

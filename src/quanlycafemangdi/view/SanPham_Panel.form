@@ -63,7 +63,6 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="xoaSanPham_Btn" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="luuY_Lbl" alignment="0" min="-2" pref="322" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="timKiem_Lbl" pref="111" max="32767" attributes="0"/>
@@ -88,8 +87,9 @@
                               </Group>
                           </Group>
                       </Group>
+                      <Component id="luuY_Lbl" min="-2" pref="322" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
               <Component id="danhSachSanPham_Lbl" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">

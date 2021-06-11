@@ -8,15 +8,16 @@ package quanlycafemangdi.view;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import quanlycafemangdi.model.Mail;
 
 
 public class Test {
 
-   public static void main(String [] args) { 
-       String test = "abc";
-       byte[] salt = getSalt();
-       test = hashing(test, salt);
-       System.out.println(test);
+   public static void main(String[] args) { 
+//       String test = "abc";
+//       byte[] salt = getSalt();
+//       test = hashing(test, salt);
+//       System.out.println(test);
    }
    
     public static byte[] getSalt()

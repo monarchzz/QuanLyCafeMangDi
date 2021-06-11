@@ -100,6 +100,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         tangDan_Btn = new javax.swing.JButton();
         giamDan_Btn = new javax.swing.JButton();
         danhSachNguyenLieu_Lbl = new javax.swing.JLabel();
+        xemLichSuChinhSua_Lbl = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         chiTietNhapXuat_Lbl = new javax.swing.JLabel();
         chiTietNhapXuat_LPn = new javax.swing.JLayeredPane();
@@ -204,6 +205,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         });
 
         nguyenLieu_Table.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nguyenLieu_Table.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nguyenLieu_Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -220,7 +222,6 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                 return canEdit [columnIndex];
             }
         });
-        nguyenLieu_Table.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nguyenLieu_Table.setIntercellSpacing(new java.awt.Dimension(0, 1));
         nguyenLieu_Table.setRowHeight(25);
         nguyenLieu_Table.setSelectionBackground(new java.awt.Color(0, 204, 255));
@@ -276,6 +277,15 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         danhSachNguyenLieu_Lbl.setText("Danh sách nguyên liệu");
         danhSachNguyenLieu_Lbl.setOpaque(true);
 
+        xemLichSuChinhSua_Lbl.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        xemLichSuChinhSua_Lbl.setText("Xem lịch sử chỉnh sửa");
+        xemLichSuChinhSua_Lbl.setToolTipText("");
+        xemLichSuChinhSua_Lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                xemLichSuChinhSua_LblMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -303,13 +313,16 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(timKiem_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(refresh_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(goiYChinhSuaDuLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(247, 247, 247)
                         .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(themNguyenLieu_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(goiYChinhSuaDuLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(xemLichSuChinhSua_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +350,9 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(goiYChinhSuaDuLieu_Lbl)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(goiYChinhSuaDuLieu_Lbl)
+                    .addComponent(xemLichSuChinhSua_Lbl))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1166,6 +1181,11 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         }
     }//GEN-LAST:event_chiTietNhap_TableMouseClicked
 
+    private void xemLichSuChinhSua_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xemLichSuChinhSua_LblMouseClicked
+        LichSuChinhSuaNguyenLieu_Frame lichSuChinhSuaNguyenLieuFrm = new LichSuChinhSuaNguyenLieu_Frame("NguyenLieu");
+        lichSuChinhSuaNguyenLieuFrm.setVisible(true);
+    }//GEN-LAST:event_xemLichSuChinhSua_LblMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane chiTietNhapXuat_LPn;
@@ -1215,6 +1235,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     private javax.swing.JTextField timKiem_TF;
     private javax.swing.JLabel tongSoTienNhap_Lbl;
     private javax.swing.JLabel tongSoTien_Lbl;
+    private javax.swing.JLabel xemLichSuChinhSua_Lbl;
     // End of variables declaration//GEN-END:variables
 
     // ===================================== CHUNG ====================================================

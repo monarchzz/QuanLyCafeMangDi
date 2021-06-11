@@ -57,7 +57,11 @@
                           <Component id="tenDangNhap_Lbl" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="tenDangNhap_TF" alignment="0" max="32767" attributes="0"/>
                           <Component id="matKhau_PwF" alignment="0" max="32767" attributes="0"/>
-                          <Component id="hienThiMatKhau_CB" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="hienThiMatKhau_CB" min="-2" pref="134" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="dangNhap_Btn" alignment="0" min="-2" pref="255" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -79,7 +83,10 @@
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Component id="matKhau_PwF" min="-2" pref="27" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="hienThiMatKhau_CB" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="hienThiMatKhau_CB" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                   <Component id="dangNhap_Btn" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace pref="56" max="32767" attributes="0"/>
@@ -160,6 +167,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hienThiMatKhau_CBActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Qu&#xea;n m&#x1ead;t kh&#x1ea9;u?"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

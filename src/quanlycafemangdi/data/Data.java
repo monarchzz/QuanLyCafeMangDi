@@ -55,7 +55,7 @@ public class Data {
     public boolean kiemTraDangNhap(String tenDangNhap, String matKhau)
     {
         matKhau = Util.hashing(matKhau);
-        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'";
+        String query = "select * from NhanVien where tenTK = '" + tenDangNhap + "' and matKhau = '" + matKhau + "'" + " and trangThai = 1";
         try
         {
             PreparedStatement ps = connection.prepareStatement(query);
@@ -118,7 +118,7 @@ public class Data {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 String trangThai = rs.getString("trangThai");
-                if (trangThai.equals("1")){
+//                if (trangThai.equals("1")){
                     String tenTk = rs.getString("tenTK");
                     String chucVu = rs.getString("chucVu");
                     String cmnd = rs.getString("cmnd");
@@ -127,7 +127,7 @@ public class Data {
                     String tenNV = rs.getString("tenNV");
                     String matKhau = rs.getString("matKhau");
                     list.add(new NhanVien(tenTk,chucVu,cmnd,sdt,gioiTinh,tenNV,matKhau));
-                }
+//                }
                 
             }
         } catch (SQLException e) {
@@ -690,14 +690,15 @@ public class Data {
     }
     
     // sua thong tin nhan vien
-    public void suaThongTinNhanVien(NhanVien thongTinNVMoi){
+    public void suaThongTinNhanVien(NhanVien thongTinNVMoi, int trangThai){
         String query = "update NhanVien set "
                 + "matKhau = '" + Util.hashing(thongTinNVMoi.getMatKhau()) + "', "
                 + "chucVu = N'" + thongTinNVMoi.getChucVu() + "', "
                 + "cmnd = '" + thongTinNVMoi.getSoCM() + "', "
                 + "sdt = '" + thongTinNVMoi.getSdt() + "', "
                 + "gioiTinh = N'" + thongTinNVMoi.getGioiTinh() + "', "
-                + "tenNV = N'" + thongTinNVMoi.getTenNhanVien() + "' "
+                + "tenNV = N'" + thongTinNVMoi.getTenNhanVien() + "', "
+                + "trangThai = " + trangThai 
                 + "where tenTK = '" + thongTinNVMoi.getTenTk() + "'";
         
         try {
@@ -1406,4 +1407,30 @@ public class Data {
         
         return mArrayList;
     }
+    
+    public boolean ktTrangThaiNV(String tenTK){
+        String query = "select trangThai from NhanVien where tenTK = '" + tenTK + "'";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+              String trangThai = rs.getString("trangThai");
+              if ("0".equals(trangThai)){
+                  return false;
+              }
+              if ("1".equals(trangThai)){
+                  return true;
+              }
+                
+            }
+            
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return false;
+        
+    }
+
 }

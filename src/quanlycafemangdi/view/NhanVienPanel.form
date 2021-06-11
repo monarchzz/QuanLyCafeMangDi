@@ -329,7 +329,7 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="matKhauPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="chucNangPanel" min="-2" pref="79" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -539,9 +539,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="xoaNhanVienBtn" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace pref="75" max="32767" attributes="0"/>
-                          <Component id="suaThongTinBtn" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="xoaNhanVienBtn" min="-2" pref="173" max="-2" attributes="0"/>
+                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <Component id="suaThongTinBtn" min="-2" pref="173" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -571,7 +571,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="X&#xf3;a nh&#xe2;n vi&#xea;n"/>
+                    <Property name="text" type="java.lang.String" value="Cho ngh&#x1ec9; vi&#x1ec7;c"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="xoaNhanVienBtnActionPerformed"/>

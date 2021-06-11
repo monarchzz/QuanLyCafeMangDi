@@ -773,7 +773,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         xoaNhanVienBtn.setBackground(new java.awt.Color(32, 136, 203));
         xoaNhanVienBtn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         xoaNhanVienBtn.setForeground(new java.awt.Color(255, 255, 255));
-        xoaNhanVienBtn.setText("Xóa nhân viên");
+        xoaNhanVienBtn.setText("Cho nghỉ việc");
         xoaNhanVienBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 xoaNhanVienBtnActionPerformed(evt);
@@ -796,9 +796,9 @@ public class NhanVienPanel extends javax.swing.JPanel{
             suaNhanVienPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(suaNhanVienPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(xoaNhanVienBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(suaThongTinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xoaNhanVienBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(suaThongTinBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         suaNhanVienPanelLayout.setVerticalGroup(
@@ -1025,7 +1025,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
                     .addComponent(tenDangNhapLb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(matKhauPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(chucNangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1262,7 +1262,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
     private void xoaNhanVienBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xoaNhanVienBtnActionPerformed
         // TODO add your handling code here:
         int mode = JOptionPane.showConfirmDialog(this,
-            "Bạn có muốn xóa tài khoản này", "Xóa tài koản",
+            "Bạn có muốn cho nghỉ việc nhân viên này", "Đúng",
             JOptionPane.YES_NO_OPTION);
         int index = bangNhanVien.getSelectedRow();
         // neu khong chon nhan vien
@@ -1280,7 +1280,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
 
         if(mode == 0){
             data.xoaNhanVien(nv);
-            JOptionPane.showMessageDialog(this, "Xóa nhân viên thành công","Thông báo",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Thành công","Thông báo",JOptionPane.INFORMATION_MESSAGE);
             clearTF();
             updateDataTable();
         }

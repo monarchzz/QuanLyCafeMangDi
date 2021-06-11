@@ -118,7 +118,7 @@ public class Data {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 String trangThai = rs.getString("trangThai");
-//                if (trangThai.equals("1")){
+                if (trangThai.equals("1")){
                     String tenTk = rs.getString("tenTK");
                     String chucVu = rs.getString("chucVu");
                     String cmnd = rs.getString("cmnd");
@@ -127,7 +127,7 @@ public class Data {
                     String tenNV = rs.getString("tenNV");
                     String matKhau = rs.getString("matKhau");
                     list.add(new NhanVien(tenTk,chucVu,cmnd,sdt,gioiTinh,tenNV,matKhau));
-//                }
+                }
                 
             }
         } catch (SQLException e) {
@@ -1431,6 +1431,33 @@ public class Data {
         
         return false;
         
+    }
+    public List<NhanVien> layDSNhanVienDayDu(){
+        ArrayList<NhanVien> list = new ArrayList<>();
+        
+        String query = "select * from NhanVien";
+            try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String trangThai = rs.getString("trangThai");
+//                if (trangThai.equals("1")){
+                    String tenTk = rs.getString("tenTK");
+                    String chucVu = rs.getString("chucVu");
+                    String cmnd = rs.getString("cmnd");
+                    String sdt = rs.getString("sdt");
+                    String gioiTinh = rs.getString("gioiTinh");
+                    String tenNV = rs.getString("tenNV");
+                    String matKhau = rs.getString("matKhau");
+                    list.add(new NhanVien(tenTk,chucVu,cmnd,sdt,gioiTinh,tenNV,matKhau));
+//                }
+                
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        return list;
     }
 
 }

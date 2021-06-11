@@ -82,7 +82,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
     }
     
     private void khoiTaoBang(){
-        dsNhanVien = Data.getInstance().layDSNhanVien();
+        dsNhanVien = Data.getInstance().layDSNhanVienDayDu();
         
         bangNhanVien.setModel(defaultTableModel);
         bangNhanVien.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -193,7 +193,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         cmndTF.setEnabled(flag);
         sdtTF.setEnabled(flag);
         chucVuCB.setEnabled(flag);
-        tenDangNhapTF.setEnabled(flag);
+        tenDangNhapTF.setEnabled(false);
         matKhauPanel.setVisible(flag);
         trangThaiCB.setEnabled(flag);
     }
@@ -1098,8 +1098,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                    .addComponent(jScrollPane1)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

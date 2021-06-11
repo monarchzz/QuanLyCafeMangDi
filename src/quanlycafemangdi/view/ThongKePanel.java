@@ -101,7 +101,7 @@ public class ThongKePanel extends javax.swing.JPanel {
         thangHienTai = DateTimeFormatter.ofPattern("MM").format(LocalDateTime.now());
         namHienTai = DateTimeFormatter.ofPattern("yyyy").format(LocalDateTime.now());
         dsLuong = data.layDSLuong();
-        dsNhanVien = data.layDSNhanVien();
+        dsNhanVien = data.layDSNhanVienDayDu();
         dsCaLamViec = data.layDSCaLamViec();
         dsBanHang = data.layDSBanHang();
         dsThanNamCLVTrongNam = data.layDSThangNamCLV();

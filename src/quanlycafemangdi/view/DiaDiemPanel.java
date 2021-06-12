@@ -706,9 +706,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
         jPanel6.setBackground(new java.awt.Color(114, 102, 186));
 
+        jLabel3.setText("Quản lý địa điểm");
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Quản lý địa điểm");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -996,6 +996,11 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         jCB_DiaDiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jCB_TenNV1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jCB_TenNV1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCB_TenNV1ActionPerformed(evt);
+            }
+        });
 
         jCB_TenNV2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_TenNV2.addActionListener(new java.awt.event.ActionListener() {
@@ -1387,6 +1392,10 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             jCB_TenNV2.setSelectedItem("");
         }
     }//GEN-LAST:event_jCB_TenNV2ActionPerformed
+
+    private void jCB_TenNV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCB_TenNV1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCB_TenNV1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

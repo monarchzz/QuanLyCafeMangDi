@@ -100,7 +100,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         tangDan_Btn = new javax.swing.JButton();
         giamDan_Btn = new javax.swing.JButton();
         danhSachNguyenLieu_Lbl = new javax.swing.JLabel();
-        xemLichSuChinhSua_Lbl = new javax.swing.JLabel();
+        goiYChinhSuaDuLieu_Lbl1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         chiTietNhapXuat_Lbl = new javax.swing.JLabel();
         chiTietNhapXuat_LPn = new javax.swing.JLayeredPane();
@@ -277,12 +277,11 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         danhSachNguyenLieu_Lbl.setText("Danh sách nguyên liệu");
         danhSachNguyenLieu_Lbl.setOpaque(true);
 
-        xemLichSuChinhSua_Lbl.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
-        xemLichSuChinhSua_Lbl.setText("Xem lịch sử chỉnh sửa");
-        xemLichSuChinhSua_Lbl.setToolTipText("");
-        xemLichSuChinhSua_Lbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        goiYChinhSuaDuLieu_Lbl1.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        goiYChinhSuaDuLieu_Lbl1.setText("Xem lịch sử chỉnh sửa");
+        goiYChinhSuaDuLieu_Lbl1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                xemLichSuChinhSua_LblMouseClicked(evt);
+                goiYChinhSuaDuLieu_Lbl1MouseClicked(evt);
             }
         });
 
@@ -322,7 +321,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(goiYChinhSuaDuLieu_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(xemLichSuChinhSua_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(goiYChinhSuaDuLieu_Lbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,7 +351,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(goiYChinhSuaDuLieu_Lbl)
-                    .addComponent(xemLichSuChinhSua_Lbl))
+                    .addComponent(goiYChinhSuaDuLieu_Lbl1))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nhap_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1181,10 +1180,10 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
         }
     }//GEN-LAST:event_chiTietNhap_TableMouseClicked
 
-    private void xemLichSuChinhSua_LblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xemLichSuChinhSua_LblMouseClicked
+    private void goiYChinhSuaDuLieu_Lbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_goiYChinhSuaDuLieu_Lbl1MouseClicked
         LichSuChinhSuaNguyenLieu_Frame lichSuChinhSuaNguyenLieuFrm = new LichSuChinhSuaNguyenLieu_Frame("NguyenLieu");
         lichSuChinhSuaNguyenLieuFrm.setVisible(true);
-    }//GEN-LAST:event_xemLichSuChinhSua_LblMouseClicked
+    }//GEN-LAST:event_goiYChinhSuaDuLieu_Lbl1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1203,6 +1202,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     private javax.swing.JButton giamDanChiTietXuat_Btn;
     private javax.swing.JButton giamDan_Btn;
     private javax.swing.JLabel goiYChinhSuaDuLieu_Lbl;
+    private javax.swing.JLabel goiYChinhSuaDuLieu_Lbl1;
     private javax.swing.JLabel goiY_Lbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -1235,7 +1235,6 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
     private javax.swing.JTextField timKiem_TF;
     private javax.swing.JLabel tongSoTienNhap_Lbl;
     private javax.swing.JLabel tongSoTien_Lbl;
-    private javax.swing.JLabel xemLichSuChinhSua_Lbl;
     // End of variables declaration//GEN-END:variables
 
     // ===================================== CHUNG ====================================================

@@ -421,6 +421,11 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
                 ps.setInt(3, nhapXuat.getChiTietNhapXuat().get(key));
                 ps.executeUpdate();
                 
+                String query3 = "delete from LichSuChinhSuaNguyenLieu"
+                              + " where thoiGian = (select max(thoiGian) from LichSuChinhSuaNguyenLieu)";
+                ps = connect.prepareStatement(query3);
+                ps.executeUpdate();
+                
                 // Update so luong trong chuong trinh
                 int soLuong = nhapXuat.getChiTietNhapXuat().get(key);
                 for (int i = 0; i < danhSachNguyenLieu.size(); i++)
@@ -436,7 +441,8 @@ public class NguyenLieu_NhapFrame extends javax.swing.JFrame {
             connect.close();
         }catch (SQLException ex)
         {
-            System.out.println("Nhap nguyen lieu SQL that bai");
+            ex.printStackTrace();
+            //System.out.println("Nhap nguyen lieu SQL that bai");
         }
     }
     

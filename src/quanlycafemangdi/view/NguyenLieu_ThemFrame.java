@@ -357,7 +357,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
     public String layMaDonVi(String donViTinh)
     {
         Connection connect = Util.getConnection();
-        String query = "select * from DonViTinh where tenDV = '" + donViTinh + "'";
+        String query = "select * from DonViTinh where tenDV = N'" + donViTinh + "'";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);

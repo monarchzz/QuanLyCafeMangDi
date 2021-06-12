@@ -103,7 +103,7 @@
                   <Group type="102" attributes="0">
                       <Component id="goiYChinhSuaDuLieu_Lbl" min="-2" pref="422" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="xemLichSuChinhSua_Lbl" min="-2" pref="171" max="-2" attributes="0"/>
+                      <Component id="goiYChinhSuaDuLieu_Lbl1" min="-2" pref="168" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -140,7 +140,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="goiYChinhSuaDuLieu_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="xemLichSuChinhSua_Lbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="goiYChinhSuaDuLieu_Lbl1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -436,16 +436,15 @@
                 <Property name="opaque" type="boolean" value="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="xemLichSuChinhSua_Lbl">
+            <Component class="javax.swing.JLabel" name="goiYChinhSuaDuLieu_Lbl1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="14" style="3"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Xem l&#x1ecb;ch s&#x1eed; ch&#x1ec9;nh s&#x1eed;a"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="xemLichSuChinhSua_LblMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="goiYChinhSuaDuLieu_Lbl1MouseClicked"/>
               </Events>
             </Component>
           </SubComponents>

@@ -6,12 +6,13 @@ create table LichSuChinhSuaNguyenLieu
 (
 	thoiGian datetime,
 	maNL varchar(10),
-	tenNL varchar(200),
+	tenNL nvarchar(200),
 	maDV varchar(10) foreign key references DonViTinh(maDV),
 	gia money,
+	soLuong int,
 	nguoiThucHien nvarchar(100),
-	ghiChu nvarchar(50),
-	primary key (thoiGian, maNL, tenNL, maDV, gia)
+	ghiChu nvarchar(100),
+	primary key (thoiGian, maNL, tenNL, maDV, gia, soLuong)
 )
 go
 
@@ -22,12 +23,12 @@ create trigger UTG_UpdateNguyenLieu on NguyenLieu
 for update
 as 
 begin
-	insert into LichSuChinhSuaNguyenLieu(thoiGian, maNL, tenNL, maDV, gia, ghiChu)
-	select getdate(), deleted.maNL, deleted.tenNL, deleted.maDV, deleted.gia, N'Trước khi chỉnh sửa'
+	insert into LichSuChinhSuaNguyenLieu(thoiGian, maNL, tenNL, maDV, gia, soLuong, ghiChu)
+	select getdate(), deleted.maNL, deleted.tenNL, deleted.maDV, deleted.gia, deleted.soLuong, N'Trước khi chỉnh sửa'
 	from deleted
 
-	insert into LichSuChinhSuaNguyenLieu(thoiGian, maNL, tenNL, maDV, gia, ghiChu)
-	select getdate(), inserted.maNL, inserted.tenNL, inserted.maDV, inserted.gia, N'Sau khi chỉnh sửa'
+	insert into LichSuChinhSuaNguyenLieu(thoiGian, maNL, tenNL, maDV, gia, soLuong, ghiChu)
+	select getdate(), inserted.maNL, inserted.tenNL, inserted.maDV, inserted.gia, inserted.soLuong, N'Sau khi chỉnh sửa'
 	from inserted
 end
 	

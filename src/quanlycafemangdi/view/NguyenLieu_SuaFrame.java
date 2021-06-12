@@ -355,7 +355,7 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
     public String layMaDonVi(String donViTinh)
     {
         Connection connect = Util.getConnection();
-        String query = "select * from DonViTinh where tenDV = '" + donViTinh + "'";
+        String query = "select * from DonViTinh where tenDV = N'" + donViTinh + "'";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);
@@ -441,13 +441,12 @@ public class NguyenLieu_SuaFrame extends javax.swing.JFrame {
             String query2 = "update LichSuChinhSuaNguyenLieu set nguoiThucHien = N'" + ThongTinDangNhap.getTenDangNhap() + " - " 
                 + ThongTinDangNhap.getTenNguoiDung() + "' where thoiGian = (select max(thoiGian) from LichSuChinhSuaNguyenLieu)";
             ps = connect.prepareStatement(query2);
-            ps.executeUpdate();
+            ps.executeUpdate();            
             ps.close();
             connect.close();
         }catch (SQLException ex)
         {
-            //ex.printStackTrace();
-            System.out.println("Khong co thay doi nao duoc thuc hien");
+            ex.printStackTrace();
         }
     }
 

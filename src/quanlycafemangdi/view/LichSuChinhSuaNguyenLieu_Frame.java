@@ -209,7 +209,7 @@ public class LichSuChinhSuaNguyenLieu_Frame extends javax.swing.JFrame {
             dtmLichSuChinhSuaNguyenLieu.addRow(new Object[]
             {
                 lichSuChinhSuaNguyenLieu.dinhDangThoiGianNgayThangNam(thoiGian), lichSuChinhSuaNguyenLieu.getMaNguyenLieu(),
-                lichSuChinhSuaNguyenLieu.getTenNguyenLieu(), lichSuChinhSuaNguyenLieu.getDonViTinh(), lichSuChinhSuaNguyenLieu.getGia(),
+                lichSuChinhSuaNguyenLieu.getTenNguyenLieu(), lichSuChinhSuaNguyenLieu.getDonViTinh(), Util.formatCurrency(lichSuChinhSuaNguyenLieu.getGia()),
                 lichSuChinhSuaNguyenLieu.getNguoiThucHien(), lichSuChinhSuaNguyenLieu.getGhiChu()
             });                
         }

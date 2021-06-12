@@ -19,9 +19,9 @@ import javax.mail.internet.MimeMessage;
  *
  * @author admin
  */
-public class Mail 
+public class Email 
 {
-    public static void guiEmail(String nguoiNhan, String nguoiGui, String matKhau, String mailServer, 
+    public static boolean guiEmail(String nguoiNhan, String nguoiGui, String matKhau, String mailServer, 
             String noiDung)
     {
         try
@@ -48,11 +48,13 @@ public class Mail
             Message message = thietLapNoiDungEmail(session, nguoiGui, nguoiNhan, noiDung);
 
             Transport.send(message);
-            System.out.println("Gui email thanh cong");            
+            System.out.println("Gui email thanh cong");    
+            return true;
         }catch (MessagingException ex)
         {
             ex.printStackTrace();
         }
+        return false;
     }
     
     public static Message thietLapNoiDungEmail(Session session, String nguoiGui, String nguoiNhan, 

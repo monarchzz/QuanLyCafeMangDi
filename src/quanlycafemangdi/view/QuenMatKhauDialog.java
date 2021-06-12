@@ -8,7 +8,9 @@ package quanlycafemangdi.view;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import quanlycafemangdi.Util;
-import quanlycafemangdi.model.Mail;
+import java.util.Date;
+import quanlycafemangdi.model.Email;
+import quanlycafemangdi.speedsms.SendMessage;
 /**
  *
  * @author admin
@@ -42,25 +44,10 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
         CMND_Lbl = new javax.swing.JLabel();
         taiKhoan_TF = new javax.swing.JTextField();
         CMND_TF = new javax.swing.JTextField();
-        email_Lbl = new javax.swing.JLabel();
-        email_TF = new javax.swing.JTextField();
-        matKhau_Lbl = new javax.swing.JLabel();
         guiYeuCau_Btn = new javax.swing.JButton();
         huy_Btn = new javax.swing.JButton();
-        hienThiMatKhau_CB = new javax.swing.JCheckBox();
-        matKhau_PwF = new javax.swing.JPasswordField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        loaiDichVuMail_Cbx = new javax.swing.JComboBox<>();
+        SDT_Lbl = new javax.swing.JLabel();
+        SDT_TF = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Khôi phục mật khẩu");
@@ -74,16 +61,6 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
         taiKhoan_Lbl.setText("Tài khoản:");
 
         CMND_Lbl.setText("CMND/CCCD:");
-
-        email_Lbl.setText("Email:");
-
-        email_TF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                email_TFActionPerformed(evt);
-            }
-        });
-
-        matKhau_Lbl.setText("Mật khẩu:");
 
         guiYeuCau_Btn.setBackground(new java.awt.Color(0, 102, 255));
         guiYeuCau_Btn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -105,42 +82,7 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
             }
         });
 
-        hienThiMatKhau_CB.setBackground(new java.awt.Color(255, 255, 255));
-        hienThiMatKhau_CB.setText("Hiển thị mật khẩu");
-        hienThiMatKhau_CB.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hienThiMatKhau_CBActionPerformed(evt);
-            }
-        });
-
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Hướng dẫn");
-
-        jLabel2.setText("1. Tài khoản và CMND/CCCD: là tài khoản cần khôi phục  và CMND/CCCD ");
-
-        jLabel3.setText("       được đăng kí với tài khoản");
-
-        jLabel4.setText("2. Email và mật khẩu: là tài khoản email cá nhân. Chương trình sẽ");
-
-        jLabel5.setText("        dùng email này để gửi yêu cầu cho quản lý");
-
-        jLabel6.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel6.setText("*Email phải bật \"Allow less secure apps\" mới có thể sử dụng tính năng này:");
-
-        jLabel8.setText("       a. Đối với Gmail: vào https://myaccount.google.com/security ");
-
-        jLabel9.setText("           -> Security và mở lên");
-
-        jLabel10.setText("       b. Đối với Yahoo: login vào mail -> Account Info -> Account Security ");
-
-        jLabel12.setText("           -> Generate app passwords: Sử dụng password được tạo ra");
-
-        loaiDichVuMail_Cbx.setBackground(new java.awt.Color(254, 254, 254));
-        loaiDichVuMail_Cbx.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gmail", "Yahoo" }));
+        SDT_Lbl.setText("SĐT:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,45 +94,22 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(email_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(taiKhoan_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(CMND_Lbl, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(hienThiMatKhau_CB, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(guiYeuCau_Btn, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(taiKhoan_TF)
                                 .addComponent(CMND_TF)
-                                .addComponent(email_TF)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(guiYeuCau_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(khoiPhucMatKhau_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(matKhau_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SDT_Lbl, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(matKhau_PwF)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(loaiDichVuMail_Cbx, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(SDT_TF)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,43 +125,13 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
                     .addComponent(CMND_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(email_Lbl)
-                    .addComponent(email_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
-                .addComponent(loaiDichVuMail_Cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(matKhau_Lbl)
-                    .addComponent(matKhau_PwF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hienThiMatKhau_CB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(SDT_Lbl)
+                    .addComponent(SDT_TF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(guiYeuCau_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(huy_Btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,21 +147,6 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void email_TFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_email_TFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_email_TFActionPerformed
-
-    private void hienThiMatKhau_CBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hienThiMatKhau_CBActionPerformed
-        if (hienThiMatKhau_CB.isSelected())
-        {
-            matKhau_PwF.setEchoChar((char)0);
-        }
-        else
-        {
-            matKhau_PwF.setEchoChar('●');
-        }
-    }//GEN-LAST:event_hienThiMatKhau_CBActionPerformed
 
     private void guiYeuCau_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guiYeuCau_BtnActionPerformed
         if (kiemTraLoi() == false)
@@ -330,39 +204,24 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CMND_Lbl;
     private javax.swing.JTextField CMND_TF;
-    private javax.swing.JLabel email_Lbl;
-    private javax.swing.JTextField email_TF;
+    private javax.swing.JLabel SDT_Lbl;
+    private javax.swing.JTextField SDT_TF;
     private javax.swing.JButton guiYeuCau_Btn;
-    private javax.swing.JCheckBox hienThiMatKhau_CB;
     private javax.swing.JButton huy_Btn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel khoiPhucMatKhau_Lbl;
-    private javax.swing.JComboBox<String> loaiDichVuMail_Cbx;
-    private javax.swing.JLabel matKhau_Lbl;
-    private javax.swing.JPasswordField matKhau_PwF;
     private javax.swing.JLabel taiKhoan_Lbl;
     private javax.swing.JTextField taiKhoan_TF;
     // End of variables declaration//GEN-END:variables
 
+// ========================== SMS =================================
     public boolean kiemTraLoi()
     {   
         loi = "";
 
         String taiKhoan = taiKhoan_TF.getText();
         String CMND = CMND_TF.getText();
-        String email = email_TF.getText();
-        String matKhau = matKhau_PwF.getText();
+        String SDT = SDT_TF.getText();
 
         if (taiKhoan.equals(""))
         {
@@ -374,16 +233,11 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
             loi = loi + "CMND/CCCD không được để trống\n";
         }
         
-        if (email.equals(""))
+        if (SDT.equals(""))
         {
-            loi = loi + "Email không được để trống\n";
+            loi = loi + "SĐT không được để trống\n";
         }
-        
-        if (matKhau.equals(""))
-        {
-            loi = loi + "Mật khẩu không được để trống\n";
-        }
-        
+
         if (loi.equals("") == false)
         {
             hienThiLoi(loi);
@@ -400,17 +254,17 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(rootPane, loi, "Lỗi", JOptionPane.ERROR_MESSAGE);
     }     
     
-    public boolean kiemTraTaiKhoanVaCMND(String taiKhoan, String CMND)
+    public boolean kiemTraThongTin(String taiKhoan, String CMND, String SDT)
     {
         Connection connect = Util.getConnection();
-        String query = "select * from NhanVien where tenTK = '" + taiKhoan + "' and cmnd = '" + CMND + "'";
+        String query = "select * from NhanVien where tenTK = '" + taiKhoan + "' and cmnd = '" + CMND + "'"
+                     + " and sdt = '" + SDT + "'";
         try
         {
             PreparedStatement ps = connect.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             if (rs.next())
             {
-                tenNhanVien = rs.getString("tenNV");
                 return true;
             }
         }catch (SQLException ex)
@@ -424,37 +278,163 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
     {
         String taiKhoan = taiKhoan_TF.getText();
         String CMND = CMND_TF.getText();
-        String email = email_TF.getText();
-        String matKhau = matKhau_PwF.getText();
+        String SDT = SDT_TF.getText();
         
-        if (kiemTraTaiKhoanVaCMND(taiKhoan, CMND) == false)
+        if (kiemTraThongTin(taiKhoan, CMND, SDT) == false)
         {
-            JOptionPane.showMessageDialog(rootPane, "Tài khoản hoặc CMND/CCCD không chính xác\n", "Lỗi!",
-                    JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Thông tin không chính xác. Vui lòng kiểm tra lại\n",
+                    "Lỗi!", JOptionPane.ERROR_MESSAGE);
             return;
         }        
-
-        String noiDung = "Nhân viên: " + tenNhanVien + "\n"
-                       + "Tài khoản: " + taiKhoan + "\n"
-                       + "Số CMND/CCCD: " + CMND;
-        if (loaiDichVuMail_Cbx.getSelectedIndex() == 0)
+        
+        String matKhauMoi = taoMatKhauMoi();
+        
+        Connection connect = Util.getConnection();
+        String query = "update NhanVien set matKhau = '" + Util.hashing(matKhauMoi) + "'"
+                     + " where tenTK = '" + taiKhoan + "' and cmnd = '" + CMND + "'"
+                     + " and sdt = '" + SDT + "'";
+        try
         {
-            Mail.guiEmail("php22800@gmail.com", email, matKhau, "smtp.gmail.com", noiDung);
-        }
-        else if (loaiDichVuMail_Cbx.getSelectedIndex() == 1)
+            PreparedStatement ps = connect.prepareStatement(query);
+            ps.executeUpdate();
+            SendMessage.sendMessage(SendMessage.defaultToken, SDT, matKhauMoi, SendMessage.defaultSenderID);
+        }catch (SQLException ex)
         {
-            Mail.guiEmail("php22800@gmail.com", email, matKhau, "smtp.mail.yahoo.com", noiDung);
+            ex.printStackTrace();
         }
+            
         JOptionPane.showMessageDialog(rootPane, "Gửi yêu cầu khôi phục mật khẩu thành công");
         clear();
+    }
+    
+    public String taoMatKhauMoi()
+    {
+        Date date = new Date();
+        long timeMilli = date.getTime();
+        return (timeMilli % 100000000)  + "";    
     }
     
     public void clear()
     {
         taiKhoan_TF.setText("");
         CMND_TF.setText("");
-        email_TF.setText("");
-        matKhau_PwF.setText("");  
-        hienThiMatKhau_CB.setSelected(false);
+        SDT_TF.setText("");
     }
+    
+ // ====================== Email (sua bien SDT_TF cua frame thanh email_TF de su dung) =================
+//    public boolean kiemTraLoi()
+//    {   
+//        loi = "";
+//
+//        String taiKhoan = taiKhoan_TF.getText();
+//        String CMND = CMND_TF.getText();
+//        String email = email_TF.getText();
+//
+//        if (taiKhoan.equals(""))
+//        {
+//            loi = loi + "Tài khoản không được để trống\n";
+//        }
+//
+//        if (CMND.equals(""))
+//        {
+//            loi = loi + "CMND/CCCD không được để trống\n";
+//        }
+//        
+//        if (email.equals(""))
+//        {
+//            loi = loi + "Email không được để trống\n";
+//        }
+//
+//        if (loi.equals("") == false)
+//        {
+//            hienThiLoi(loi);
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }    
+//    
+//    public void hienThiLoi(String loi)
+//    {
+//        JOptionPane.showMessageDialog(rootPane, loi, "Lỗi", JOptionPane.ERROR_MESSAGE);
+//    }     
+//    
+//    public boolean kiemTraThongTin(String taiKhoan, String CMND)
+//    {
+//        Connection connect = Util.getConnection();
+//        String query = "select * from NhanVien where tenTK = '" + taiKhoan + "' and cmnd = '" + CMND + "'";
+//        try
+//        {
+//            PreparedStatement ps = connect.prepareStatement(query);
+//            ResultSet rs = ps.executeQuery();
+//            if (rs.next())
+//            {
+//                this.tenNhanVien = rs.getString("tenNV");
+//                return true;
+//            }
+//        }catch (SQLException ex)
+//        {
+//            ex.printStackTrace();
+//        }
+//        return false;
+//    }
+//    
+//    public void guiYeuCauKhoiPhucMatKhau()
+//    {
+//        String taiKhoan = taiKhoan_TF.getText();
+//        String CMND = CMND_TF.getText();
+//        String email = email_TF.getText();
+//        
+//        if (kiemTraThongTin(taiKhoan, CMND) == false)
+//        {
+//            JOptionPane.showMessageDialog(rootPane, "Thông tin không chính xác. Vui lòng kiểm tra lại\n",
+//                    "Lỗi!", JOptionPane.ERROR_MESSAGE);
+//            return;
+//        }       
+//        
+//        String matKhauMoi = taoMatKhauMoi();
+//        
+//        Connection connect = Util.getConnection();
+//        String query = "update NhanVien set matKhau = '" + Util.hashing(matKhauMoi) + "'"
+//                     + " where tenTK = '" + taiKhoan + "' and cmnd = '" + CMND + "'";
+//        try
+//        {
+//            PreparedStatement ps = connect.prepareStatement(query);
+//            ps.executeUpdate();
+//            String noiDung = "A+ CNPM\n\n"
+//                           + "Nhân viên: " + tenNhanVien + "\n"
+//                           + "Tài khoản: " + taiKhoan + "\n"
+//                           + "Mật khẩu mới: " + matKhauMoi;
+//            if (Email.guiEmail(email, "doimatkhauQLCTA@gmail.com", "qlcta123!", "smtp.gmail.com", noiDung) == true)
+//            {
+//                JOptionPane.showMessageDialog(rootPane, "Gửi yêu cầu khôi phục mật khẩu thành công");
+//                clear();
+//            }
+//            else
+//            {
+//                JOptionPane.showMessageDialog(rootPane, "Gửi yêu cầu không thành công.", "Lỗi!", 
+//                        JOptionPane.ERROR_MESSAGE);                  
+//            }
+//        }catch (SQLException ex)
+//        {
+//            ex.printStackTrace();
+//
+//        }                              
+//    }
+//    
+//    public String taoMatKhauMoi()
+//    {
+//        Date date = new Date();
+//        long timeMilli = date.getTime();
+//        return (timeMilli % 10000000)  + "";    
+//    }
+//    
+//    public void clear()
+//    {
+//        taiKhoan_TF.setText("");
+//        CMND_TF.setText("");
+//        email_TF.setText("");
+//    }
 }

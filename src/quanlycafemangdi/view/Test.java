@@ -8,7 +8,7 @@ package quanlycafemangdi.view;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import quanlycafemangdi.model.Mail;
+import quanlycafemangdi.model.Email;
 
 
 public class Test {

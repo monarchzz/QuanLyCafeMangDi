@@ -297,7 +297,7 @@ public class QuenMatKhauDialog extends javax.swing.JDialog {
         {
             PreparedStatement ps = connect.prepareStatement(query);
             ps.executeUpdate();
-            SendMessage.sendMessage(SendMessage.defaultToken, SDT, matKhauMoi, SendMessage.defaultSenderID);
+            SendMessage.sendMessage(SendMessage.defaultToken, SDT, "Mật khẩu mới: " + matKhauMoi, SendMessage.defaultSenderID);
         }catch (SQLException ex)
         {
             ex.printStackTrace();

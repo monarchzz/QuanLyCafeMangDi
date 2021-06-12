@@ -173,6 +173,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
         sdtTF.setText(nv.getSdt());
         chucVuCB.setSelectedItem(nv.getChucVu());
         tenDangNhapTF.setText(nv.getTenTk());
+        
         if (data.ktTrangThaiNV(nv.getTenTk())){ // dang lam viec
             trangThaiCB.setSelectedIndex(0);
             xoaNhanVienBtn.setEnabled(true);
@@ -194,7 +195,11 @@ public class NhanVienPanel extends javax.swing.JPanel{
         sdtTF.setEnabled(flag);
         chucVuCB.setEnabled(flag);
         tenDangNhapTF.setEnabled(false);
-        matKhauPanel.setVisible(flag);
+        if (ThongTinDangNhap.getChucVu().toLowerCase().contains(adminString)){
+            matKhauPanel.setVisible(flag);
+        }else {
+            matKhauPanel.setVisible(false);
+        }
         trangThaiCB.setEnabled(flag);
     }
 
@@ -1025,7 +1030,7 @@ public class NhanVienPanel extends javax.swing.JPanel{
                     .addComponent(tenDangNhapLb1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(matKhauPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(chucNangPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );

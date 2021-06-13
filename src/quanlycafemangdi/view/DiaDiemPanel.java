@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,7 +52,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         initComponents();
      
         data = Data.getInstance();
-        dsNhanVien = data.layDSNhanVien();
+        dsNhanVien = locDSNhanVien(data.layDSNhanVienDayDu());
         
         xetBang(jT_DSCLV);
         xetBang(jT_DSDD);
@@ -100,8 +102,8 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         jCB_TenNV2.removeAllItems();
         jCB_TenNV2.addItem("");
         
-        
-        for (NhanVien nv : dsNhanVien){
+        List<NhanVien> dsNVLoc = locDSNhanVien(data.layDSNhanVien());
+        for (NhanVien nv : dsNVLoc){
             jCB_TenNV1.addItem(nv.getTenNhanVien());
             jCB_TenNV2.addItem(nv.getTenNhanVien());
         }
@@ -993,8 +995,10 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                 .addContainerGap())
         );
 
+        jCB_DiaDiem.setBackground(new java.awt.Color(254, 254, 254));
         jCB_DiaDiem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jCB_TenNV1.setBackground(new java.awt.Color(254, 254, 254));
         jCB_TenNV1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_TenNV1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1002,6 +1006,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             }
         });
 
+        jCB_TenNV2.setBackground(new java.awt.Color(254, 254, 254));
         jCB_TenNV2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jCB_TenNV2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1242,17 +1247,20 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         CaLamViec clv = dsHienThiCLV.get(index);
         jLP_ChucNangCLV.removeAll();
         
+        String currentDate = DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now());
         
-        if(ThongTinDangNhap.getChucVu().contains("nhân viên")){
+        if(ThongTinDangNhap.getChucVu().contains("nhân viên") || clv.getNgay().compareTo(currentDate) < 0){
             jLP_ChucNangCLV.add(jP_HienCLV);
             jLP_ChucNangCLV.repaint();
             jLP_ChucNangCLV.validate();
+            hienTTCLV(clv, false);
         }else{
             jLP_ChucNangCLV.add(jP_SuaXoaCLV);
             jLP_ChucNangCLV.repaint();
             jLP_ChucNangCLV.validate();
+            hienTTCLV(clv, true);
         }
-        hienTTCLV(clv, true);
+        
     }//GEN-LAST:event_jT_DSCLVMouseClicked
 
     private void jB_TaoDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_TaoDDActionPerformed
@@ -1335,12 +1343,19 @@ public class DiaDiemPanel extends javax.swing.JPanel{
                 String dd = jCB_DiaDiem.getSelectedItem().toString();
                 String maDD = layMaDD(dd);
                 String tk1 = getMaNV(jCB_TenNV1.getSelectedItem().toString());
-                String tk2 = getMaNV(jCB_TenNV2.getSelectedItem().toString());
+                String tk2;
+                if (jCB_TenNV2.getSelectedItem() == null){
+                    tk2 = null;
+                }else {
+                     tk2 = getMaNV(jCB_TenNV2.getSelectedItem().toString().trim());
+                }
+               
 
                 CaLamViec clv2 = new CaLamViec(clv.getMaCLV(), maDD, caLamViec, ngayLam, tk1, tk2);
                 data.suaThongTinCaLamViec(clv2);
                 JOptionPane.showMessageDialog(this, "Sửa thông tin thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
+                thoatButtonAction();
                 khoiTaoBangCLV();
                 //dispose();
             }
@@ -1349,11 +1364,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
 
     private void jB_Thoat2CLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_Thoat2CLVActionPerformed
         // TODO add your handling code here:
-        jLP_ChucNangCLV.removeAll();
-        jLP_ChucNangCLV.add(jP_HienTTDD);
-        jLP_ChucNangCLV.repaint();
-        jLP_ChucNangCLV.validate();
-        //dispose();
+        thoatButtonAction();
+        
+        
     }//GEN-LAST:event_jB_Thoat2CLVActionPerformed
 
     private void jB_TaoCLVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jB_TaoCLVActionPerformed
@@ -1361,6 +1374,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         if(kTThongTinCLV()){
             themCaLamViec();
             JOptionPane.showMessageDialog(this, "Thêm ca làm việc thành công.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+            thoatButtonAction();
             xoaThongTinCLV();
             khoiTaoBangCLV();
         //dispose();
@@ -1617,7 +1631,12 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         jDC_DateCLV.setText(clv.getNgay());
 
         jCB_TenNV1.setSelectedItem(getTenNV(clv.getTK1()));   
-        jCB_TenNV2.setSelectedItem(getTenNV(clv.getTK2()));   
+        if (clv.getTK2() != null){
+            jCB_TenNV2.setSelectedItem(getTenNV(clv.getTK2()));   
+        }else {
+            jCB_TenNV2.setSelectedItem("");
+        }
+        
         
         hienTFCLV(hienTF);
     }
@@ -1664,5 +1683,24 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         
     }
 
+    private void thoatButtonAction(){
+        jLP_ChucNangCLV.removeAll();
+        jLP_ChucNangCLV.add(jP_HienTTDD);
+        jLP_ChucNangCLV.repaint();
+        jLP_ChucNangCLV.validate();
+        //dispose();
+        hienTFCLV(false);
+    }
+    private List<NhanVien> locDSNhanVien(List<NhanVien> rawList){
+        ArrayList<NhanVien> mList = new ArrayList<>();
+        
+        for (NhanVien nv : rawList){
+            if (nv.getChucVu().contains("nhân viên")){
+                mList.add(nv);
+            }
+        }
+        
+        return mList;
+    }
 }
 

@@ -2091,7 +2091,7 @@ public class ThongKePanel extends javax.swing.JPanel {
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addGroup(jPanel23Layout.createSequentialGroup()
                         .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
@@ -2215,10 +2215,8 @@ public class ThongKePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel20Layout.createSequentialGroup()
-                        .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel35))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel35)
+                        .addGap(0, 186, Short.MAX_VALUE))
                     .addGroup(jPanel20Layout.createSequentialGroup()
                         .addGroup(jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel34, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2234,7 +2232,8 @@ public class ThongKePanel extends javax.swing.JPanel {
                             .addComponent(chiTietCaLamBHLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(chiTietNgayBHLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(chiTietTGBHLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chiTietTongTienLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(chiTietTongTienLb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
@@ -2279,9 +2278,9 @@ public class ThongKePanel extends javax.swing.JPanel {
             .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(thongKeBanHangPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         thongKeBanHangPanelLayout.setVerticalGroup(
@@ -2302,7 +2301,6 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
 
-        tKDangKiTable.setBackground(new java.awt.Color(254, 254, 254));
         tKDangKiTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -2314,6 +2312,7 @@ public class ThongKePanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tKDangKiTable.setBackground(new java.awt.Color(254, 254, 254));
         tKDangKiTable.setSelectionBackground(new java.awt.Color(153, 153, 255));
         tKDangKiTable.setSelectionForeground(new java.awt.Color(254, 254, 254));
         tKDangKiTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -2365,7 +2364,7 @@ public class ThongKePanel extends javax.swing.JPanel {
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
                     .addGroup(jPanel24Layout.createSequentialGroup()
                         .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel38)
@@ -2501,7 +2500,7 @@ public class ThongKePanel extends javax.swing.JPanel {
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
@@ -2535,7 +2534,7 @@ public class ThongKePanel extends javax.swing.JPanel {
                     .addGroup(jPanel28Layout.createSequentialGroup()
                         .addComponent(jLabel49)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel28Layout.setVerticalGroup(
@@ -2637,9 +2636,9 @@ public class ThongKePanel extends javax.swing.JPanel {
             .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(thongKeDangKiPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 .addContainerGap())
         );
         thongKeDangKiPanelLayout.setVerticalGroup(

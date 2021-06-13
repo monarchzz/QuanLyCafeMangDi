@@ -365,7 +365,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
             case 1: //theo ma dia diem
                 return clv1.getMaDD().compareTo(clv2.getMaDD());
             case 2: //theo ngay lam
-                return clv1.getNgay().compareTo(clv2.getNgay());
+                return clv2.getNgay().compareTo(clv1.getNgay());
         }
         return 0;
     }

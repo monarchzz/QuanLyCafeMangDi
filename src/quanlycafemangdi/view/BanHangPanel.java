@@ -783,10 +783,24 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         capNhatHaiBangQuanLy();
     }
     
+    private boolean isKhoHienTaiEmpty(){
+        if (khoHienTai == null) return true;
+        Set<String> keySet = khoHienTai.keySet();
+        for (String keyString : keySet){
+            if (khoHienTai.get(keyString) != null && khoHienTai.get(keyString) > 0){
+                return false;
+            }
+        }
+        return true;
+        
+    }
+    
     private void capNhatHaiBangQuanLy(){
         defaultTableModelSP.setRowCount(0);
         defaultTableModelNL.setRowCount(0); 
-        if (khoHienTai.isEmpty()){
+        if (khoHienTai.isEmpty() ){
+            duaNLVeKhoBtn.setEnabled(false);
+        } if (isKhoHienTaiEmpty()) {
             duaNLVeKhoBtn.setEnabled(false);
         }else {
             duaNLVeKhoBtn.setEnabled(true);
@@ -798,7 +812,8 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
             String raw =  data.layTenNguyenLieu(key);
             String tenNL = raw.substring(raw.indexOf(" ") + 1);
             String donVi = raw.substring(0,raw.indexOf(" "));
-            defaultTableModelNL.addRow(new Object[]{key, tenNL, khoHienTai.get(key) + " " + donVi});
+            if (khoHienTai.get(key) > 0)
+                defaultTableModelNL.addRow(new Object[]{key, tenNL, khoHienTai.get(key) + " " + donVi});
         }
         
         for (SanPham sp : dsSanPham){
@@ -816,7 +831,7 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
                 }
             }
             
-            if (coNL){
+            if (coNL && min > 0){
                 defaultTableModelSP.addRow(new Object[]{sp.getMaSP(), sp.getTenSP(), min + " ly"});
             }
             
@@ -957,7 +972,9 @@ public class BanHangPanel extends javax.swing.JPanel implements SanPhamPanel.IOn
         if (time >= 12) caLV = "Chiều";
         else caLV = "Sáng";
         for (CaLamViec clv : dsCaLamViec){
-            if(clv.getNgay().compareTo(now) > 0 || (clv.getNgay().compareTo(now) == 0 && clv.getCaLamViec().equals(caLV))){
+            if(clv.getNgay().compareTo(now) > 0 
+                    || (clv.getNgay().compareTo(now) == 0 && clv.getCaLamViec().equals(caLV))
+                    || (clv.getNgay().compareTo(now) == 0 && clv.getCaLamViec().equals("Chiều"))){
                 
                 dsCaLamViecDialog.add(clv);
                 

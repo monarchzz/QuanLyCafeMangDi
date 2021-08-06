@@ -1096,7 +1096,7 @@ public class NguyenLieu_Panel extends javax.swing.JPanel implements IOnFrameDisp
                         danhSachXuatTam.add(chiTietXuat);
                     }
                 }
-                hienThiDanhSachNhap(danhSachXuatTam, "Khac");             
+                hienThiDanhSachXuat(danhSachXuatTam, "Khac");             
             }
             else
             {

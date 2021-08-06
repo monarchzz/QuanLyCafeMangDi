@@ -493,7 +493,7 @@ public class NguyenLieu_ThemFrame extends javax.swing.JFrame {
         }
         else if (soLuong.matches("\\d+") == false)
         {
-            loi = loi + "Số lượng phải là số nguyên\n";
+            loi = loi + "Số lượng không hợp lệ\n";
         }
         
         if (loi.equals("") == false)

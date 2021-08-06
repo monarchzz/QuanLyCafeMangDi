@@ -398,6 +398,7 @@ public class SanPham_ThemFrame extends javax.swing.JFrame {
         
         String maSanPham = maSanPham_TF.getText();
         String gia = gia_TF.getText();
+        String tenSanPham = tenSanPham_TF.getText();
         
         if (maSanPham.equals(""))
         {
@@ -407,7 +408,10 @@ public class SanPham_ThemFrame extends javax.swing.JFrame {
 //        {
 //            loi = loi + "Mã sản phẩm đã tồn tại\n";
 //        }
-        
+        if (tenSanPham.equals(""))
+        {
+            loi = loi + "Tên sản phẩm không được để trống\n";
+        }
         if (gia.equals(""))
         {
             loi = loi + "Giá tiền không được để trống\n";

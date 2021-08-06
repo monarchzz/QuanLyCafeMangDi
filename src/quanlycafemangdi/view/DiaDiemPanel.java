@@ -1495,6 +1495,9 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         if(viTri.replace("\\s\\s+", "").trim().equals("")){
             loi += "Vị trí không được bỏ trống.\n";
         }
+        if(!kiemTraViTri(viTri)){
+            loi += "Vi tri này đã tồn tại.\n";
+        }
         if(!loi.equals("")){
             hienLoi(loi);
             return false;
@@ -1566,6 +1569,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         String loi = "";
         
         String diaDiem = (String) jCB_DiaDiem.getSelectedItem();
+        
         String caLamViec = (String) jCB_CaLam.getSelectedItem();
         String ngayLam = jDC_DateCLV.getText();
         String tk1 = (String) jCB_TenNV1.getSelectedItem();
@@ -1582,6 +1586,18 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         }
         if(tk1.trim().equals("")){
             loi += "Tên nhân viên 1 không được bỏ trống.\n";
+        }
+        else if(ktCLV(layMaDD(diaDiem), caLamViec, ngayLam, layMaTK1(tk1)))
+        {
+            loi += "Ca làm việc bị trùng.\n";
+        }
+        else if(ktCLV1(caLamViec, ngayLam, tk1))
+        {
+            loi += "Ca làm việc bị trùng.\n";
+        }
+        else if(ktCLV2(layMaDD(diaDiem), caLamViec, ngayLam))
+        {
+            loi += "Ca làm việc bị trùng.\n";
         }
         if(!loi.equals("")){
             hienLoi(loi);
@@ -1612,6 +1628,14 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         if(tk1.trim().equals("")){
             loi += "Tên nhân viên 1 không được bỏ trống.\n";
         }
+        else if(ktCLV1(caLamViec, ngayLam, tk1))
+        {
+            loi += "Ca làm việc bị trùng.\n";
+        }
+        else if(ktCLV2(layMaDD(diaDiem), caLamViec, ngayLam))
+        {
+            loi += "Ca làm việc bị trùng.\n";
+        }
         if(!loi.equals("")){
             hienLoi(loi);
             return false;
@@ -1624,6 +1648,26 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         return data.kiemTraMaCLV(maCLV);
 //return false;
     }
+    
+    private boolean ktCLV2(String MaDD, String caLamViec, String ngayLam) {
+        return data.ktCLV2(MaDD, caLamViec, ngayLam);
+    }
+    
+    private boolean ktCLV(String MaDD, String caLamViec, String ngayLam, String tk1) {
+        return data.ktCLV(MaDD, caLamViec, ngayLam, tk1);
+    }
+    
+    private boolean ktCLV1(String caLamViec, String ngayLam, String tk1) {
+        return data.ktCLV1(caLamViec, ngayLam, tk1);
+    }
+    
+    private String layMaTK1(String tk1){
+        for(NhanVien nv: dsNhanVien){
+            if(tk1.equals(nv.getTenNhanVien()))
+                return nv.getTenTk();
+        }
+        return null;
+    }  
     
     public void hienTTCLV(CaLamViec clv, boolean  hienTF){
         jCB_DiaDiem.setSelectedItem(dsDiaDiemHashMap.get(clv.getMaDD()));
@@ -1702,5 +1746,7 @@ public class DiaDiemPanel extends javax.swing.JPanel{
         
         return mList;
     }
+
+   
 }
 

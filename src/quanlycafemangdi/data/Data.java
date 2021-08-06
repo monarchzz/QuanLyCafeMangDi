@@ -1162,7 +1162,7 @@ public class Data {
         return true;
     }
     
-    //kiem tra vi tri dia diem
+//    //kiem tra vi tri dia diem
     public boolean kiemTraViTri(String viTri) {
         String sql = "select viTri from DiaDiem";
                 
@@ -1179,7 +1179,66 @@ public class Data {
         }
         return true;
     }
+    
+   
+    public boolean ktCLV(String diaDiem, String clv, String ngay, String tk1){
+        String sql = "select * from CaLamViec";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (tk1.contains(rs.getString("TK1")) 
+                        && ngay.contains(rs.getString("ngay"))
+                        && clv.contains(rs.getString("caLamViec"))
+                        && diaDiem.contains(rs.getString("maDD"))){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
 
+    public boolean ktCLV1(String clv, String ngay, String tk1){
+        String sql = "select * from CaLamViec";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (tk1.contains(rs.getString("TK1")) 
+                        && ngay.contains(rs.getString("ngay"))
+                        && clv.contains(rs.getString("caLamViec"))){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean ktCLV2(String dd, String clv, String ngay){
+        String sql = "select * from CaLamViec";
+                
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                if (dd.contains(rs.getString("maDD")) 
+                        && ngay.contains(rs.getString("ngay"))
+                        && clv.contains(rs.getString("caLamViec"))){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
     public void themDiaDiem(DiaDiem diaDiem){
         String sql = "insert into DiaDiem values(?,?,?)";
         
